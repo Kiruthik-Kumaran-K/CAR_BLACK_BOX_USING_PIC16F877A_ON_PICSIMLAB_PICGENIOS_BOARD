@@ -95,8 +95,9 @@ void login_page(void)
             attempts++;
             if(my_strcmp(usr_password, org_password) == 0)
             {
-                clcd_print("                ",LINE1(0));
+                clcd_clear();
                 clcd_print("SUCCESSFUL      ",LINE2(4));
+                while(1);
             }else
             {
 
@@ -104,26 +105,40 @@ void login_page(void)
                 if(attempts >= 3)
                 {
                     unsigned char lock_time = 60;
-                    clcd_print("LOCKED          ",LINE1(0));
+                    unsigned char previous_time = 60;
+
+                    clcd_print("BLOCKED          ", LINE1(0));
+
                     
-                    while(lock_time > 0)
+                    clcd_putch((lock_time / 10) + '0', LINE2(6));
+                    clcd_putch((lock_time % 10) + '0', LINE2(7));
+                    clcd_print("Wait for ",LINE2(0));
+                    clcd_putch('s', LINE2(11));
+
+                    while (lock_time > 0)
                     {
-                        if(one_second_flag)
+                        if (one_second_flag)
                         {
                             one_second_flag = 0;
-                            
+
+                            previous_time = lock_time;
                             lock_time--;
-                            
-                            clcd_print("                ",LINE2(0));
-                            
-                            display[0] = (lock_time / 10) + '0';
-                            display[1] = (lock_time % 10) + '0';
-                            display[2] = 's';
-                            display[3] = '\0';
-                            
-                            clcd_print(display, LINE2(6));
+
+
+                            if ((lock_time / 10) != (previous_time / 10))
+                            {
+                                clcd_putch((lock_time / 10) + '0', LINE2(9));
+                            }
+
+
+                            if ((lock_time % 10) != (previous_time % 10))
+                            {
+                                clcd_putch((lock_time % 10) + '0', LINE2(10));
+                            }
                         }
                     }
+                    
+                    clcd_clear();
                     
                     index = 0;
                     attempts = 0;
@@ -186,8 +201,7 @@ void login_page(void)
                 if(inactivity_time >= 5)
                 {
                     inactivity_time = 0;
-                    clcd_print("                ",LINE1(0));
-                    clcd_print("                ",LINE2(0));
+                    clcd_clear();
                     put_data_dashboard();
                     return;
                 }

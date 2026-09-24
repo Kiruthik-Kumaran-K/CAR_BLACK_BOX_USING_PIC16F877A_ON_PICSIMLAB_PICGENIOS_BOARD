@@ -390,3 +390,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;clcd.c: 71: }
 [e :UE 98 ]
 }
+"73
+[; ;clcd.c: 73: void clcd_clear()
+[v _clcd_clear `(v ~T0 @X0 1 ef ]
+"74
+[; ;clcd.c: 74: {
+{
+[e :U _clcd_clear ]
+[f ]
+"75
+[; ;clcd.c: 75:     clcd_print("                ",(0x80 + 0));
+[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
+"76
+[; ;clcd.c: 76:     clcd_print("                ",(0xC0 + 0));
+[e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
+"77
+[; ;clcd.c: 77: }
+[e :UE 102 ]
+}
+[a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 2C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

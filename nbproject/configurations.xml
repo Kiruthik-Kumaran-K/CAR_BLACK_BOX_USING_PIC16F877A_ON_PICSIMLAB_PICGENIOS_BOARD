@@ -7,7 +7,6 @@
       <itemPath>adc.h</itemPath>
       <itemPath>clcd.h</itemPath>
       <itemPath>DS1307.h</itemPath>
-      <itemPath>external_interrupt.h</itemPath>
       <itemPath>i2c.h</itemPath>
       <itemPath>main.h</itemPath>
       <itemPath>matrix_keypad.h</itemPath>
@@ -24,7 +23,6 @@
       <itemPath>clcd.c</itemPath>
       <itemPath>dashboard.c</itemPath>
       <itemPath>DS1307.c</itemPath>
-      <itemPath>external_interrupt.c</itemPath>
       <itemPath>i2c.c</itemPath>
       <itemPath>isr.c</itemPath>
       <itemPath>login.c</itemPath>

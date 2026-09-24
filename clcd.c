@@ -70,3 +70,9 @@ void clcd_print(const char *str, unsigned char addr)
     }
 }
 
+void clcd_clear()
+{
+    clcd_print("                ",LINE1(0));
+    clcd_print("                ",LINE2(0));
+}
+

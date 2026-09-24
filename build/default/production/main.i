@@ -1744,6 +1744,7 @@ void read_ds1307_time(unsigned char *clock_reg);
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 # 14 "./main.h" 2
 # 1 "./adc.h" 1
 # 11 "./adc.h"
@@ -1800,16 +1801,11 @@ static void init_config(void) {
     clcd_print("Time", (0x80 + 3));
     clcd_print("E", (0x80 + 11));
     clcd_print("SP" , (0x80 + 14));
-    clcd_print("ON", (0xC0 + 11));
+    put_data_dashboard();
 }
 
 void main(void)
 {
-    unsigned char clock_reg[3];
-
-
-
-
 
     init_config();
 

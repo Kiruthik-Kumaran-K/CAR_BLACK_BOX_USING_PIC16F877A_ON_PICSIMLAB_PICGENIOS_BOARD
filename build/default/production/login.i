@@ -1727,6 +1727,7 @@ void init_matrix_keypad(void);
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 # 4 "login.c" 2
 # 1 "./timer.h" 1
 # 11 "./timer.h"
@@ -1865,8 +1866,9 @@ void login_page(void)
             attempts++;
             if(my_strcmp(usr_password, org_password) == 0)
             {
-                clcd_print("                ",(0x80 + 0));
+                clcd_clear();
                 clcd_print("SUCCESSFUL      ",(0xC0 + 4));
+                while(1);
             }else
             {
 
@@ -1874,26 +1876,40 @@ void login_page(void)
                 if(attempts >= 3)
                 {
                     unsigned char lock_time = 60;
-                    clcd_print("LOCKED          ",(0x80 + 0));
+                    unsigned char previous_time = 60;
 
-                    while(lock_time > 0)
+                    clcd_print("BLOCKED          ", (0x80 + 0));
+
+
+                    clcd_putch((lock_time / 10) + '0', (0xC0 + 6));
+                    clcd_putch((lock_time % 10) + '0', (0xC0 + 7));
+                    clcd_print("Wait for ",(0xC0 + 0));
+                    clcd_putch('s', (0xC0 + 11));
+
+                    while (lock_time > 0)
                     {
-                        if(one_second_flag)
+                        if (one_second_flag)
                         {
                             one_second_flag = 0;
 
+                            previous_time = lock_time;
                             lock_time--;
 
-                            clcd_print("                ",(0xC0 + 0));
 
-                            display[0] = (lock_time / 10) + '0';
-                            display[1] = (lock_time % 10) + '0';
-                            display[2] = 's';
-                            display[3] = '\0';
+                            if ((lock_time / 10) != (previous_time / 10))
+                            {
+                                clcd_putch((lock_time / 10) + '0', (0xC0 + 9));
+                            }
 
-                            clcd_print(display, (0xC0 + 6));
+
+                            if ((lock_time % 10) != (previous_time % 10))
+                            {
+                                clcd_putch((lock_time % 10) + '0', (0xC0 + 10));
+                            }
                         }
                     }
+
+                    clcd_clear();
 
                     index = 0;
                     attempts = 0;
@@ -1956,8 +1972,7 @@ void login_page(void)
                 if(inactivity_time >= 5)
                 {
                     inactivity_time = 0;
-                    clcd_print("                ",(0x80 + 0));
-                    clcd_print("                ",(0xC0 + 0));
+                    clcd_clear();
                     put_data_dashboard();
                     return;
                 }

@@ -1722,6 +1722,7 @@ extern __bank0 __bit __timeout;
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 # 3 "clcd.c" 2
 
 static void clcd_write(unsigned char byte, unsigned char mode)
@@ -1791,4 +1792,10 @@ void clcd_print(const char *str, unsigned char addr)
         clcd_write(*str, 1);
         str++;
     }
+}
+
+void clcd_clear()
+{
+    clcd_print("                ",(0x80 + 0));
+    clcd_print("                ",(0xC0 + 0));
 }

@@ -34,6 +34,7 @@ void read_ds1307_time(unsigned char *clock_reg);
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 # 14 "./main.h" 2
 # 1 "./adc.h" 1
 # 11 "./adc.h"

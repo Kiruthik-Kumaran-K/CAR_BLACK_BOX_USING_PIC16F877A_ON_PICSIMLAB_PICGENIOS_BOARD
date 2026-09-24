@@ -6,6 +6,7 @@
 #define ONE_SECOND_CYCLE 1000
 
 volatile unsigned int ms_count = 0;
+volatile unsigned int ms_count_cursor = 0;
 volatile unsigned char cursor_state = 1;
 
 volatile unsigned char cursor_update = 0;
@@ -32,15 +33,21 @@ void __interrupt() isr(void)
         
         
         ms_count++;
-        if(ms_count >= ONE_SECOND_CYCLE)
+        ms_count_cursor++;
+        if(ms_count_cursor >= ONE_SECOND_CYCLE/2)
         {
-            ms_count = 0;
-            one_second_flag = 1;
+            ms_count_cursor = 0;
             if(index < 4)
             {
                 cursor_state = !cursor_state;
                 cursor_update = 1;
-            }
+            }            
+        }
+        if(ms_count >= ONE_SECOND_CYCLE)
+        {
+            ms_count = 0;
+            one_second_flag = 1;
+
         }   
     }
 }

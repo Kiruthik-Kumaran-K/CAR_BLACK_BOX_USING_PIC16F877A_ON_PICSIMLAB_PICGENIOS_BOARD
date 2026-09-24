@@ -1748,6 +1748,7 @@ void read_ds1307_time(unsigned char *clock_reg);
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 # 14 "./main.h" 2
 # 1 "./adc.h" 1
 # 11 "./adc.h"
@@ -1776,6 +1777,7 @@ void login_page(void);
 
 
 volatile unsigned int ms_count = 0;
+volatile unsigned int ms_count_cursor = 0;
 volatile unsigned char cursor_state = 1;
 
 volatile unsigned char cursor_update = 0;
@@ -1802,15 +1804,21 @@ void __attribute__((picinterrupt(("")))) isr(void)
 
 
         ms_count++;
-        if(ms_count >= 1000)
+        ms_count_cursor++;
+        if(ms_count_cursor >= 1000/2)
         {
-            ms_count = 0;
-            one_second_flag = 1;
+            ms_count_cursor = 0;
             if(index < 4)
             {
                 cursor_state = !cursor_state;
                 cursor_update = 1;
             }
+        }
+        if(ms_count >= 1000)
+        {
+            ms_count = 0;
+            one_second_flag = 1;
+
         }
     }
 }

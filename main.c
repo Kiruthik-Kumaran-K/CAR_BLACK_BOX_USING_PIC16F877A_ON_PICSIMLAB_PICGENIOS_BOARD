@@ -30,17 +30,12 @@ static void init_config(void) {
     clcd_print("Time", LINE1(3));
     clcd_print("E", LINE1(11));
     clcd_print("SP" , LINE1(14));
-    clcd_print("ON", LINE2(11));
+    put_data_dashboard();
 }
 
 void main(void)
 {
-    unsigned char clock_reg[3]; // HH MM SS
-                                // 0  1  2
-
-
-    
-
+ 
     init_config();
 
     while (1)

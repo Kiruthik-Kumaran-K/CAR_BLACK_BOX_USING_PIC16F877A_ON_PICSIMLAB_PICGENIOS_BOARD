@@ -29,6 +29,7 @@
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
 
 #endif	/* CLCD_H */
 

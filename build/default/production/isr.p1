@@ -7,8 +7,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "59
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
 [v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
-"18 isr.c
-[; ;isr.c: 18: extern unsigned char index;
+"19 isr.c
+[; ;isr.c: 19: extern unsigned char index;
 [v _index `uc ~T0 @X0 0 e ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
@@ -191,96 +191,118 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "9
-[; ;isr.c: 9: volatile unsigned char cursor_state = 1;
+[; ;isr.c: 9: volatile unsigned int ms_count_cursor = 0;
+[v _ms_count_cursor `Vui ~T0 @X0 1 e ]
+[i _ms_count_cursor
+-> -> 0 `i `ui
+]
+"10
+[; ;isr.c: 10: volatile unsigned char cursor_state = 1;
 [v _cursor_state `Vuc ~T0 @X0 1 e ]
 [i _cursor_state
 -> -> 1 `i `uc
 ]
-"11
-[; ;isr.c: 11: volatile unsigned char cursor_update = 0;
+"12
+[; ;isr.c: 12: volatile unsigned char cursor_update = 0;
 [v _cursor_update `Vuc ~T0 @X0 1 e ]
 [i _cursor_update
 -> -> 0 `i `uc
 ]
-"13
-[; ;isr.c: 13: volatile unsigned char one_second_flag = 0;
+"14
+[; ;isr.c: 14: volatile unsigned char one_second_flag = 0;
 [v _one_second_flag `Vuc ~T0 @X0 1 e ]
 [i _one_second_flag
 -> -> 0 `i `uc
 ]
-"15
-[; ;isr.c: 15: extern unsigned int crt = 0;
+"16
+[; ;isr.c: 16: extern unsigned int crt = 0;
 [v _crt `ui ~T0 @X0 1 e ]
 [i _crt
 -> -> 0 `i `ui
 ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"20
-[; ;isr.c: 20: void __attribute__((picinterrupt(("")))) isr(void)
-[v _isr `(v ~T1 @X0 1 ef ]
 "21
-[; ;isr.c: 21: {
+[; ;isr.c: 21: void __attribute__((picinterrupt(("")))) isr(void)
+[v _isr `(v ~T1 @X0 1 ef ]
+"22
+[; ;isr.c: 22: {
 {
 [e :U _isr ]
 [f ]
-"22
-[; ;isr.c: 22:     static unsigned int count = 0;
-[v F966 `ui ~T0 @X0 1 s count ]
-[i F966
+"23
+[; ;isr.c: 23:     static unsigned int count = 0;
+[v F968 `ui ~T0 @X0 1 s count ]
+[i F968
 -> -> 0 `i `ui
 ]
-"26
-[; ;isr.c: 26:     if (TMR0IF == 1)
-[e $ ! == -> _TMR0IF `i -> 1 `i 95  ]
 "27
-[; ;isr.c: 27:     {
-{
+[; ;isr.c: 27:     if (TMR0IF == 1)
+[e $ ! == -> _TMR0IF `i -> 1 `i 95  ]
 "28
-[; ;isr.c: 28:         TMR0 = TMR0 + 100 + 2;
+[; ;isr.c: 28:     {
+{
+"29
+[; ;isr.c: 29:         TMR0 = TMR0 + 100 + 2;
 [e = _TMR0 -> + + -> _TMR0 `i -> 100 `i -> 2 `i `uc ]
-"30
-[; ;isr.c: 30:         TMR0IF = 0;
+"31
+[; ;isr.c: 31:         TMR0IF = 0;
 [e = _TMR0IF -> -> 0 `i `b ]
-"34
-[; ;isr.c: 34:         ms_count++;
-[e ++ _ms_count -> -> 1 `i `Vui ]
 "35
-[; ;isr.c: 35:         if(ms_count >= 1000)
-[e $ ! >= _ms_count -> -> 1000 `i `ui 96  ]
+[; ;isr.c: 35:         ms_count++;
+[e ++ _ms_count -> -> 1 `i `Vui ]
 "36
-[; ;isr.c: 36:         {
-{
+[; ;isr.c: 36:         ms_count_cursor++;
+[e ++ _ms_count_cursor -> -> 1 `i `Vui ]
 "37
-[; ;isr.c: 37:             ms_count = 0;
-[e = _ms_count -> -> 0 `i `ui ]
+[; ;isr.c: 37:         if(ms_count_cursor >= 1000/2)
+[e $ ! >= _ms_count_cursor -> / -> 1000 `i -> 2 `i `ui 96  ]
 "38
-[; ;isr.c: 38:             one_second_flag = 1;
-[e = _one_second_flag -> -> 1 `i `uc ]
-"39
-[; ;isr.c: 39:             if(index < 4)
-[e $ ! < -> _index `i -> 4 `i 97  ]
-"40
-[; ;isr.c: 40:             {
+[; ;isr.c: 38:         {
 {
+"39
+[; ;isr.c: 39:             ms_count_cursor = 0;
+[e = _ms_count_cursor -> -> 0 `i `ui ]
+"40
+[; ;isr.c: 40:             if(index < 4)
+[e $ ! < -> _index `i -> 4 `i 97  ]
 "41
-[; ;isr.c: 41:                 cursor_state = !cursor_state;
-[e = _cursor_state -> -> ! != -> _cursor_state `i -> 0 `i `i `uc ]
+[; ;isr.c: 41:             {
+{
 "42
-[; ;isr.c: 42:                 cursor_update = 1;
-[e = _cursor_update -> -> 1 `i `uc ]
+[; ;isr.c: 42:                 cursor_state = !cursor_state;
+[e = _cursor_state -> -> ! != -> _cursor_state `i -> 0 `i `i `uc ]
 "43
-[; ;isr.c: 43:             }
+[; ;isr.c: 43:                 cursor_update = 1;
+[e = _cursor_update -> -> 1 `i `uc ]
+"44
+[; ;isr.c: 44:             }
 }
 [e :U 97 ]
-"44
-[; ;isr.c: 44:         }
+"45
+[; ;isr.c: 45:         }
 }
 [e :U 96 ]
-"45
-[; ;isr.c: 45:     }
+"46
+[; ;isr.c: 46:         if(ms_count >= 1000)
+[e $ ! >= _ms_count -> -> 1000 `i `ui 98  ]
+"47
+[; ;isr.c: 47:         {
+{
+"48
+[; ;isr.c: 48:             ms_count = 0;
+[e = _ms_count -> -> 0 `i `ui ]
+"49
+[; ;isr.c: 49:             one_second_flag = 1;
+[e = _one_second_flag -> -> 1 `i `uc ]
+"51
+[; ;isr.c: 51:         }
+}
+[e :U 98 ]
+"52
+[; ;isr.c: 52:     }
 }
 [e :U 95 ]
-"46
-[; ;isr.c: 46: }
+"53
+[; ;isr.c: 53: }
 [e :UE 94 ]
 }
