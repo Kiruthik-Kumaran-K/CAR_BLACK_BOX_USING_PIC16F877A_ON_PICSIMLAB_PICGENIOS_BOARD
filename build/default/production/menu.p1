@@ -1,10 +1,13 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"2395 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2395: extern volatile __bit INTEDG __attribute__((address(0x40E)));
-[v _INTEDG `Vb ~T0 @X0 0 e@1038 ]
-"2392
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2392: extern volatile __bit INTE __attribute__((address(0x5C)));
-[v _INTE `Vb ~T0 @X0 0 e@92 ]
+"31 ./clcd.h
+[; ;./clcd.h: 31: void clcd_print(const char *str, unsigned char addr);
+[v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
+"30
+[; ;./clcd.h: 30: void clcd_putch(const char data, unsigned char addr);
+[v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
+"31 ./matrix_keypad.h
+[; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
+[v _read_matrix_keypad `(uc ~T0 @X0 0 ef1`uc ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -179,21 +182,287 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2210
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2210: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"3 external_interrupt.c
-[; ;external_interrupt.c: 3: void init_ext_int(void)
-[v _init_ext_int `(v ~T0 @X0 1 ef ]
-"4
-[; ;external_interrupt.c: 4: {
+[v F938 `Cuc ~T0 @X0 -> 17 `i t ]
+"6 menu.c
+[; ;menu.c: 6: const char menu_items[5][17] =
+[v _menu_items `F938 ~T0 @X0 -> 5 `i e ]
+[i _menu_items
+:U ..
+:U ..
+-> 86 `c
+-> 105 `c
+-> 101 `c
+-> 119 `c
+-> 32 `c
+-> 76 `c
+-> 111 `c
+-> 103 `c
+-> 0 `c
+..
+:U ..
+-> 67 `c
+-> 108 `c
+-> 101 `c
+-> 97 `c
+-> 114 `c
+-> 32 `c
+-> 76 `c
+-> 111 `c
+-> 103 `c
+-> 0 `c
+..
+:U ..
+-> 68 `c
+-> 111 `c
+-> 119 `c
+-> 110 `c
+-> 108 `c
+-> 111 `c
+-> 97 `c
+-> 100 `c
+-> 32 `c
+-> 76 `c
+-> 111 `c
+-> 103 `c
+-> 0 `c
+..
+:U ..
+-> 83 `c
+-> 101 `c
+-> 116 `c
+-> 32 `c
+-> 84 `c
+-> 105 `c
+-> 109 `c
+-> 101 `c
+-> 0 `c
+..
+:U ..
+-> 67 `c
+-> 104 `c
+-> 97 `c
+-> 110 `c
+-> 103 `c
+-> 101 `c
+-> 32 `c
+-> 80 `c
+-> 97 `c
+-> 115 `c
+-> 115 `c
+-> 119 `c
+-> 111 `c
+-> 114 `c
+-> 100 `c
+-> 0 `c
+..
+..
+]
+"15
+[; ;menu.c: 15: void menu_page(void)
+[v _menu_page `(v ~T0 @X0 1 ef ]
+"16
+[; ;menu.c: 16: {
 {
-[e :U _init_ext_int ]
+[e :U _menu_page ]
 [f ]
-"6
-[; ;external_interrupt.c: 6:     INTEDG = 0;
-[e = _INTEDG -> -> 0 `i `b ]
-"8
-[; ;external_interrupt.c: 8:     INTE = 1;
-[e = _INTE -> -> 1 `i `b ]
-"9
-[; ;external_interrupt.c: 9: }
+"17
+[; ;menu.c: 17:     unsigned char key;
+[v _key `uc ~T0 @X0 1 a ]
+"18
+[; ;menu.c: 18:     unsigned char menu_index = 0;
+[v _menu_index `uc ~T0 @X0 1 a ]
+[e = _menu_index -> -> 0 `i `uc ]
+"19
+[; ;menu.c: 19:     unsigned char previous_index = 255;
+[v _previous_index `uc ~T0 @X0 1 a ]
+[e = _previous_index -> -> 255 `i `uc ]
+"21
+[; ;menu.c: 21:     while (1)
+[e :U 96 ]
+"22
+[; ;menu.c: 22:     {
+{
+"50
+[; ;menu.c: 50:         if (menu_index != previous_index)
+[e $ ! != -> _menu_index `i -> _previous_index `i 98  ]
+"51
+[; ;menu.c: 51:         {
+{
+"52
+[; ;menu.c: 52:             clcd_print("                ", (0x80 + 0));
+[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
+"53
+[; ;menu.c: 53:             clcd_print("                ", (0xC0 + 0));
+[e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
+"55
+[; ;menu.c: 55:             if (menu_index < 4)
+[e $ ! < -> _menu_index `i -> 4 `i 99  ]
+"56
+[; ;menu.c: 56:             {
+{
+"58
+[; ;menu.c: 58:                 clcd_putch('*', (0x80 + 0));
+[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
+"59
+[; ;menu.c: 59:                 clcd_print(menu_items[menu_index], (0x80 + 1));
+[e ( _clcd_print (2 , &U *U + &U _menu_items * -> _menu_index `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 128 `i -> 1 `i `uc ]
+"61
+[; ;menu.c: 61:                 clcd_putch(' ', (0xC0 + 0));
+[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"62
+[; ;menu.c: 62:                 clcd_print(menu_items[menu_index + 1], (0xC0 + 1));
+[e ( _clcd_print (2 , &U *U + &U _menu_items * -> -> + -> _menu_index `i -> 1 `i `ui `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 192 `i -> 1 `i `uc ]
+"63
+[; ;menu.c: 63:             }
+}
+[e $U 100  ]
+"64
+[; ;menu.c: 64:             else
+[e :U 99 ]
+"65
+[; ;menu.c: 65:             {
+{
+"67
+[; ;menu.c: 67:                 clcd_putch(' ', (0x80 + 0));
+[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
+"70
+[; ;menu.c: 70:                 clcd_putch('*', (0xC0 + 0));
+[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"72
+[; ;menu.c: 72:             }
+}
+[e :U 100 ]
+"74
+[; ;menu.c: 74:             previous_index = menu_index;
+[e = _previous_index _menu_index ]
+"75
+[; ;menu.c: 75:         }
+}
+[e :U 98 ]
+"77
+[; ;menu.c: 77:         key = read_matrix_keypad(1);
+[e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
+"82
+[; ;menu.c: 82:         if (key == 1)
+[e $ ! == -> _key `i -> 1 `i 101  ]
+"83
+[; ;menu.c: 83:         {
+{
+"84
+[; ;menu.c: 84:             if (menu_index > 0)
+[e $ ! > -> _menu_index `i -> 0 `i 102  ]
+"85
+[; ;menu.c: 85:             {
+{
+"86
+[; ;menu.c: 86:                 menu_index--;
+[e -- _menu_index -> -> 1 `i `uc ]
+"87
+[; ;menu.c: 87:             }
+}
+[e :U 102 ]
+"88
+[; ;menu.c: 88:         }
+}
+[e $U 103  ]
+"93
+[; ;menu.c: 93:         else if (key == 2)
+[e :U 101 ]
+[e $ ! == -> _key `i -> 2 `i 104  ]
+"94
+[; ;menu.c: 94:         {
+{
+"95
+[; ;menu.c: 95:             if (menu_index < 4)
+[e $ ! < -> _menu_index `i -> 4 `i 105  ]
+"96
+[; ;menu.c: 96:             {
+{
+"97
+[; ;menu.c: 97:                 menu_index++;
+[e ++ _menu_index -> -> 1 `i `uc ]
+"98
+[; ;menu.c: 98:             }
+}
+[e :U 105 ]
+"99
+[; ;menu.c: 99:         }
+}
+[e $U 106  ]
+"104
+[; ;menu.c: 104:         else if (key == '#')
+[e :U 104 ]
+[e $ ! == -> _key `ui -> 35 `ui 107  ]
+"105
+[; ;menu.c: 105:         {
+{
+"106
+[; ;menu.c: 106:             switch (menu_index)
+[e $U 109  ]
+"107
+[; ;menu.c: 107:             {
+{
+"108
+[; ;menu.c: 108:                 case 0:
+[e :U 110 ]
+"110
+[; ;menu.c: 110:                     break;
+[e $U 108  ]
+"112
+[; ;menu.c: 112:                 case 1:
+[e :U 111 ]
+"114
+[; ;menu.c: 114:                     break;
+[e $U 108  ]
+"116
+[; ;menu.c: 116:                 case 2:
+[e :U 112 ]
+"118
+[; ;menu.c: 118:                     break;
+[e $U 108  ]
+"120
+[; ;menu.c: 120:                 case 3:
+[e :U 113 ]
+"122
+[; ;menu.c: 122:                     break;
+[e $U 108  ]
+"124
+[; ;menu.c: 124:                 case 4:
+[e :U 114 ]
+"126
+[; ;menu.c: 126:                     break;
+[e $U 108  ]
+"127
+[; ;menu.c: 127:             }
+}
+[e $U 108  ]
+[e :U 109 ]
+"106
+[; ;menu.c: 106:             switch (menu_index)
+[e [\ _menu_index , $ -> 0 `i 110
+ , $ -> 1 `i 111
+ , $ -> 2 `i 112
+ , $ -> 3 `i 113
+ , $ -> 4 `i 114
+ 108 ]
+[e :U 108 ]
+"128
+[; ;menu.c: 128:         }
+}
+[e :U 107 ]
+[e :U 106 ]
+[e :U 103 ]
+"129
+[; ;menu.c: 129:     }
+}
+[e :U 95 ]
+"21
+[; ;menu.c: 21:     while (1)
+[e $U 96  ]
+[e :U 97 ]
+"130
+[; ;menu.c: 130: }
 [e :UE 94 ]
 }
+[a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 2C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

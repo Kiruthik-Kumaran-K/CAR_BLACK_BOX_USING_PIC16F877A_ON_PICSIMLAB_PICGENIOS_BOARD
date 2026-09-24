@@ -14,7 +14,7 @@
 #include "adc.h"
 #include "matrix_keypad.h"
 #include "timer.h"
-#include "external_interrupt.h"
+#include "menu.h"
 
 
 void put_data_dashboard(void);

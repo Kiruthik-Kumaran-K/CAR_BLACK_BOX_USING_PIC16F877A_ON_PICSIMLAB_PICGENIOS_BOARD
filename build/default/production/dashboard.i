@@ -50,11 +50,11 @@ void init_matrix_keypad(void);
 # 11 "./timer.h"
 void init_timer0(void);
 # 17 "./main.h" 2
-# 1 "./external_interrupt.h" 1
+# 1 "./menu.h" 1
 
 
 
-void init_ext_int(void);
+void menu_page(void);
 # 18 "./main.h" 2
 
 

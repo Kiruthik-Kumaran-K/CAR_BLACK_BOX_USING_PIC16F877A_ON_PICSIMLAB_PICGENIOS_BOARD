@@ -30,8 +30,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 20: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
-"13 main.c
-[; ;main.c: 13: 
+"12 main.c
+[; ;main.c: 12:     init_ds1307();
 [v _one_second_flag `Vuc ~T0 @X0 0 e ]
 "31 ./matrix_keypad.h
 [; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
@@ -40,8 +40,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 21: void login_page(void);
 [v _login_page `(v ~T0 @X0 0 ef ]
 [v F962 `uc ~T0 @X0 -> 3 `i t ]
-"11 main.c
-[; ;main.c: 11:     init_i2c(100000);
+"10 main.c
+[; ;main.c: 10: static void init_config(void) {
 [v _event `F962 ~T0 @X0 -> 0 `x e ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
@@ -217,203 +217,204 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2210
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2210: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"5 main.c
-[; ;main.c: 5: 
+"4 main.c
+[; ;main.c: 4: extern char event[9][3];
 [p x WDTE  =  OFF         ]
-"7
-[; ;main.c: 7: 
+"6
+[; ;main.c: 6: extern volatile unsigned char one_second_flag;
 [v _crt `ui ~T0 @X0 1 e ]
 [i _crt
 -> -> 0 `i `ui
 ]
-"9
-[; ;main.c: 9: 
+"8
+[; ;main.c: 8: unsigned char key;
 [v _i `ui ~T0 @X0 1 e ]
 [i _i
 -> -> 0 `i `ui
 ]
-"15
-[; ;main.c: 15:     init_adc();
+"14
+[; ;main.c: 14:     init_clcd();
 [v _key `uc ~T0 @X0 1 e ]
-"17
-[; ;main.c: 17: 
+"16
+[; ;main.c: 16:     init_timer0();
 [v _init_config `(v ~T0 @X0 1 sf ]
 {
 [e :U _init_config ]
 [f ]
+"17
+[; ;main.c: 17: 
+[e ( _init_i2c (1 -> -> 100000 `l `ul ]
 "18
 [; ;main.c: 18:     init_matrix_keypad();
-[e ( _init_i2c (1 -> -> 100000 `l `ul ]
-"19
-[; ;main.c: 19: 
 [e ( _init_ds1307 ..  ]
+"20
+[; ;main.c: 20:     GIE = 1;
+[e ( _init_clcd ..  ]
 "21
 [; ;main.c: 21:     PEIE = 1;
-[e ( _init_clcd ..  ]
+[e ( _init_adc ..  ]
 "22
 [; ;main.c: 22: 
-[e ( _init_adc ..  ]
-"23
-[; ;main.c: 23:     clcd_print("Time", (0x80 + 3));
 [e ( _init_timer0 ..  ]
-"25
-[; ;main.c: 25:     clcd_print("SP" , (0x80 + 14));
+"24
+[; ;main.c: 24:     clcd_print("E", (0x80 + 11));
 [e ( _init_matrix_keypad ..  ]
+"26
+[; ;main.c: 26:     put_data_dashboard();
+[e = _GIE -> -> 1 `i `b ]
 "27
 [; ;main.c: 27: }
-[e = _GIE -> -> 1 `i `b ]
-"28
-[; ;main.c: 28: 
 [e = _PEIE -> -> 1 `i `b ]
+"29
+[; ;main.c: 29: void main(void)
+[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 3 `i `uc ]
 "30
 [; ;main.c: 30: {
-[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 3 `i `uc ]
+[e ( _clcd_print (2 , :s 2C -> + -> 128 `i -> 11 `i `uc ]
 "31
 [; ;main.c: 31: 
-[e ( _clcd_print (2 , :s 2C -> + -> 128 `i -> 11 `i `uc ]
+[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 14 `i `uc ]
 "32
 [; ;main.c: 32:     init_config();
-[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 14 `i `uc ]
+[e ( _put_data_dashboard ..  ]
 "33
 [; ;main.c: 33: 
-[e ( _put_data_dashboard ..  ]
-"34
-[; ;main.c: 34:     while (1)
 [e :UE 94 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
+"35
+[; ;main.c: 35:     {
+[v _main `(v ~T0 @X0 1 ef ]
 "36
 [; ;main.c: 36: 
-[v _main `(v ~T0 @X0 1 ef ]
-"37
-[; ;main.c: 37:         if(one_second_flag)
 {
 [e :U _main ]
 [f ]
-"39
-[; ;main.c: 39:             one_second_flag = 0;
+"38
+[; ;main.c: 38:         {
 [e ( _init_config ..  ]
+"40
+[; ;main.c: 40:             put_data_dashboard();
+[e :U 97 ]
 "41
 [; ;main.c: 41:         }
-[e :U 97 ]
-"42
-[; ;main.c: 42: 
 {
+"43
+[; ;main.c: 43:         key = read_matrix_keypad(1);
+[e $ ! != -> _one_second_flag `i -> 0 `i 99  ]
 "44
 [; ;main.c: 44: 
-[e $ ! != -> _one_second_flag `i -> 0 `i 99  ]
+{
 "45
 [; ;main.c: 45:         if(key == 4)
-{
+[e = _one_second_flag -> -> 0 `i `uc ]
 "46
 [; ;main.c: 46:         {
-[e = _one_second_flag -> -> 0 `i `uc ]
+[e ( _put_data_dashboard ..  ]
 "47
 [; ;main.c: 47:             login_page();
-[e ( _put_data_dashboard ..  ]
-"48
-[; ;main.c: 48:         }
 }
 [e :U 99 ]
-"50
-[; ;main.c: 50:         {
+"49
+[; ;main.c: 49:         else if(key == 1)
 [e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
+"51
+[; ;main.c: 51:             i = 8;
+[e $ ! == -> _key `i -> 4 `i 100  ]
 "52
 [; ;main.c: 52:             clcd_print(event[i], (0xC0 + 11));
-[e $ ! == -> _key `i -> 4 `i 100  ]
+{
 "53
 [; ;main.c: 53:         }
-{
+[e ( _login_page ..  ]
 "54
 [; ;main.c: 54:         else if(key == 2)
-[e ( _login_page ..  ]
-"55
-[; ;main.c: 55:         {
 }
 [e $U 101  ]
-"56
-[; ;main.c: 56:             if(i < 7)
+"55
+[; ;main.c: 55:         {
 [e :U 100 ]
 [e $ ! == -> _key `i -> 1 `i 102  ]
+"56
+[; ;main.c: 56:             if(i < 7)
+{
 "57
 [; ;main.c: 57:             {
-{
+[e = _i -> -> 8 `i `ui ]
 "58
 [; ;main.c: 58:                 i++;
-[e = _i -> -> 8 `i `ui ]
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
 "59
 [; ;main.c: 59:                 clcd_print(event[i], (0xC0 + 11));
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"60
-[; ;main.c: 60:             }
 }
 [e $U 103  ]
-"61
-[; ;main.c: 61:         }
+"60
+[; ;main.c: 60:             }
 [e :U 102 ]
 [e $ ! == -> _key `i -> 2 `i 104  ]
+"61
+[; ;main.c: 61:         }
+{
 "62
 [; ;main.c: 62:         else if(key == 3)
-{
+[e $ ! < _i -> -> 7 `i `ui 105  ]
 "63
 [; ;main.c: 63:         {
-[e $ ! < _i -> -> 7 `i `ui 105  ]
+{
 "64
 [; ;main.c: 64:             if(i > 1)
-{
+[e ++ _i -> -> 1 `i `ui ]
 "65
 [; ;main.c: 65:             {
-[e ++ _i -> -> 1 `i `ui ]
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
 "66
 [; ;main.c: 66:                 i--;
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
+}
+[e :U 105 ]
 "67
 [; ;main.c: 67:                 clcd_print(event[i], (0xC0 + 11));
 }
-[e :U 105 ]
+[e $U 106  ]
 "68
 [; ;main.c: 68:             }
-}
-[e $U 106  ]
-"69
-[; ;main.c: 69:         }
 [e :U 104 ]
 [e $ ! == -> _key `i -> 3 `i 107  ]
+"69
+[; ;main.c: 69:         }
+{
 "70
 [; ;main.c: 70: 
-{
+[e $ ! > _i -> -> 1 `i `ui 108  ]
 "71
 [; ;main.c: 71: 
-[e $ ! > _i -> -> 1 `i `ui 108  ]
+{
 "72
 [; ;main.c: 72:     }
-{
+[e -- _i -> -> 1 `i `ui ]
 "73
 [; ;main.c: 73: 
-[e -- _i -> -> 1 `i `ui ]
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
 "74
 [; ;main.c: 74:     return;
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"75
-[; ;main.c: 75: }
 }
 [e :U 108 ]
-"76
+"75
+[; ;main.c: 75: }
 }
 [e :U 107 ]
 [e :U 106 ]
 [e :U 103 ]
 [e :U 101 ]
-"79
+"78
 }
 [e :U 96 ]
-"41
-[; ;main.c: 41:         }
+"40
+[; ;main.c: 40:             put_data_dashboard();
 [e $U 97  ]
 [e :U 98 ]
-"81
+"80
 [e $UE 95  ]
-"82
+"81
 [e :UE 95 ]
 }
 [a 1C 84 105 109 101 0 ]

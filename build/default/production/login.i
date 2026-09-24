@@ -1763,11 +1763,11 @@ unsigned short read_adc(void);
 # 15 "./main.h" 2
 
 
-# 1 "./external_interrupt.h" 1
+# 1 "./menu.h" 1
 
 
 
-void init_ext_int(void);
+void menu_page(void);
 # 18 "./main.h" 2
 
 
@@ -1781,7 +1781,7 @@ void login_page(void);
 unsigned char key;
 unsigned char index = 0;
 
-char org_password[5]="7878";
+char org_password[5]="1111";
 char usr_password[5];
 
 char display[17]="                ";
@@ -1868,7 +1868,12 @@ void login_page(void)
             {
                 clcd_clear();
                 clcd_print("SUCCESSFUL      ",(0xC0 + 4));
-                while(1);
+
+                _delay((unsigned long)((1000)*(20000000/4000.0)));
+
+                menu_page();
+
+                return;
             }else
             {
 

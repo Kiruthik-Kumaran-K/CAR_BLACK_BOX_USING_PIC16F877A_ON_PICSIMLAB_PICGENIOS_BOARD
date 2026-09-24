@@ -17,7 +17,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./clcd.h
 [; ;./clcd.h: 32: void clcd_clear(void);
 [v _clcd_clear `(v ~T0 @X0 0 ef ]
-"30
+[v F917 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/pic.h
+[v __delay `JF917 ~T0 @X0 0 e ]
+[p i __delay ]
+"4 ./menu.h
+[; ;./menu.h: 4: void menu_page(void);
+[v _menu_page `(v ~T0 @X0 0 ef ]
+"30 ./clcd.h
 [; ;./clcd.h: 30: void clcd_putch(const char data, unsigned char addr);
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
 "23 login.c
@@ -26,10 +33,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20 ./main.h
 [; ;./main.h: 20: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
-[v F917 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/pic.h
-[v __delay `JF917 ~T0 @X0 0 e ]
-[p i __delay ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -214,14 +217,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "13
-[; ;login.c: 13: char org_password[5]="7878";
+[; ;login.c: 13: char org_password[5]="1111";
 [v _org_password `uc ~T0 @X0 -> 5 `i e ]
 [i _org_password
 :U ..
--> 55 `c
--> 56 `c
--> 55 `c
--> 56 `c
+-> 49 `c
+-> 49 `c
+-> 49 `c
+-> 49 `c
 -> 0 `c
 ..
 ]
@@ -464,319 +467,322 @@ Version 4.0 HI-TECH Software Intermediate Code
 "99
 [; ;login.c: 99:                 clcd_print("SUCCESSFUL      ",(0xC0 + 4));
 [e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 4 `i `uc ]
-"100
-[; ;login.c: 100:                 while(1);
-[e :U 112 ]
-[e :U 111 ]
-[e $U 112  ]
-[e :U 113 ]
 "101
-[; ;login.c: 101:             }else
-}
-[e $U 114  ]
-[e :U 110 ]
-"102
-[; ;login.c: 102:             {
-{
+[; ;login.c: 101:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"103
+[; ;login.c: 103:                 menu_page();
+[e ( _menu_page ..  ]
 "105
-[; ;login.c: 105:                 if(attempts >= 3)
-[e $ ! >= -> _attempts `i -> 3 `i 115  ]
+[; ;login.c: 105:                 return;
+[e $UE 99  ]
 "106
-[; ;login.c: 106:                 {
-{
+[; ;login.c: 106:             }else
+}
+[e $U 111  ]
+[e :U 110 ]
 "107
-[; ;login.c: 107:                     unsigned char lock_time = 60;
+[; ;login.c: 107:             {
+{
+"110
+[; ;login.c: 110:                 if(attempts >= 3)
+[e $ ! >= -> _attempts `i -> 3 `i 112  ]
+"111
+[; ;login.c: 111:                 {
+{
+"112
+[; ;login.c: 112:                     unsigned char lock_time = 60;
 [v _lock_time `uc ~T0 @X0 1 a ]
 [e = _lock_time -> -> 60 `i `uc ]
-"108
-[; ;login.c: 108:                     unsigned char previous_time = 60;
+"113
+[; ;login.c: 113:                     unsigned char previous_time = 60;
 [v _previous_time `uc ~T0 @X0 1 a ]
 [e = _previous_time -> -> 60 `i `uc ]
-"110
-[; ;login.c: 110:                     clcd_print("BLOCKED          ", (0x80 + 0));
-[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
-"113
-[; ;login.c: 113:                     clcd_putch((lock_time / 10) + '0', (0xC0 + 6));
-[e ( _clcd_putch (2 , -> + -> / -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"114
-[; ;login.c: 114:                     clcd_putch((lock_time % 10) + '0', (0xC0 + 7));
-[e ( _clcd_putch (2 , -> + -> % -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
 "115
-[; ;login.c: 115:                     clcd_print("Wait for ",(0xC0 + 0));
-[e ( _clcd_print (2 , :s 4C -> + -> 192 `i -> 0 `i `uc ]
-"116
-[; ;login.c: 116:                     clcd_putch('s', (0xC0 + 11));
-[e ( _clcd_putch (2 , -> -> 115 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
+[; ;login.c: 115:                     clcd_print("BLOCKED          ", (0x80 + 0));
+[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
 "118
-[; ;login.c: 118:                     while (lock_time > 0)
-[e $U 116  ]
-[e :U 117 ]
+[; ;login.c: 118:                     clcd_putch((lock_time / 10) + '0', (0xC0 + 6));
+[e ( _clcd_putch (2 , -> + -> / -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
 "119
-[; ;login.c: 119:                     {
-{
+[; ;login.c: 119:                     clcd_putch((lock_time % 10) + '0', (0xC0 + 7));
+[e ( _clcd_putch (2 , -> + -> % -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
 "120
-[; ;login.c: 120:                         if (one_second_flag)
-[e $ ! != -> _one_second_flag `i -> 0 `i 119  ]
+[; ;login.c: 120:                     clcd_print("Wait for ",(0xC0 + 0));
+[e ( _clcd_print (2 , :s 4C -> + -> 192 `i -> 0 `i `uc ]
 "121
-[; ;login.c: 121:                         {
-{
-"122
-[; ;login.c: 122:                             one_second_flag = 0;
-[e = _one_second_flag -> -> 0 `i `uc ]
+[; ;login.c: 121:                     clcd_putch('s', (0xC0 + 11));
+[e ( _clcd_putch (2 , -> -> 115 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
+"123
+[; ;login.c: 123:                     while (lock_time > 0)
+[e $U 113  ]
+[e :U 114 ]
 "124
-[; ;login.c: 124:                             previous_time = lock_time;
-[e = _previous_time _lock_time ]
+[; ;login.c: 124:                     {
+{
 "125
-[; ;login.c: 125:                             lock_time--;
-[e -- _lock_time -> -> 1 `i `uc ]
-"128
-[; ;login.c: 128:                             if ((lock_time / 10) != (previous_time / 10))
-[e $ ! != / -> _lock_time `i -> 10 `i / -> _previous_time `i -> 10 `i 120  ]
+[; ;login.c: 125:                         if (one_second_flag)
+[e $ ! != -> _one_second_flag `i -> 0 `i 116  ]
+"126
+[; ;login.c: 126:                         {
+{
+"127
+[; ;login.c: 127:                             one_second_flag = 0;
+[e = _one_second_flag -> -> 0 `i `uc ]
 "129
-[; ;login.c: 129:                             {
-{
+[; ;login.c: 129:                             previous_time = lock_time;
+[e = _previous_time _lock_time ]
 "130
-[; ;login.c: 130:                                 clcd_putch((lock_time / 10) + '0', (0xC0 + 9));
-[e ( _clcd_putch (2 , -> + -> / -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"131
-[; ;login.c: 131:                             }
-}
-[e :U 120 ]
+[; ;login.c: 130:                             lock_time--;
+[e -- _lock_time -> -> 1 `i `uc ]
+"133
+[; ;login.c: 133:                             if ((lock_time / 10) != (previous_time / 10))
+[e $ ! != / -> _lock_time `i -> 10 `i / -> _previous_time `i -> 10 `i 117  ]
 "134
-[; ;login.c: 134:                             if ((lock_time % 10) != (previous_time % 10))
-[e $ ! != % -> _lock_time `i -> 10 `i % -> _previous_time `i -> 10 `i 121  ]
-"135
-[; ;login.c: 135:                             {
+[; ;login.c: 134:                             {
 {
+"135
+[; ;login.c: 135:                                 clcd_putch((lock_time / 10) + '0', (0xC0 + 9));
+[e ( _clcd_putch (2 , -> + -> / -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
 "136
-[; ;login.c: 136:                                 clcd_putch((lock_time % 10) + '0', (0xC0 + 10));
-[e ( _clcd_putch (2 , -> + -> % -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"137
-[; ;login.c: 137:                             }
+[; ;login.c: 136:                             }
 }
-[e :U 121 ]
-"138
-[; ;login.c: 138:                         }
-}
-[e :U 119 ]
+[e :U 117 ]
 "139
-[; ;login.c: 139:                     }
+[; ;login.c: 139:                             if ((lock_time % 10) != (previous_time % 10))
+[e $ ! != % -> _lock_time `i -> 10 `i % -> _previous_time `i -> 10 `i 118  ]
+"140
+[; ;login.c: 140:                             {
+{
+"141
+[; ;login.c: 141:                                 clcd_putch((lock_time % 10) + '0', (0xC0 + 10));
+[e ( _clcd_putch (2 , -> + -> % -> _lock_time `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
+"142
+[; ;login.c: 142:                             }
+}
+[e :U 118 ]
+"143
+[; ;login.c: 143:                         }
 }
 [e :U 116 ]
-"118
-[; ;login.c: 118:                     while (lock_time > 0)
-[e $ > -> _lock_time `i -> 0 `i 117  ]
-[e :U 118 ]
-"141
-[; ;login.c: 141:                     clcd_clear();
-[e ( _clcd_clear ..  ]
-"143
-[; ;login.c: 143:                     index = 0;
-[e = _index -> -> 0 `i `uc ]
 "144
-[; ;login.c: 144:                     attempts = 0;
-[e = _attempts -> -> 0 `i `uc ]
+[; ;login.c: 144:                     }
+}
+[e :U 113 ]
+"123
+[; ;login.c: 123:                     while (lock_time > 0)
+[e $ > -> _lock_time `i -> 0 `i 114  ]
+[e :U 115 ]
 "146
-[; ;login.c: 146:                     for(int i = 0; i < 4; i++)
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 4 `i 122  ]
-[e $U 123  ]
-[e :U 122 ]
-"147
-[; ;login.c: 147:                     {
-{
+[; ;login.c: 146:                     clcd_clear();
+[e ( _clcd_clear ..  ]
 "148
-[; ;login.c: 148:                         usr_password[i] = '\0';
-[e = *U + &U _usr_password * -> -> _i `ui `ux -> -> # *U &U _usr_password `ui `ux -> -> 0 `ui `uc ]
+[; ;login.c: 148:                     index = 0;
+[e = _index -> -> 0 `i `uc ]
 "149
-[; ;login.c: 149:                     }
-}
-"146
-[; ;login.c: 146:                     for(int i = 0; i < 4; i++)
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 4 `i 122  ]
-[e :U 123 ]
-"149
-[; ;login.c: 149:                     }
-}
+[; ;login.c: 149:                     attempts = 0;
+[e = _attempts -> -> 0 `i `uc ]
 "151
-[; ;login.c: 151:                     for(int i = 0; i< 17; i++)
+[; ;login.c: 151:                     for(int i = 0; i < 4; i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 17 `i 125  ]
-[e $U 126  ]
-[e :U 125 ]
+[e $ < _i -> 4 `i 119  ]
+[e $U 120  ]
+[e :U 119 ]
 "152
 [; ;login.c: 152:                     {
 {
 "153
-[; ;login.c: 153:                        display[i]=' ';
-[e = *U + &U _display * -> -> _i `ui `ux -> -> # *U &U _display `ui `ux -> -> 32 `ui `uc ]
+[; ;login.c: 153:                         usr_password[i] = '\0';
+[e = *U + &U _usr_password * -> -> _i `ui `ux -> -> # *U &U _usr_password `ui `ux -> -> 0 `ui `uc ]
 "154
 [; ;login.c: 154:                     }
 }
 "151
-[; ;login.c: 151:                     for(int i = 0; i< 17; i++)
+[; ;login.c: 151:                     for(int i = 0; i < 4; i++)
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 17 `i 125  ]
-[e :U 126 ]
+[e $ < _i -> 4 `i 119  ]
+[e :U 120 ]
 "154
 [; ;login.c: 154:                     }
 }
-"157
-[; ;login.c: 157:                     display[6] = '_';
-[e = *U + &U _display * -> -> -> 6 `i `ui `ux -> -> # *U &U _display `ui `ux -> -> 95 `ui `uc ]
-"159
-[; ;login.c: 159:                     put_data_dashboard();
-[e ( _put_data_dashboard ..  ]
-"161
-[; ;login.c: 161:                     return ;
-[e $UE 99  ]
-"164
-[; ;login.c: 164:                 }
-}
-[e :U 115 ]
-"166
-[; ;login.c: 166:                 if(attempts == 1)
-[e $ ! == -> _attempts `i -> 1 `i 128  ]
-"167
-[; ;login.c: 167:                 {
-{
-"168
-[; ;login.c: 168:                     clcd_print("FAILED ATTEMPT  ",(0x80 + 0));
-[e ( _clcd_print (2 , :s 5C -> + -> 128 `i -> 0 `i `uc ]
-"169
-[; ;login.c: 169:                     clcd_print("2 ATTEMPTS LEFT ",(0xC0 + 0));
-[e ( _clcd_print (2 , :s 6C -> + -> 192 `i -> 0 `i `uc ]
-"170
-[; ;login.c: 170:                 }
-}
-[e :U 128 ]
-"172
-[; ;login.c: 172:                 if(attempts == 2)
-[e $ ! == -> _attempts `i -> 2 `i 129  ]
-"173
-[; ;login.c: 173:                 {
-{
-"174
-[; ;login.c: 174:                     clcd_print("FAILED ATTEMPT  ",(0x80 + 0));
-[e ( _clcd_print (2 , :s 7C -> + -> 128 `i -> 0 `i `uc ]
-"175
-[; ;login.c: 175:                     clcd_print("1 ATTEMPTS LEFT ",(0xC0 + 0));
-[e ( _clcd_print (2 , :s 8C -> + -> 192 `i -> 0 `i `uc ]
-"176
-[; ;login.c: 176:                 }
-}
-[e :U 129 ]
-"178
-[; ;login.c: 178:                 index = 0;
-[e = _index -> -> 0 `i `uc ]
-"180
-[; ;login.c: 180:                 for(int i = 0; i < 4; i++)
+"156
+[; ;login.c: 156:                     for(int i = 0; i< 17; i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 4 `i 130  ]
-[e $U 131  ]
-[e :U 130 ]
-"181
-[; ;login.c: 181:                 {
+[e $ < _i -> 17 `i 122  ]
+[e $U 123  ]
+[e :U 122 ]
+"157
+[; ;login.c: 157:                     {
 {
-"182
-[; ;login.c: 182:                     usr_password[i]='\0';
-[e = *U + &U _usr_password * -> -> _i `ui `ux -> -> # *U &U _usr_password `ui `ux -> -> 0 `ui `uc ]
-"183
-[; ;login.c: 183:                     display[i + 6] = ' ';
-[e = *U + &U _display * -> -> + _i -> 6 `i `ui `ux -> -> # *U &U _display `ui `ux -> -> 32 `ui `uc ]
-"184
-[; ;login.c: 184:                 }
+"158
+[; ;login.c: 158:                        display[i]=' ';
+[e = *U + &U _display * -> -> _i `ui `ux -> -> # *U &U _display `ui `ux -> -> 32 `ui `uc ]
+"159
+[; ;login.c: 159:                     }
 }
-"180
-[; ;login.c: 180:                 for(int i = 0; i < 4; i++)
+"156
+[; ;login.c: 156:                     for(int i = 0; i< 17; i++)
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 4 `i 130  ]
-[e :U 131 ]
-"184
-[; ;login.c: 184:                 }
+[e $ < _i -> 17 `i 122  ]
+[e :U 123 ]
+"159
+[; ;login.c: 159:                     }
 }
+"162
+[; ;login.c: 162:                     display[6] = '_';
+[e = *U + &U _display * -> -> -> 6 `i `ui `ux -> -> # *U &U _display `ui `ux -> -> 95 `ui `uc ]
+"164
+[; ;login.c: 164:                     put_data_dashboard();
+[e ( _put_data_dashboard ..  ]
+"166
+[; ;login.c: 166:                     return ;
+[e $UE 99  ]
+"169
+[; ;login.c: 169:                 }
+}
+[e :U 112 ]
+"171
+[; ;login.c: 171:                 if(attempts == 1)
+[e $ ! == -> _attempts `i -> 1 `i 125  ]
+"172
+[; ;login.c: 172:                 {
+{
+"173
+[; ;login.c: 173:                     clcd_print("FAILED ATTEMPT  ",(0x80 + 0));
+[e ( _clcd_print (2 , :s 5C -> + -> 128 `i -> 0 `i `uc ]
+"174
+[; ;login.c: 174:                     clcd_print("2 ATTEMPTS LEFT ",(0xC0 + 0));
+[e ( _clcd_print (2 , :s 6C -> + -> 192 `i -> 0 `i `uc ]
+"175
+[; ;login.c: 175:                 }
+}
+[e :U 125 ]
+"177
+[; ;login.c: 177:                 if(attempts == 2)
+[e $ ! == -> _attempts `i -> 2 `i 126  ]
+"178
+[; ;login.c: 178:                 {
+{
+"179
+[; ;login.c: 179:                     clcd_print("FAILED ATTEMPT  ",(0x80 + 0));
+[e ( _clcd_print (2 , :s 7C -> + -> 128 `i -> 0 `i `uc ]
+"180
+[; ;login.c: 180:                     clcd_print("1 ATTEMPTS LEFT ",(0xC0 + 0));
+[e ( _clcd_print (2 , :s 8C -> + -> 192 `i -> 0 `i `uc ]
+"181
+[; ;login.c: 181:                 }
+}
+[e :U 126 ]
+"183
+[; ;login.c: 183:                 index = 0;
+[e = _index -> -> 0 `i `uc ]
+"185
+[; ;login.c: 185:                 for(int i = 0; i < 4; i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 4 `i 127  ]
+[e $U 128  ]
+[e :U 127 ]
 "186
-[; ;login.c: 186:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;login.c: 186:                 {
+{
+"187
+[; ;login.c: 187:                     usr_password[i]='\0';
+[e = *U + &U _usr_password * -> -> _i `ui `ux -> -> # *U &U _usr_password `ui `ux -> -> 0 `ui `uc ]
 "188
-[; ;login.c: 188:                 clcd_print("ENTER PASSWORD",(0x80 + 0));
-[e ( _clcd_print (2 , :s 9C -> + -> 128 `i -> 0 `i `uc ]
+[; ;login.c: 188:                     display[i + 6] = ' ';
+[e = *U + &U _display * -> -> + _i -> 6 `i `ui `ux -> -> # *U &U _display `ui `ux -> -> 32 `ui `uc ]
 "189
-[; ;login.c: 189:                 clcd_print(display,(0xC0 + 0));
-[e ( _clcd_print (2 , -> &U _display `*Cuc -> + -> 192 `i -> 0 `i `uc ]
-"190
-[; ;login.c: 190:             }
+[; ;login.c: 189:                 }
 }
-[e :U 114 ]
+"185
+[; ;login.c: 185:                 for(int i = 0; i < 4; i++)
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 4 `i 127  ]
+[e :U 128 ]
+"189
+[; ;login.c: 189:                 }
+}
 "191
-[; ;login.c: 191:         }
+[; ;login.c: 191:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"193
+[; ;login.c: 193:                 clcd_print("ENTER PASSWORD",(0x80 + 0));
+[e ( _clcd_print (2 , :s 9C -> + -> 128 `i -> 0 `i `uc ]
+"194
+[; ;login.c: 194:                 clcd_print(display,(0xC0 + 0));
+[e ( _clcd_print (2 , -> &U _display `*Cuc -> + -> 192 `i -> 0 `i `uc ]
+"195
+[; ;login.c: 195:             }
+}
+[e :U 111 ]
+"196
+[; ;login.c: 196:         }
 }
 [e :U 109 ]
-"193
-[; ;login.c: 193:         if(one_second_flag)
-[e $ ! != -> _one_second_flag `i -> 0 `i 133  ]
-"194
-[; ;login.c: 194:         {
-{
-"195
-[; ;login.c: 195:             one_second_flag = 0;
-[e = _one_second_flag -> -> 0 `i `uc ]
-"197
-[; ;login.c: 197:             if(index < 4)
-[e $ ! < -> _index `i -> 4 `i 134  ]
 "198
-[; ;login.c: 198:             {
-{
+[; ;login.c: 198:         if(one_second_flag)
+[e $ ! != -> _one_second_flag `i -> 0 `i 130  ]
 "199
-[; ;login.c: 199:                 inactivity_time++;
-[e ++ _inactivity_time -> -> 1 `i `uc ]
-"201
-[; ;login.c: 201:                 if(inactivity_time >= 5)
-[e $ ! >= -> _inactivity_time `i -> 5 `i 135  ]
-"202
-[; ;login.c: 202:                 {
+[; ;login.c: 199:         {
 {
+"200
+[; ;login.c: 200:             one_second_flag = 0;
+[e = _one_second_flag -> -> 0 `i `uc ]
+"202
+[; ;login.c: 202:             if(index < 4)
+[e $ ! < -> _index `i -> 4 `i 131  ]
 "203
-[; ;login.c: 203:                     inactivity_time = 0;
-[e = _inactivity_time -> -> 0 `i `uc ]
+[; ;login.c: 203:             {
+{
 "204
-[; ;login.c: 204:                     clcd_clear();
-[e ( _clcd_clear ..  ]
-"205
-[; ;login.c: 205:                     put_data_dashboard();
-[e ( _put_data_dashboard ..  ]
+[; ;login.c: 204:                 inactivity_time++;
+[e ++ _inactivity_time -> -> 1 `i `uc ]
 "206
-[; ;login.c: 206:                     return;
-[e $UE 99  ]
+[; ;login.c: 206:                 if(inactivity_time >= 5)
+[e $ ! >= -> _inactivity_time `i -> 5 `i 132  ]
 "207
-[; ;login.c: 207:                 }
-}
-[e :U 135 ]
+[; ;login.c: 207:                 {
+{
+"208
+[; ;login.c: 208:                     inactivity_time = 0;
+[e = _inactivity_time -> -> 0 `i `uc ]
 "209
-[; ;login.c: 209:             }
-}
-[e :U 134 ]
+[; ;login.c: 209:                     clcd_clear();
+[e ( _clcd_clear ..  ]
 "210
-[; ;login.c: 210:         }
+[; ;login.c: 210:                     put_data_dashboard();
+[e ( _put_data_dashboard ..  ]
+"211
+[; ;login.c: 211:                     return;
+[e $UE 99  ]
+"212
+[; ;login.c: 212:                 }
 }
-[e :U 133 ]
+[e :U 132 ]
 "214
-[; ;login.c: 214:     }
+[; ;login.c: 214:             }
+}
+[e :U 131 ]
+"215
+[; ;login.c: 215:         }
+}
+[e :U 130 ]
+"219
+[; ;login.c: 219:     }
 }
 [e :U 100 ]
 "51
 [; ;login.c: 51:     while (1)
 [e $U 101  ]
 [e :U 102 ]
-"215
-[; ;login.c: 215: }
+"220
+[; ;login.c: 220: }
 [e :UE 99 ]
 }
 [a 9C 69 78 84 69 82 32 80 65 83 83 87 79 82 68 0 ]

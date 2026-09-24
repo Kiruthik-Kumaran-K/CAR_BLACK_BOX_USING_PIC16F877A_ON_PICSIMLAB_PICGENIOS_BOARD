@@ -75,9 +75,9 @@
 [v _my_strcmp my_strcmp `(i  1 e 2 0 ]
 "46
 [v _login_page login_page `(v  1 e 1 0 ]
-"17 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"16 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _init_config init_config `(v  1 s 1 init_config ]
-"36
+"35
 [v _main main `(v  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\matrix_keypad.c
 [v _init_matrix_keypad init_matrix_keypad `(v  1 e 1 0 ]
@@ -85,6 +85,8 @@
 [v _scan_keypad scan_keypad `(uc  1 s 1 scan_keypad ]
 "111
 [v _read_matrix_keypad read_matrix_keypad `(uc  1 e 1 0 ]
+"15 D:\MPLAB_PROJECTS\PIC_Project.X\menu.c
+[v _menu_page menu_page `(v  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\timer.c
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
@@ -119,10 +121,6 @@
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "2365
 [v _GO GO `VEb  1 e 0 @250 ]
-"2392
-[v _INTE INTE `VEb  1 e 0 @92 ]
-"2395
-[v _INTEDG INTEDG `VEb  1 e 0 @1038 ]
 "2422
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
 "2425
@@ -201,42 +199,62 @@
 [v _inactivity_time inactivity_time `uc  1 e 1 0 ]
 "27
 [v _attempts attempts `uc  1 e 1 0 ]
-"9 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"8 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _i i `ui  1 e 2 0 ]
-"15
+"14
 [v _key key `uc  1 e 1 0 ]
-"36
+"6 D:\MPLAB_PROJECTS\PIC_Project.X\menu.c
+[v _menu_items menu_items `DC[5][17]uc  1 e 85 0 ]
+"35 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"82
+"81
 } 0
 "46 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
 [v _login_page login_page `(v  1 e 1 0 ]
 {
-"106
+"111
 {
-"107
+"112
 [v login_page@lock_time lock_time `uc  1 a 1 46 ]
-"108
+"113
 [v login_page@previous_time previous_time `uc  1 a 1 39 ]
-"146
-{
-[v login_page@i i `i  1 a 2 40 ]
-"149
-}
 "151
 {
-[v login_page@i_211 i `i  1 a 2 42 ]
+[v login_page@i i `i  1 a 2 40 ]
 "154
 }
-"164
-}
-"180
+"156
 {
-[v login_page@i_217 i `i  1 a 2 44 ]
-"184
+[v login_page@i_212 i `i  1 a 2 42 ]
+"159
 }
-"215
+"169
+}
+"185
+{
+[v login_page@i_218 i `i  1 a 2 44 ]
+"189
+}
+"220
+} 0
+"29
+[v _my_strcmp my_strcmp `(i  1 e 2 0 ]
+{
+[v my_strcmp@str1 str1 `*.4DCuc  1 p 1 2 ]
+[v my_strcmp@str2 str2 `*.4DCuc  1 p 1 3 ]
+"43
+} 0
+"15 D:\MPLAB_PROJECTS\PIC_Project.X\menu.c
+[v _menu_page menu_page `(v  1 e 1 0 ]
+{
+"17
+[v menu_page@key key `uc  1 a 1 2 ]
+"18
+[v menu_page@menu_index menu_index `uc  1 a 1 3 ]
+"19
+[v menu_page@previous_index previous_index `uc  1 a 1 1 ]
+"130
 } 0
 "111 D:\MPLAB_PROJECTS\PIC_Project.X\matrix_keypad.c
 [v _read_matrix_keypad read_matrix_keypad `(uc  1 e 1 0 ]
@@ -256,13 +274,6 @@
 "26
 [v scan_keypad@i i `i  1 a 2 2 ]
 "109
-} 0
-"29 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
-[v _my_strcmp my_strcmp `(i  1 e 2 0 ]
-{
-[v my_strcmp@str1 str1 `*.4DCuc  1 p 1 2 ]
-[v my_strcmp@str2 str2 `*.4DCuc  1 p 1 3 ]
-"43
 } 0
 "73 D:\MPLAB_PROJECTS\PIC_Project.X\clcd.c
 [v _clcd_clear clcd_clear `(v  1 e 1 0 ]
@@ -291,10 +302,10 @@
 [v ___awdiv@sign sign `uc  1 a 1 7 ]
 "41
 } 0
-"17 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"16 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _init_config init_config `(v  1 s 1 init_config ]
 {
-"34
+"33
 } 0
 "47 D:\MPLAB_PROJECTS\PIC_Project.X\dashboard.c
 [v _put_data_dashboard put_data_dashboard `(v  1 e 1 0 ]

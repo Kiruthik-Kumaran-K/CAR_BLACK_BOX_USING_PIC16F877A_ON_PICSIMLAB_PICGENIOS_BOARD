@@ -1,4 +1,4 @@
-# 1 "external_interrupt.c"
+# 1 "menu.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 295 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "external_interrupt.c" 2
+# 1 "menu.c" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1716,12 +1716,122 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 2 3
-# 2 "external_interrupt.c" 2
+# 2 "menu.c" 2
+# 1 "./menu.h" 1
 
-void init_ext_int(void)
+
+
+void menu_page(void);
+# 3 "menu.c" 2
+# 1 "./matrix_keypad.h" 1
+# 31 "./matrix_keypad.h"
+unsigned char read_matrix_keypad(unsigned char mode);
+void init_matrix_keypad(void);
+# 4 "menu.c" 2
+# 1 "./clcd.h" 1
+# 29 "./clcd.h"
+void init_clcd(void);
+void clcd_putch(const char data, unsigned char addr);
+void clcd_print(const char *str, unsigned char addr);
+void clcd_clear(void);
+# 5 "menu.c" 2
+
+const char menu_items[5][17] =
 {
+    "View Log",
+    "Clear Log",
+    "Download Log",
+    "Set Time",
+    "Change Password"
+};
 
-    INTEDG = 0;
+void menu_page(void)
+{
+    unsigned char key;
+    unsigned char menu_index = 0;
+    unsigned char previous_index = 255;
 
-    INTE = 1;
+    while (1)
+    {
+# 50 "menu.c"
+        if (menu_index != previous_index)
+        {
+            clcd_print("                ", (0x80 + 0));
+            clcd_print("                ", (0xC0 + 0));
+
+            if (menu_index < 4)
+            {
+
+                clcd_putch('*', (0x80 + 0));
+                clcd_print(menu_items[menu_index], (0x80 + 1));
+
+                clcd_putch(' ', (0xC0 + 0));
+                clcd_print(menu_items[menu_index + 1], (0xC0 + 1));
+            }
+            else
+            {
+
+                clcd_putch(' ', (0x80 + 0));
+
+
+                clcd_putch('*', (0xC0 + 0));
+
+            }
+
+            previous_index = menu_index;
+        }
+
+        key = read_matrix_keypad(1);
+
+
+
+
+        if (key == 1)
+        {
+            if (menu_index > 0)
+            {
+                menu_index--;
+            }
+        }
+
+
+
+
+        else if (key == 2)
+        {
+            if (menu_index < 4)
+            {
+                menu_index++;
+            }
+        }
+
+
+
+
+        else if (key == '#')
+        {
+            switch (menu_index)
+            {
+                case 0:
+
+                    break;
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+            }
+        }
+    }
 }

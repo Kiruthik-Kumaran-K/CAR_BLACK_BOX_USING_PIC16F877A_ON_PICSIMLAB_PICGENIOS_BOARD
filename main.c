@@ -1,6 +1,5 @@
 #include <xc.h>
 #include "main.h"
-#include "external_interrupt.h"
 
 #pragma config WDTE = OFF        // Watchdog Timer Enable bit (WDT disabled)
 

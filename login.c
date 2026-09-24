@@ -10,7 +10,7 @@
 unsigned char key;
 unsigned char index = 0;
     
-char org_password[5]="7878";
+char org_password[5]="1111";
 char usr_password[5];
     
 char display[17]="                ";
@@ -97,7 +97,12 @@ void login_page(void)
             {
                 clcd_clear();
                 clcd_print("SUCCESSFUL      ",LINE2(4));
-                while(1);
+                
+                __delay_ms(1000);
+                
+                menu_page();
+                
+                return;
             }else
             {
 
