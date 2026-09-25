@@ -26,8 +26,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./clcd.h
 [; ;./clcd.h: 31: void clcd_print(const char *str, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
-"20 ./main.h
-[; ;./main.h: 20: void put_data_dashboard(void);
+"22 ./main.h
+[; ;./main.h: 22: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "12 main.c
@@ -36,8 +36,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./matrix_keypad.h
 [; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
 [v _read_matrix_keypad `(uc ~T0 @X0 0 ef1`uc ]
-"21 ./main.h
-[; ;./main.h: 21: void login_page(void);
+"23 ./main.h
+[; ;./main.h: 23: void login_page(void);
 [v _login_page `(v ~T0 @X0 0 ef ]
 [v F962 `uc ~T0 @X0 -> 3 `i t ]
 "10 main.c

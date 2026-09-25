@@ -1,7 +1,5 @@
 #include <xc.h>
-#include "menu.h"
-#include "matrix_keypad.h"
-#include "clcd.h"
+#include "main.h"
 
 const char menu_items[5][17] =
 {
@@ -68,6 +66,13 @@ void menu_page(void)
                 menu_index++;
             }
         }
+        
+        if(key == 3)
+        {
+            clcd_clear();
+            put_data_dashboard();
+            return ;
+         }    
 
         /*
          * SELECT

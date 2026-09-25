@@ -5,8 +5,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15 ./ds1307.h
 [; ;./ds1307.h: 15: void read_ds1307_time(unsigned char *clock_reg);
 [v _read_ds1307_time `(v ~T0 @X0 0 ef1`*uc ]
-"3 dashboard.c
-[; ;dashboard.c: 3: extern unsigned int i;
+"86 dashboard.c
+[; ;dashboard.c: 86: extern unsigned int i;
 [v _i `ui ~T0 @X0 0 e ]
 "12 ./adc.h
 [; ;./adc.h: 12: unsigned short read_adc(void);
@@ -15,8 +15,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./clcd.h: 30: void clcd_putch(const char data, unsigned char addr);
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
 [v F39 `uc ~T0 @X0 -> 3 `i t ]
-"7 dashboard.c
-[; ;dashboard.c: 7: char event[9][3] = {"ON", "GN", "GR", "G1", "G2", "G3", "G4", "G5", "_C"};
+"135 dashboard.c
+[; ;dashboard.c: 135: char event[9][3] =
 [v _event `F39 ~T0 @X0 -> 9 `i e ]
 [i _event
 :U ..
@@ -67,124 +67,124 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"9
-[; ;dashboard.c: 9: static void display_time(unsigned char *clock_reg)
+"184
+[; ;dashboard.c: 184: static void display_time(unsigned char *clock_reg)
 [v _display_time `(v ~T0 @X0 1 sf1`*uc ]
-"10
-[; ;dashboard.c: 10: {
+"185
+[; ;dashboard.c: 185: {
 {
 [e :U _display_time ]
-"9
-[; ;dashboard.c: 9: static void display_time(unsigned char *clock_reg)
+"184
+[; ;dashboard.c: 184: static void display_time(unsigned char *clock_reg)
 [v _clock_reg `*uc ~T0 @X0 1 r1 ]
-"10
-[; ;dashboard.c: 10: {
+"185
+[; ;dashboard.c: 185: {
 [f ]
-"17
-[; ;dashboard.c: 17:     char time[9];
+"211
+[; ;dashboard.c: 211:     char time[9];
 [v _time `uc ~T0 @X0 -> 9 `i a ]
-"19
-[; ;dashboard.c: 19:     time[0] = ((clock_reg[0] >> 4) & 0x03) + '0';
+"259
+[; ;dashboard.c: 259:     time[0] = ((clock_reg[0] >> 4) & 0x03) + '0';
 [e = *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 3 `i `ui -> 48 `ui `uc ]
-"20
-[; ;dashboard.c: 20:     time[1] = (clock_reg[0] & 0x0F) + '0';
+"283
+[; ;dashboard.c: 283:     time[1] = (clock_reg[0] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"22
-[; ;dashboard.c: 22:     time[2] = ':';
+"289
+[; ;dashboard.c: 289:     time[2] = ':';
 [e = *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 58 `ui `uc ]
-"24
-[; ;dashboard.c: 24:     time[3] = ((clock_reg[1] >> 4) & 0x07) + '0';
+"307
+[; ;dashboard.c: 307:     time[3] = ((clock_reg[1] >> 4) & 0x07) + '0';
 [e = *U + &U _time * -> -> -> 3 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
-"25
-[; ;dashboard.c: 25:     time[4] = (clock_reg[1] & 0x0F) + '0';
+"321
+[; ;dashboard.c: 321:     time[4] = (clock_reg[1] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"27
-[; ;dashboard.c: 27:     time[5] = ':';
+"327
+[; ;dashboard.c: 327:     time[5] = ':';
 [e = *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 58 `ui `uc ]
-"29
-[; ;dashboard.c: 29:     time[6] = ((clock_reg[2] >> 4) & 0x07) + '0';
+"343
+[; ;dashboard.c: 343:     time[6] = ((clock_reg[2] >> 4) & 0x07) + '0';
 [e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
-"30
-[; ;dashboard.c: 30:     time[7] = (clock_reg[2] & 0x0F) + '0';
+"355
+[; ;dashboard.c: 355:     time[7] = (clock_reg[2] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 7 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"31
-[; ;dashboard.c: 31:     time[8] = '\0';
+"364
+[; ;dashboard.c: 364:     time[8] = '\0';
 [e = *U + &U _time * -> -> -> 8 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 0 `ui `uc ]
-"33
-[; ;dashboard.c: 33:     clcd_print(time, (0xC0 + 1));
+"381
+[; ;dashboard.c: 381:     clcd_print(time, (0xC0 + 1));
 [e ( _clcd_print (2 , -> &U _time `*Cuc -> + -> 192 `i -> 1 `i `uc ]
-"34
-[; ;dashboard.c: 34: }
+"382
+[; ;dashboard.c: 382: }
 [e :UE 1 ]
 }
-"42
-[; ;dashboard.c: 42: static void get_time(unsigned char *clock_reg)
+"400
+[; ;dashboard.c: 400: static void get_time(unsigned char *clock_reg)
 [v _get_time `(v ~T0 @X0 1 sf1`*uc ]
-"43
-[; ;dashboard.c: 43: {
+"401
+[; ;dashboard.c: 401: {
 {
 [e :U _get_time ]
-"42
-[; ;dashboard.c: 42: static void get_time(unsigned char *clock_reg)
+"400
+[; ;dashboard.c: 400: static void get_time(unsigned char *clock_reg)
 [v _clock_reg `*uc ~T0 @X0 1 r1 ]
-"43
-[; ;dashboard.c: 43: {
+"401
+[; ;dashboard.c: 401: {
 [f ]
-"44
-[; ;dashboard.c: 44:     read_ds1307_time(clock_reg);
+"411
+[; ;dashboard.c: 411:     read_ds1307_time(clock_reg);
 [e ( _read_ds1307_time (1 _clock_reg ]
-"45
-[; ;dashboard.c: 45: }
+"412
+[; ;dashboard.c: 412: }
 [e :UE 2 ]
 }
-"47
-[; ;dashboard.c: 47: void put_data_dashboard()
+"433
+[; ;dashboard.c: 433: void put_data_dashboard()
 [v _put_data_dashboard `(v ~T0 @X0 1 ef ]
-"48
-[; ;dashboard.c: 48: {
+"434
+[; ;dashboard.c: 434: {
 {
 [e :U _put_data_dashboard ]
 [f ]
-"50
-[; ;dashboard.c: 50:     clcd_print("   Time    E  SP", (0x80 + 0));
+"452
+[; ;dashboard.c: 452:     clcd_print("   Time    E  SP", (0x80 + 0));
 [e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
-"51
-[; ;dashboard.c: 51:     clcd_print(event[i], (0xC0 + 11));
+"468
+[; ;dashboard.c: 468:     clcd_print(event[i], (0xC0 + 11));
 [e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"53
-[; ;dashboard.c: 53:     unsigned short adc_reg_val;
+"486
+[; ;dashboard.c: 486:     unsigned short adc_reg_val;
 [v _adc_reg_val `us ~T0 @X0 1 a ]
-"54
-[; ;dashboard.c: 54:     unsigned char clock_reg[3];
+"496
+[; ;dashboard.c: 496:     unsigned char clock_reg[3];
 [v _clock_reg `uc ~T0 @X0 -> 3 `i a ]
-"55
-[; ;dashboard.c: 55:     unsigned char key;
+"505
+[; ;dashboard.c: 505:     unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
-"57
-[; ;dashboard.c: 57:     get_time(clock_reg);
+"521
+[; ;dashboard.c: 521:     get_time(clock_reg);
 [e ( _get_time (1 &U _clock_reg ]
-"58
-[; ;dashboard.c: 58:     display_time(clock_reg);
+"528
+[; ;dashboard.c: 528:     display_time(clock_reg);
 [e ( _display_time (1 &U _clock_reg ]
-"90
-[; ;dashboard.c: 90:     adc_reg_val = ((unsigned long)read_adc() * 99) / 1023;
+"543
+[; ;dashboard.c: 543:     adc_reg_val = ((unsigned long)read_adc() * 99) / 1023;
 [e = _adc_reg_val -> / * -> ( _read_adc ..  `ul -> -> -> 99 `i `l `ul -> -> -> 1023 `i `l `ul `us ]
-"92
-[; ;dashboard.c: 92:     char speed_1 = (adc_reg_val / 10) + '0';
+"571
+[; ;dashboard.c: 571:     char speed_1 = (adc_reg_val / 10) + '0';
 [v _speed_1 `uc ~T0 @X0 1 a ]
 [e = _speed_1 -> + / -> _adc_reg_val `ui -> -> 10 `i `ui -> 48 `ui `uc ]
-"93
-[; ;dashboard.c: 93:     char speed_2 = (adc_reg_val % 10) + '0';
+"572
+[; ;dashboard.c: 572:     char speed_2 = (adc_reg_val % 10) + '0';
 [v _speed_2 `uc ~T0 @X0 1 a ]
 [e = _speed_2 -> + % -> _adc_reg_val `ui -> -> 10 `i `ui -> 48 `ui `uc ]
-"95
-[; ;dashboard.c: 95:     clcd_putch(speed_1, (0xC0 + 14));
+"588
+[; ;dashboard.c: 588:     clcd_putch(speed_1, (0xC0 + 14));
 [e ( _clcd_putch (2 , _speed_1 -> + -> 192 `i -> 14 `i `uc ]
-"96
-[; ;dashboard.c: 96:     clcd_putch(speed_2, (0xC0 + 15));
+"604
+[; ;dashboard.c: 604:     clcd_putch(speed_2, (0xC0 + 15));
 [e ( _clcd_putch (2 , _speed_2 -> + -> 192 `i -> 15 `i `uc ]
-"97
-[; ;dashboard.c: 97: }
+"605
+[; ;dashboard.c: 605: }
 [e :UE 3 ]
 }
 [a 1C 32 32 32 84 105 109 101 32 32 32 32 69 32 32 83 80 0 ]

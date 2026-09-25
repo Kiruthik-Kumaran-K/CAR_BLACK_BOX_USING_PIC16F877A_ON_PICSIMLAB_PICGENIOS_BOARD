@@ -16,6 +16,8 @@
 #include "timer.h"
 #include "menu.h"
 
+#define PASSWORD_LENGTH 4
+
 
 void put_data_dashboard(void);
 void login_page(void);

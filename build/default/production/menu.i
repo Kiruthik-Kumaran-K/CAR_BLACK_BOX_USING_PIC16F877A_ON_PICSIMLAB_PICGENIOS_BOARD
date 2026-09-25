@@ -1717,24 +1717,62 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 2 3
 # 2 "menu.c" 2
-# 1 "./menu.h" 1
+# 1 "./main.h" 1
+# 11 "./main.h"
+# 1 "./i2c.h" 1
 
 
 
-void menu_page(void);
-# 3 "menu.c" 2
-# 1 "./matrix_keypad.h" 1
-# 31 "./matrix_keypad.h"
-unsigned char read_matrix_keypad(unsigned char mode);
-void init_matrix_keypad(void);
-# 4 "menu.c" 2
+
+
+void init_i2c(unsigned long baud);
+void i2c_start(void);
+void i2c_rep_start(void);
+void i2c_stop(void);
+unsigned char i2c_read(unsigned char ack);
+int i2c_write(unsigned char data);
+# 12 "./main.h" 2
+# 1 "./ds1307.h" 1
+# 12 "./ds1307.h"
+void init_ds1307(void);
+unsigned char read_ds1307(unsigned char addr);
+void write_ds1307(unsigned char addr, unsigned char data);
+void read_ds1307_time(unsigned char *clock_reg);
+# 13 "./main.h" 2
 # 1 "./clcd.h" 1
 # 29 "./clcd.h"
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
 void clcd_clear(void);
-# 5 "menu.c" 2
+# 14 "./main.h" 2
+# 1 "./adc.h" 1
+# 11 "./adc.h"
+void init_adc(void);
+unsigned short read_adc(void);
+# 15 "./main.h" 2
+# 1 "./matrix_keypad.h" 1
+# 31 "./matrix_keypad.h"
+unsigned char read_matrix_keypad(unsigned char mode);
+void init_matrix_keypad(void);
+# 16 "./main.h" 2
+# 1 "./timer.h" 1
+# 11 "./timer.h"
+void init_timer0(void);
+# 17 "./main.h" 2
+# 1 "./menu.h" 1
+
+
+
+void menu_page(void);
+# 18 "./main.h" 2
+
+
+
+
+void put_data_dashboard(void);
+void login_page(void);
+# 3 "menu.c" 2
 
 const char menu_items[5][17] =
 {
@@ -1753,7 +1791,6 @@ void menu_page(void)
 
     while (1)
     {
-# 50 "menu.c"
         if (menu_index != previous_index)
         {
             clcd_print("                ", (0x80 + 0));
@@ -1761,7 +1798,6 @@ void menu_page(void)
 
             if (menu_index < 4)
             {
-
                 clcd_putch('*', (0x80 + 0));
                 clcd_print(menu_items[menu_index], (0x80 + 1));
 
@@ -1770,12 +1806,11 @@ void menu_page(void)
             }
             else
             {
-
                 clcd_putch(' ', (0x80 + 0));
-
+                clcd_print(menu_items[3], (0x80 + 1));
 
                 clcd_putch('*', (0xC0 + 0));
-
+                clcd_print(menu_items[4], (0xC0 + 1));
             }
 
             previous_index = menu_index;
@@ -1804,6 +1839,13 @@ void menu_page(void)
                 menu_index++;
             }
         }
+
+        if(key == 3)
+        {
+            clcd_clear();
+            put_data_dashboard();
+            return ;
+         }
 
 
 

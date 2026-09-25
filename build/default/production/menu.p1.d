@@ -1,5 +1,10 @@
 build/default/production/menu.p1:  \
 menu.c  \
-menu.h  \
+main.h  \
+i2c.h  \
+ds1307.h  \
+clcd.h  \
+adc.h  \
 matrix_keypad.h  \
-clcd.h 
+timer.h  \
+menu.h 
