@@ -1740,7 +1740,7 @@ void write_ds1307(unsigned char addr, unsigned char data);
 void read_ds1307_time(unsigned char *clock_reg);
 # 13 "./main.h" 2
 # 1 "./clcd.h" 1
-# 29 "./clcd.h"
+# 30 "./clcd.h"
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
@@ -1770,8 +1770,14 @@ void menu_page(void);
 
 
 
+
+
+
 void put_data_dashboard(void);
 void login_page(void);
+void view_log(void);
+void clear_log(void);
+void set_time(void);
 # 3 "menu.c" 2
 
 const char menu_items[5][17] =
@@ -1785,12 +1791,15 @@ const char menu_items[5][17] =
 
 void menu_page(void)
 {
-    unsigned char key;
-    unsigned char menu_index = 0;
-    unsigned char previous_index = 255;
+        unsigned char key;
+        unsigned char menu_index = 0;
+        unsigned char previous_index = 255;
 
     while (1)
     {
+
+
+
         if (menu_index != previous_index)
         {
             clcd_print("                ", (0x80 + 0));
@@ -1815,6 +1824,8 @@ void menu_page(void)
 
             previous_index = menu_index;
         }
+
+
 
         key = read_matrix_keypad(1);
 
@@ -1850,16 +1861,20 @@ void menu_page(void)
 
 
 
-        else if (key == '#')
+        else if (key == 0)
         {
             switch (menu_index)
             {
                 case 0:
 
+                    view_log();
+                    previous_index = 255;
                     break;
 
                 case 1:
 
+                    clear_log();
+                    previous_index = 255;
                     break;
 
                 case 2:
@@ -1868,6 +1883,8 @@ void menu_page(void)
 
                 case 3:
 
+                    set_time();
+                    previous_index = 255;
                     break;
 
                 case 4:

@@ -25,6 +25,7 @@
 #define TWO_LINES_5x8_4_BIT_MODE    0x28
 #define CLEAR_DISP_SCREEN           0x01
 #define DISP_ON_AND_CURSOR_OFF      0x0C
+#define DISP_ON_AND_CURSOR_ON_BLINK_ON  0x0F
 
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);

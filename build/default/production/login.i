@@ -7,7 +7,6 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "login.c" 2
-# 237 "login.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1717,23 +1716,23 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 2 3
-# 238 "login.c" 2
+# 2 "login.c" 2
 # 1 "./matrix_keypad.h" 1
 # 31 "./matrix_keypad.h"
 unsigned char read_matrix_keypad(unsigned char mode);
 void init_matrix_keypad(void);
-# 239 "login.c" 2
+# 3 "login.c" 2
 # 1 "./clcd.h" 1
-# 29 "./clcd.h"
+# 30 "./clcd.h"
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
 void clcd_clear(void);
-# 240 "login.c" 2
+# 4 "login.c" 2
 # 1 "./timer.h" 1
 # 11 "./timer.h"
 void init_timer0(void);
-# 241 "login.c" 2
+# 5 "login.c" 2
 # 1 "./main.h" 1
 # 11 "./main.h"
 # 1 "./i2c.h" 1
@@ -1774,364 +1773,188 @@ void menu_page(void);
 
 
 
+
+
+
 void put_data_dashboard(void);
 void login_page(void);
-# 242 "login.c" 2
-# 258 "login.c"
+void view_log(void);
+void clear_log(void);
+void set_time(void);
+# 6 "login.c" 2
+
 unsigned char key;
-# 278 "login.c"
+
 unsigned char index = 0;
-# 298 "login.c"
+
 char org_password[5] = "1111";
-# 315 "login.c"
+
 char usr_password[5];
-# 338 "login.c"
+
 char display[17] = "                ";
-# 356 "login.c"
+
 extern volatile unsigned int ms_count;
-# 368 "login.c"
+
 extern volatile unsigned char cursor_state;
-# 377 "login.c"
+
 extern volatile unsigned char cursor_update;
-# 389 "login.c"
+
 extern volatile unsigned char one_second_flag;
-# 403 "login.c"
+
 unsigned char inactivity_time = 0;
-# 416 "login.c"
+
 unsigned char attempts = 0;
-# 439 "login.c"
+
 int my_strcmp(const char *str1, const char *str2)
 {
 
-
-
-
     while (*str1 && *str2)
     {
-# 463 "login.c"
         if (*str1 != *str2)
         {
             return 1;
         }
-
-
-
-
         str1++;
         str2++;
     }
-# 484 "login.c"
     return (*str1 == *str2) ? 0 : 1;
 }
-
-
-
-
-
 
 void login_page(void)
 {
 
-
-
     clcd_print("ENTER PASSWORD  ", (0x80 + 0));
-# 506 "login.c"
+
     clcd_print(display, (0xC0 + 0));
-# 518 "login.c"
+
+
     while (1)
     {
 
-
-
-
-
-
         key = read_matrix_keypad(1);
-# 540 "login.c"
+
         if (cursor_update)
         {
 
-
-
-
             cursor_update = 0;
-
-
-
-
-
 
             if (index < 4)
             {
 
-
-
-
                 if (cursor_state)
                 {
-
-
-
-
-
 
                     display[index + 6] = '_';
                 }
                 else
                 {
 
-
-
                     display[index + 6] = ' ';
                 }
-
-
-
-
-
-
                 clcd_print(display, (0xC0 + 0));
             }
         }
 
-
-
-
-
-
         if (key != 0xFF)
         {
-# 601 "login.c"
+
             inactivity_time = 0;
-
-
-
-
 
 
             if (index < 4)
             {
-# 627 "login.c"
+
                 usr_password[index] = key + '0';
-# 642 "login.c"
+
                 display[index + 6] = '*';
-
-
-
-
-
 
                 clcd_print(display, (0xC0 + 0));
 
-
-
-
-
                 index++;
-# 664 "login.c"
+
                 ms_count = 0;
 
-
-
-
-
-
                 cursor_state = 0;
-
-
-
-
-
 
                 clcd_print(display, (0xC0 + 0));
             }
         }
 
-
-
-
-
-
         if (index == 4)
         {
-# 703 "login.c"
             usr_password[index] = '\0';
-# 712 "login.c"
+
             attempts++;
-
-
-
-
-
 
             if (my_strcmp(usr_password, org_password) == 0)
             {
-# 730 "login.c"
                 clcd_clear();
-
-
-
-
 
                 clcd_print("SUCCESSFUL      ", (0xC0 + 4));
 
-
-
-
-
-
                 index = 0;
-# 752 "login.c"
+
                 attempts = 0;
-
-
-
-
 
                 for (int i = 0; i < 4; i++)
                 {
                     usr_password[i] = '\0';
                 }
 
-
-
-
-
                 for (int i = 0; i < 17; i++)
                 {
                     display[i] = ' ';
                 }
 
-
-
-
-
-
                 display[6] = '_';
 
-
-
-
-
-
                 _delay((unsigned long)((1000)*(20000000/4000.0)));
-
-
-
-
-
 
 
                 menu_page();
 
 
-
-
-
-
                 return;
             }
-
-
-
-
-
-
             else
             {
-
-
-
-
-
-
                 if (attempts >= 3)
                 {
-
-
-
-
-
-
                     unsigned char lock_time = 60;
-# 832 "login.c"
+
                     unsigned char previous_time = 60;
 
-
-
-
-
                     clcd_print("BLOCKED          ", (0x80 + 0));
-
-
-
-
 
                     clcd_putch((lock_time / 10) + '0', (0xC0 + 6));
                     clcd_putch((lock_time % 10) + '0', (0xC0 + 7));
 
-
-
-
-
                     clcd_print("Wait for ", (0xC0 + 0));
-
-
-
-
 
                     clcd_putch('s', (0xC0 + 11));
 
-
-
-
-
-
                     while (lock_time > 0)
                     {
-
-
-
-
                         if (one_second_flag)
                         {
-
-
-
                             one_second_flag = 0;
-
-
-
-
-
 
                             previous_time = lock_time;
 
-
-
-
-
-
                             lock_time--;
-# 904 "login.c"
+
                             if ((lock_time / 10) !=
                                 (previous_time / 10))
                             {
-
-
-
-
                                 clcd_putch(
                                     (lock_time / 10) + '0',
                                     (0xC0 + 9)
                                 );
                             }
-# 930 "login.c"
+
                             if ((lock_time % 10) !=
                                 (previous_time % 10))
                             {
-
-
 
                                 clcd_putch(
                                     (lock_time % 10) + '0',
@@ -2140,65 +1963,32 @@ void login_page(void)
                             }
                         }
                     }
-# 952 "login.c"
+
                     clcd_clear();
 
-
-
-
-
                     index = 0;
-# 967 "login.c"
+
                     attempts = 0;
-
-
-
-
 
                     for (int i = 0; i < 4; i++)
                     {
                         usr_password[i] = '\0';
                     }
 
-
-
-
-
                     for (int i = 0; i < 17; i++)
                     {
                         display[i] = ' ';
                     }
 
-
-
-
-
-
                     display[6] = '_';
 
-
-
-
-
                     put_data_dashboard();
-
-
-
-
 
                     return;
                 }
 
-
-
-
-
-
                 if (attempts == 1)
                 {
-
-
-
 
                     clcd_print(
                         "FAILED ATTEMPT  ",
@@ -2212,16 +2002,8 @@ void login_page(void)
                 }
 
 
-
-
-
-
                 if (attempts == 2)
                 {
-
-
-
-
                     clcd_print(
                         "FAILED ATTEMPT  ",
                         (0x80 + 0)
@@ -2234,17 +2016,7 @@ void login_page(void)
                 }
 
 
-
-
-
-
                 index = 0;
-
-
-
-
-
-
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -2252,69 +2024,31 @@ void login_page(void)
                     display[i + 6] = ' ';
                 }
 
-
-
-
-
-
                 _delay((unsigned long)((1000)*(20000000/4000.0)));
-
-
-
-
 
                 clcd_print("ENTER PASSWORD", (0x80 + 0));
                 clcd_print(display, (0xC0 + 0));
             }
         }
-# 1096 "login.c"
+
         if (one_second_flag)
         {
 
-
-
             one_second_flag = 0;
-
-
-
-
-
 
             if (index < 4)
             {
 
-
-
                 inactivity_time++;
-
-
-
-
-
 
                 if (inactivity_time >= 5)
                 {
 
-
-
-
                     inactivity_time = 0;
-
-
-
-
 
                     clcd_clear();
 
-
-
-
-
                     put_data_dashboard();
-
-
-
-
 
                     return;
                 }

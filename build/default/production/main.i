@@ -1740,7 +1740,7 @@ void write_ds1307(unsigned char addr, unsigned char data);
 void read_ds1307_time(unsigned char *clock_reg);
 # 13 "./main.h" 2
 # 1 "./clcd.h" 1
-# 29 "./clcd.h"
+# 30 "./clcd.h"
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
@@ -1770,11 +1770,18 @@ void menu_page(void);
 
 
 
+
+
+
 void put_data_dashboard(void);
 void login_page(void);
+void view_log(void);
+void clear_log(void);
+void set_time(void);
 # 3 "main.c" 2
 
 #pragma config WDTE = OFF
+
 
 unsigned int crt = 0;
 
@@ -1784,7 +1791,134 @@ extern char event[9][3];
 
 extern volatile unsigned char one_second_flag;
 
+unsigned char log_index = 0;
+unsigned char log_count = 0;
+
+unsigned char oldest_index = 0;
+
 unsigned char key;
+
+void init_log(void)
+{
+    log_index = eeprom_read(100);
+    log_count = eeprom_read(101);
+    oldest_index = eeprom_read(102);
+
+    if (log_index >= 10)
+    {
+        log_index = 0;
+    }
+
+    if (log_count > 10)
+    {
+        log_count = 0;
+    }
+
+    if (oldest_index >= 10)
+    {
+        oldest_index = 0;
+    }
+}
+
+void save_event(void)
+{
+        unsigned char clock_reg[3];
+        unsigned short adc_value;
+        unsigned char speed;
+        unsigned char address;
+
+
+        address = log_index * 10;
+
+        read_ds1307_time(clock_reg);
+
+        adc_value = read_adc();
+
+        speed = ((unsigned long)adc_value * 99) / 1023;
+
+        eeprom_write(
+            address + 0,
+            ((clock_reg[0] >> 4) & 0x03) + '0'
+        );
+
+
+
+        eeprom_write(
+            address + 1,
+            (clock_reg[0] & 0x0F) + '0'
+        );
+
+
+
+        eeprom_write(
+            address + 2,
+            ((clock_reg[1] >> 4) & 0x07) + '0'
+        );
+
+
+
+        eeprom_write(
+            address + 3,
+            (clock_reg[1] & 0x0F) + '0'
+        );
+
+
+
+        eeprom_write(
+            address + 4,
+            ((clock_reg[2] >> 4) & 0x07) + '0'
+        );
+
+
+
+        eeprom_write(
+            address + 5,
+            (clock_reg[2] & 0x0F) + '0'
+        );
+
+
+
+        eeprom_write(address + 6, event[i][0]);
+        eeprom_write(address + 7, event[i][1]);
+
+
+        eeprom_write(
+            address + 8,
+            (speed / 10) + '0'
+        );
+
+        eeprom_write(
+            address + 9,
+            (speed % 10) + '0'
+        );
+
+
+       if (log_count < 10)
+       {
+           log_count++;
+       }
+       else
+       {
+           oldest_index++;
+
+           if (oldest_index >= 10)
+           {
+               oldest_index = 0;
+           }
+       }
+
+       log_index++;
+
+       if (log_index >= 10)
+       {
+           log_index = 0;
+       }
+
+
+       eeprom_write(100, log_index);
+       eeprom_write(101, log_count);
+       eeprom_write(102, oldest_index);
+}
 
 static void init_config(void) {
     init_i2c(100000);
@@ -1795,6 +1929,7 @@ static void init_config(void) {
     init_timer0();
 
     init_matrix_keypad();
+    init_log();
 
     GIE = 1;
     PEIE = 1;
@@ -1827,8 +1962,13 @@ void main(void)
         }
         else if(key == 1)
         {
-            i = 8;
-            clcd_print(event[i], (0xC0 + 11));
+            if(i != 8)
+            {
+                i = 8;
+                clcd_print(event[i], (0xC0 + 11));
+                save_event();
+            }
+
         }
         else if(key == 2)
         {
@@ -1836,6 +1976,7 @@ void main(void)
             {
                 i++;
                 clcd_print(event[i], (0xC0 + 11));
+                save_event();
             }
         }
         else if(key == 3)
@@ -1844,6 +1985,7 @@ void main(void)
             {
                 i--;
                 clcd_print(event[i], (0xC0 + 11));
+                save_event();
             }
         }
 

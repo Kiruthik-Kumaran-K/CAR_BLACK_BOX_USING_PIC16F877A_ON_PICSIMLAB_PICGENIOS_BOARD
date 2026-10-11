@@ -1,19 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"31 ./clcd.h
-[; ;./clcd.h: 31: void clcd_print(const char *str, unsigned char addr);
+"32 ./clcd.h
+[; ;./clcd.h: 32: void clcd_print(const char *str, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
-"30
-[; ;./clcd.h: 30: void clcd_putch(const char data, unsigned char addr);
+"31
+[; ;./clcd.h: 31: void clcd_putch(const char data, unsigned char addr);
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
 "31 ./matrix_keypad.h
 [; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
 [v _read_matrix_keypad `(uc ~T0 @X0 0 ef1`uc ]
-"32 ./clcd.h
-[; ;./clcd.h: 32: void clcd_clear(void);
+"33 ./clcd.h
+[; ;./clcd.h: 33: void clcd_clear(void);
 [v _clcd_clear `(v ~T0 @X0 0 ef ]
-"22 ./main.h
-[; ;./main.h: 22: void put_data_dashboard(void);
+"25 ./main.h
+[; ;./main.h: 25: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
+"27
+[; ;./main.h: 27: void view_log(void);
+[v _view_log `(v ~T0 @X0 0 ef ]
+"28
+[; ;./main.h: 28: void clear_log(void);
+[v _clear_log `(v ~T0 @X0 0 ef ]
+"29
+[; ;./main.h: 29: void set_time(void);
+[v _set_time `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -188,10 +197,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2210
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2210: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-[v F960 `Cuc ~T0 @X0 -> 17 `i t ]
+[v F963 `Cuc ~T0 @X0 -> 17 `i t ]
 "4 menu.c
 [; ;menu.c: 4: const char menu_items[5][17] =
-[v _menu_items `F960 ~T0 @X0 -> 5 `i e ]
+[v _menu_items `F963 ~T0 @X0 -> 5 `i e ]
 [i _menu_items
 :U ..
 :U ..
@@ -272,14 +281,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _menu_page ]
 [f ]
 "15
-[; ;menu.c: 15:     unsigned char key;
+[; ;menu.c: 15:         unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
 "16
-[; ;menu.c: 16:     unsigned char menu_index = 0;
+[; ;menu.c: 16:         unsigned char menu_index = 0;
 [v _menu_index `uc ~T0 @X0 1 a ]
 [e = _menu_index -> -> 0 `i `uc ]
 "17
-[; ;menu.c: 17:     unsigned char previous_index = 255;
+[; ;menu.c: 17:         unsigned char previous_index = 255;
 [v _previous_index `uc ~T0 @X0 1 a ]
 [e = _previous_index -> -> 255 `i `uc ]
 "19
@@ -288,189 +297,207 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20
 [; ;menu.c: 20:     {
 {
-"21
-[; ;menu.c: 21:         if (menu_index != previous_index)
-[e $ ! != -> _menu_index `i -> _previous_index `i 98  ]
-"22
-[; ;menu.c: 22:         {
-{
-"23
-[; ;menu.c: 23:             clcd_print("                ", (0x80 + 0));
-[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
 "24
-[; ;menu.c: 24:             clcd_print("                ", (0xC0 + 0));
-[e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
-"26
-[; ;menu.c: 26:             if (menu_index < 4)
-[e $ ! < -> _menu_index `i -> 4 `i 99  ]
-"27
-[; ;menu.c: 27:             {
+[; ;menu.c: 24:         if (menu_index != previous_index)
+[e $ ! != -> _menu_index `i -> _previous_index `i 98  ]
+"25
+[; ;menu.c: 25:         {
 {
-"28
-[; ;menu.c: 28:                 clcd_putch('*', (0x80 + 0));
-[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
+"26
+[; ;menu.c: 26:             clcd_print("                ", (0x80 + 0));
+[e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
+"27
+[; ;menu.c: 27:             clcd_print("                ", (0xC0 + 0));
+[e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
 "29
-[; ;menu.c: 29:                 clcd_print(menu_items[menu_index], (0x80 + 1));
-[e ( _clcd_print (2 , &U *U + &U _menu_items * -> _menu_index `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 128 `i -> 1 `i `uc ]
+[; ;menu.c: 29:             if (menu_index < 4)
+[e $ ! < -> _menu_index `i -> 4 `i 99  ]
+"30
+[; ;menu.c: 30:             {
+{
 "31
-[; ;menu.c: 31:                 clcd_putch(' ', (0xC0 + 0));
-[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+[; ;menu.c: 31:                 clcd_putch('*', (0x80 + 0));
+[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
 "32
-[; ;menu.c: 32:                 clcd_print(menu_items[menu_index + 1], (0xC0 + 1));
+[; ;menu.c: 32:                 clcd_print(menu_items[menu_index], (0x80 + 1));
+[e ( _clcd_print (2 , &U *U + &U _menu_items * -> _menu_index `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 128 `i -> 1 `i `uc ]
+"34
+[; ;menu.c: 34:                 clcd_putch(' ', (0xC0 + 0));
+[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"35
+[; ;menu.c: 35:                 clcd_print(menu_items[menu_index + 1], (0xC0 + 1));
 [e ( _clcd_print (2 , &U *U + &U _menu_items * -> -> + -> _menu_index `i -> 1 `i `ui `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 192 `i -> 1 `i `uc ]
-"33
-[; ;menu.c: 33:             }
+"36
+[; ;menu.c: 36:             }
 }
 [e $U 100  ]
-"34
-[; ;menu.c: 34:             else
-[e :U 99 ]
-"35
-[; ;menu.c: 35:             {
-{
-"36
-[; ;menu.c: 36:                 clcd_putch(' ', (0x80 + 0));
-[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
 "37
-[; ;menu.c: 37:                 clcd_print(menu_items[3], (0x80 + 1));
-[e ( _clcd_print (2 , &U *U + &U _menu_items * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 128 `i -> 1 `i `uc ]
+[; ;menu.c: 37:             else
+[e :U 99 ]
+"38
+[; ;menu.c: 38:             {
+{
 "39
-[; ;menu.c: 39:                 clcd_putch('*', (0xC0 + 0));
-[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+[; ;menu.c: 39:                 clcd_putch(' ', (0x80 + 0));
+[e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 128 `i -> 0 `i `uc ]
 "40
-[; ;menu.c: 40:                 clcd_print(menu_items[4], (0xC0 + 1));
+[; ;menu.c: 40:                 clcd_print(menu_items[3], (0x80 + 1));
+[e ( _clcd_print (2 , &U *U + &U _menu_items * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 128 `i -> 1 `i `uc ]
+"42
+[; ;menu.c: 42:                 clcd_putch('*', (0xC0 + 0));
+[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"43
+[; ;menu.c: 43:                 clcd_print(menu_items[4], (0xC0 + 1));
 [e ( _clcd_print (2 , &U *U + &U _menu_items * -> -> -> 4 `i `ui `ux -> * -> # *U &U *U &U _menu_items `ui -> -> 17 `i `ui `ux -> + -> 192 `i -> 1 `i `uc ]
-"41
-[; ;menu.c: 41:             }
+"44
+[; ;menu.c: 44:             }
 }
 [e :U 100 ]
-"43
-[; ;menu.c: 43:             previous_index = menu_index;
+"46
+[; ;menu.c: 46:             previous_index = menu_index;
 [e = _previous_index _menu_index ]
-"44
-[; ;menu.c: 44:         }
+"47
+[; ;menu.c: 47:         }
 }
 [e :U 98 ]
-"46
-[; ;menu.c: 46:         key = read_matrix_keypad(1);
-[e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
 "51
-[; ;menu.c: 51:         if (key == 1)
-[e $ ! == -> _key `i -> 1 `i 101  ]
-"52
-[; ;menu.c: 52:         {
-{
-"53
-[; ;menu.c: 53:             if (menu_index > 0)
-[e $ ! > -> _menu_index `i -> 0 `i 102  ]
-"54
-[; ;menu.c: 54:             {
-{
-"55
-[; ;menu.c: 55:                 menu_index--;
-[e -- _menu_index -> -> 1 `i `uc ]
+[; ;menu.c: 51:         key = read_matrix_keypad(1);
+[e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
 "56
-[; ;menu.c: 56:             }
+[; ;menu.c: 56:         if (key == 1)
+[e $ ! == -> _key `i -> 1 `i 101  ]
+"57
+[; ;menu.c: 57:         {
+{
+"58
+[; ;menu.c: 58:             if (menu_index > 0)
+[e $ ! > -> _menu_index `i -> 0 `i 102  ]
+"59
+[; ;menu.c: 59:             {
+{
+"60
+[; ;menu.c: 60:                 menu_index--;
+[e -- _menu_index -> -> 1 `i `uc ]
+"61
+[; ;menu.c: 61:             }
 }
 [e :U 102 ]
-"57
-[; ;menu.c: 57:         }
+"62
+[; ;menu.c: 62:         }
 }
 [e $U 103  ]
-"62
-[; ;menu.c: 62:         else if (key == 2)
+"67
+[; ;menu.c: 67:         else if (key == 2)
 [e :U 101 ]
 [e $ ! == -> _key `i -> 2 `i 104  ]
-"63
-[; ;menu.c: 63:         {
+"68
+[; ;menu.c: 68:         {
 {
-"64
-[; ;menu.c: 64:             if (menu_index < 4)
+"69
+[; ;menu.c: 69:             if (menu_index < 4)
 [e $ ! < -> _menu_index `i -> 4 `i 105  ]
-"65
-[; ;menu.c: 65:             {
+"70
+[; ;menu.c: 70:             {
 {
-"66
-[; ;menu.c: 66:                 menu_index++;
+"71
+[; ;menu.c: 71:                 menu_index++;
 [e ++ _menu_index -> -> 1 `i `uc ]
-"67
-[; ;menu.c: 67:             }
+"72
+[; ;menu.c: 72:             }
 }
 [e :U 105 ]
-"68
-[; ;menu.c: 68:         }
+"73
+[; ;menu.c: 73:         }
 }
 [e :U 104 ]
 [e :U 103 ]
-"70
-[; ;menu.c: 70:         if(key == 3)
-[e $ ! == -> _key `i -> 3 `i 106  ]
-"71
-[; ;menu.c: 71:         {
-{
-"72
-[; ;menu.c: 72:             clcd_clear();
-[e ( _clcd_clear ..  ]
-"73
-[; ;menu.c: 73:             put_data_dashboard();
-[e ( _put_data_dashboard ..  ]
-"74
-[; ;menu.c: 74:             return ;
-[e $UE 94  ]
 "75
-[; ;menu.c: 75:          }
+[; ;menu.c: 75:         if(key == 3)
+[e $ ! == -> _key `i -> 3 `i 106  ]
+"76
+[; ;menu.c: 76:         {
+{
+"77
+[; ;menu.c: 77:             clcd_clear();
+[e ( _clcd_clear ..  ]
+"78
+[; ;menu.c: 78:             put_data_dashboard();
+[e ( _put_data_dashboard ..  ]
+"79
+[; ;menu.c: 79:             return ;
+[e $UE 94  ]
+"80
+[; ;menu.c: 80:          }
 }
 [e $U 107  ]
-"80
-[; ;menu.c: 80:         else if (key == '#')
+"85
+[; ;menu.c: 85:         else if (key == 0)
 [e :U 106 ]
-[e $ ! == -> _key `ui -> 35 `ui 108  ]
-"81
-[; ;menu.c: 81:         {
-{
-"82
-[; ;menu.c: 82:             switch (menu_index)
-[e $U 110  ]
-"83
-[; ;menu.c: 83:             {
-{
-"84
-[; ;menu.c: 84:                 case 0:
-[e :U 111 ]
+[e $ ! == -> _key `i -> 0 `i 108  ]
 "86
-[; ;menu.c: 86:                     break;
-[e $U 109  ]
+[; ;menu.c: 86:         {
+{
+"87
+[; ;menu.c: 87:             switch (menu_index)
+[e $U 110  ]
 "88
-[; ;menu.c: 88:                 case 1:
-[e :U 112 ]
-"90
-[; ;menu.c: 90:                     break;
-[e $U 109  ]
+[; ;menu.c: 88:             {
+{
+"89
+[; ;menu.c: 89:                 case 0:
+[e :U 111 ]
+"91
+[; ;menu.c: 91:                     view_log();
+[e ( _view_log ..  ]
 "92
-[; ;menu.c: 92:                 case 2:
-[e :U 113 ]
-"94
-[; ;menu.c: 94:                     break;
+[; ;menu.c: 92:                     previous_index = 255;
+[e = _previous_index -> -> 255 `i `uc ]
+"93
+[; ;menu.c: 93:                     break;
 [e $U 109  ]
-"96
-[; ;menu.c: 96:                 case 3:
-[e :U 114 ]
+"95
+[; ;menu.c: 95:                 case 1:
+[e :U 112 ]
+"97
+[; ;menu.c: 97:                     clear_log();
+[e ( _clear_log ..  ]
 "98
-[; ;menu.c: 98:                     break;
+[; ;menu.c: 98:                     previous_index = 255;
+[e = _previous_index -> -> 255 `i `uc ]
+"99
+[; ;menu.c: 99:                     break;
 [e $U 109  ]
-"100
-[; ;menu.c: 100:                 case 4:
-[e :U 115 ]
-"102
-[; ;menu.c: 102:                     break;
-[e $U 109  ]
+"101
+[; ;menu.c: 101:                 case 2:
+[e :U 113 ]
 "103
-[; ;menu.c: 103:             }
+[; ;menu.c: 103:                     break;
+[e $U 109  ]
+"105
+[; ;menu.c: 105:                 case 3:
+[e :U 114 ]
+"107
+[; ;menu.c: 107:                     set_time();
+[e ( _set_time ..  ]
+"108
+[; ;menu.c: 108:                     previous_index = 255;
+[e = _previous_index -> -> 255 `i `uc ]
+"109
+[; ;menu.c: 109:                     break;
+[e $U 109  ]
+"111
+[; ;menu.c: 111:                 case 4:
+[e :U 115 ]
+"113
+[; ;menu.c: 113:                     break;
+[e $U 109  ]
+"114
+[; ;menu.c: 114:             }
 }
 [e $U 109  ]
 [e :U 110 ]
-"82
-[; ;menu.c: 82:             switch (menu_index)
+"87
+[; ;menu.c: 87:             switch (menu_index)
 [e [\ _menu_index , $ -> 0 `i 111
  , $ -> 1 `i 112
  , $ -> 2 `i 113
@@ -478,21 +505,21 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 115
  109 ]
 [e :U 109 ]
-"104
-[; ;menu.c: 104:         }
+"115
+[; ;menu.c: 115:         }
 }
 [e :U 108 ]
 [e :U 107 ]
-"105
-[; ;menu.c: 105:     }
+"116
+[; ;menu.c: 116:     }
 }
 [e :U 95 ]
 "19
 [; ;menu.c: 19:     while (1)
 [e $U 96  ]
 [e :U 97 ]
-"106
-[; ;menu.c: 106: }
+"117
+[; ;menu.c: 117: }
 [e :UE 94 ]
 }
 [a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

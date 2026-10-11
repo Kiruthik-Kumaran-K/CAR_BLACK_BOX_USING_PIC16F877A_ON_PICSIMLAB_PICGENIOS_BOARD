@@ -1744,7 +1744,7 @@ void write_ds1307(unsigned char addr, unsigned char data);
 void read_ds1307_time(unsigned char *clock_reg);
 # 13 "./main.h" 2
 # 1 "./clcd.h" 1
-# 29 "./clcd.h"
+# 30 "./clcd.h"
 void init_clcd(void);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
@@ -1771,12 +1771,23 @@ void menu_page(void);
 
 
 
+
+
+
 void put_data_dashboard(void);
 void login_page(void);
+void view_log(void);
+void clear_log(void);
+void set_time(void);
 # 4 "isr.c" 2
 
 
 
+
+volatile unsigned int set_time_blink_count = 0;
+volatile unsigned char set_time_blink_state = 1;
+volatile unsigned char set_time_blink_update = 0;
+volatile unsigned char set_time_blink_enable = 0;
 
 volatile unsigned int ms_count = 0;
 volatile unsigned int ms_count_cursor = 0;
@@ -1821,6 +1832,23 @@ void __attribute__((picinterrupt(("")))) isr(void)
             ms_count = 0;
             one_second_flag = 1;
 
+        }
+
+        if (set_time_blink_enable)
+        {
+            set_time_blink_count++;
+
+            if (set_time_blink_count >= 500)
+            {
+                set_time_blink_count = 0;
+
+                set_time_blink_state = !set_time_blink_state;
+                set_time_blink_update = 1;
+            }
+        }
+        else
+        {
+            set_time_blink_count = 0;
         }
     }
 }

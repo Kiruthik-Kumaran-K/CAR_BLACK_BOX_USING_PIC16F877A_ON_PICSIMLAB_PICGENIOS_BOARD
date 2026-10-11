@@ -1,7 +1,7 @@
 
 16F877 Memory Summary:
-    Program space        used   CEAh (  3306) of  2000h words   ( 40.4%)
-    Data space           used    8Bh (   139) of   170h bytes   ( 37.8%)
+    Program space        used  141Bh (  5147) of  2000h words   ( 62.8%)
+    Data space           used    93h (   147) of   170h bytes   ( 39.9%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)
     Configuration bits   used     1h (     1) of     1h word    (100.0%)
     ID Location space    used     0h (     0) of     4h bytes   (  0.0%)

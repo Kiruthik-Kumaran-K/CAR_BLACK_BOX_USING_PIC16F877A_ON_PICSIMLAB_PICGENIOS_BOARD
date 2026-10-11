@@ -5,13 +5,23 @@
         <group>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/timer.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/isr.c</file>
-            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/external_interrupt.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/i2c.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/login.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/main.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/dashboard.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/DS1307.c</file>
             <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/matrix_keypad.c</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/timer.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/DS1307.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/clcd.c</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/clcd.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/main.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/menu.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/menu.c</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/view_log.c</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/matrix_keypad.h</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/clear_log.c</file>
+            <file>file:/D:/MPLAB_PROJECTS/PIC_Project.X/set_time.c</file>
         </group>
     </open-files>
 </project-private>

@@ -31,6 +31,9 @@
       <itemPath>matrix_keypad.c</itemPath>
       <itemPath>timer.c</itemPath>
       <itemPath>menu.c</itemPath>
+      <itemPath>view_log.c</itemPath>
+      <itemPath>clear_log.c</itemPath>
+      <itemPath>set_time.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

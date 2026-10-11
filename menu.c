@@ -1,6 +1,6 @@
 #include <xc.h>
 #include "main.h"
-
+   
 const char menu_items[5][17] =
 {
     "View Log",
@@ -12,12 +12,15 @@ const char menu_items[5][17] =
 
 void menu_page(void)
 {
-    unsigned char key;
-    unsigned char menu_index = 0;
-    unsigned char previous_index = 255;
+        unsigned char key;
+        unsigned char menu_index = 0;
+        unsigned char previous_index = 255;
 
     while (1)
     {
+        
+
+        
         if (menu_index != previous_index)
         {
             clcd_print("                ", LINE1(0));
@@ -42,6 +45,8 @@ void menu_page(void)
 
             previous_index = menu_index;
         }
+        
+
 
         key = read_matrix_keypad(STATE);
 
@@ -77,16 +82,20 @@ void menu_page(void)
         /*
          * SELECT
          */
-        else if (key == '#')
+        else if (key == 0)
         {
             switch (menu_index)
             {
                 case 0:
                     /* View Log */
+                    view_log();
+                    previous_index = 255;
                     break;
 
                 case 1:
                     /* Clear Log */
+                    clear_log();
+                    previous_index = 255;
                     break;
 
                 case 2:
@@ -95,6 +104,8 @@ void menu_page(void)
 
                 case 3:
                     /* Set Time */
+                    set_time();
+                    previous_index = 255;
                     break;
 
                 case 4:

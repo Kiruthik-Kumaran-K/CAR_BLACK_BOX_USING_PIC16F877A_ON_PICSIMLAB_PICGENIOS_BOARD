@@ -1,23 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"31 ./clcd.h
-[; ;./clcd.h: 31: void clcd_print(const char *str, unsigned char addr);
+"32 ./clcd.h
+[; ;./clcd.h: 32: void clcd_print(const char *str, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
 "15 ./ds1307.h
 [; ;./ds1307.h: 15: void read_ds1307_time(unsigned char *clock_reg);
 [v _read_ds1307_time `(v ~T0 @X0 0 ef1`*uc ]
-"86 dashboard.c
-[; ;dashboard.c: 86: extern unsigned int i;
+"3 dashboard.c
+[; ;dashboard.c: 3: extern unsigned int i;
 [v _i `ui ~T0 @X0 0 e ]
 "12 ./adc.h
 [; ;./adc.h: 12: unsigned short read_adc(void);
 [v _read_adc `(us ~T0 @X0 0 ef ]
-"30 ./clcd.h
-[; ;./clcd.h: 30: void clcd_putch(const char data, unsigned char addr);
+"31 ./clcd.h
+[; ;./clcd.h: 31: void clcd_putch(const char data, unsigned char addr);
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
-[v F39 `uc ~T0 @X0 -> 3 `i t ]
-"135 dashboard.c
-[; ;dashboard.c: 135: char event[9][3] =
-[v _event `F39 ~T0 @X0 -> 9 `i e ]
+[v F42 `uc ~T0 @X0 -> 3 `i t ]
+"7 dashboard.c
+[; ;dashboard.c: 7: char event[9][3] =
+[v _event `F42 ~T0 @X0 -> 9 `i e ]
 [i _event
 :U ..
 :U ..
@@ -67,124 +67,124 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"184
-[; ;dashboard.c: 184: static void display_time(unsigned char *clock_reg)
+"20
+[; ;dashboard.c: 20: static void display_time(unsigned char *clock_reg)
 [v _display_time `(v ~T0 @X0 1 sf1`*uc ]
-"185
-[; ;dashboard.c: 185: {
+"21
+[; ;dashboard.c: 21: {
 {
 [e :U _display_time ]
-"184
-[; ;dashboard.c: 184: static void display_time(unsigned char *clock_reg)
+"20
+[; ;dashboard.c: 20: static void display_time(unsigned char *clock_reg)
 [v _clock_reg `*uc ~T0 @X0 1 r1 ]
-"185
-[; ;dashboard.c: 185: {
+"21
+[; ;dashboard.c: 21: {
 [f ]
-"211
-[; ;dashboard.c: 211:     char time[9];
+"22
+[; ;dashboard.c: 22:     char time[9];
 [v _time `uc ~T0 @X0 -> 9 `i a ]
-"259
-[; ;dashboard.c: 259:     time[0] = ((clock_reg[0] >> 4) & 0x03) + '0';
+"24
+[; ;dashboard.c: 24:     time[0] = ((clock_reg[0] >> 4) & 0x03) + '0';
 [e = *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 3 `i `ui -> 48 `ui `uc ]
-"283
-[; ;dashboard.c: 283:     time[1] = (clock_reg[0] & 0x0F) + '0';
+"26
+[; ;dashboard.c: 26:     time[1] = (clock_reg[0] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 0 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"289
-[; ;dashboard.c: 289:     time[2] = ':';
+"28
+[; ;dashboard.c: 28:     time[2] = ':';
 [e = *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 58 `ui `uc ]
-"307
-[; ;dashboard.c: 307:     time[3] = ((clock_reg[1] >> 4) & 0x07) + '0';
+"30
+[; ;dashboard.c: 30:     time[3] = ((clock_reg[1] >> 4) & 0x07) + '0';
 [e = *U + &U _time * -> -> -> 3 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
-"321
-[; ;dashboard.c: 321:     time[4] = (clock_reg[1] & 0x0F) + '0';
+"32
+[; ;dashboard.c: 32:     time[4] = (clock_reg[1] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 1 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"327
-[; ;dashboard.c: 327:     time[5] = ':';
+"34
+[; ;dashboard.c: 34:     time[5] = ':';
 [e = *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 58 `ui `uc ]
-"343
-[; ;dashboard.c: 343:     time[6] = ((clock_reg[2] >> 4) & 0x07) + '0';
+"36
+[; ;dashboard.c: 36:     time[6] = ((clock_reg[2] >> 4) & 0x07) + '0';
 [e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & >> -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
-"355
-[; ;dashboard.c: 355:     time[7] = (clock_reg[2] & 0x0F) + '0';
+"38
+[; ;dashboard.c: 38:     time[7] = (clock_reg[2] & 0x0F) + '0';
 [e = *U + &U _time * -> -> -> 7 `i `ui `ux -> -> # *U &U _time `ui `ux -> + -> & -> *U + _clock_reg * -> -> 2 `i `x -> -> # *U _clock_reg `i `x `i -> 15 `i `ui -> 48 `ui `uc ]
-"364
-[; ;dashboard.c: 364:     time[8] = '\0';
+"40
+[; ;dashboard.c: 40:     time[8] = '\0';
 [e = *U + &U _time * -> -> -> 8 `i `ui `ux -> -> # *U &U _time `ui `ux -> -> 0 `ui `uc ]
-"381
-[; ;dashboard.c: 381:     clcd_print(time, (0xC0 + 1));
+"42
+[; ;dashboard.c: 42:     clcd_print(time, (0xC0 + 1));
 [e ( _clcd_print (2 , -> &U _time `*Cuc -> + -> 192 `i -> 1 `i `uc ]
-"382
-[; ;dashboard.c: 382: }
+"43
+[; ;dashboard.c: 43: }
 [e :UE 1 ]
 }
-"400
-[; ;dashboard.c: 400: static void get_time(unsigned char *clock_reg)
+"45
+[; ;dashboard.c: 45: static void get_time(unsigned char *clock_reg)
 [v _get_time `(v ~T0 @X0 1 sf1`*uc ]
-"401
-[; ;dashboard.c: 401: {
+"46
+[; ;dashboard.c: 46: {
 {
 [e :U _get_time ]
-"400
-[; ;dashboard.c: 400: static void get_time(unsigned char *clock_reg)
+"45
+[; ;dashboard.c: 45: static void get_time(unsigned char *clock_reg)
 [v _clock_reg `*uc ~T0 @X0 1 r1 ]
-"401
-[; ;dashboard.c: 401: {
+"46
+[; ;dashboard.c: 46: {
 [f ]
-"411
-[; ;dashboard.c: 411:     read_ds1307_time(clock_reg);
+"47
+[; ;dashboard.c: 47:     read_ds1307_time(clock_reg);
 [e ( _read_ds1307_time (1 _clock_reg ]
-"412
-[; ;dashboard.c: 412: }
+"48
+[; ;dashboard.c: 48: }
 [e :UE 2 ]
 }
-"433
-[; ;dashboard.c: 433: void put_data_dashboard()
+"50
+[; ;dashboard.c: 50: void put_data_dashboard()
 [v _put_data_dashboard `(v ~T0 @X0 1 ef ]
-"434
-[; ;dashboard.c: 434: {
+"51
+[; ;dashboard.c: 51: {
 {
 [e :U _put_data_dashboard ]
 [f ]
-"452
-[; ;dashboard.c: 452:     clcd_print("   Time    E  SP", (0x80 + 0));
+"52
+[; ;dashboard.c: 52:     clcd_print("   Time    E  SP", (0x80 + 0));
 [e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 0 `i `uc ]
-"468
-[; ;dashboard.c: 468:     clcd_print(event[i], (0xC0 + 11));
+"54
+[; ;dashboard.c: 54:     clcd_print(event[i], (0xC0 + 11));
 [e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"486
-[; ;dashboard.c: 486:     unsigned short adc_reg_val;
+"56
+[; ;dashboard.c: 56:     unsigned short adc_reg_val;
 [v _adc_reg_val `us ~T0 @X0 1 a ]
-"496
-[; ;dashboard.c: 496:     unsigned char clock_reg[3];
+"58
+[; ;dashboard.c: 58:     unsigned char clock_reg[3];
 [v _clock_reg `uc ~T0 @X0 -> 3 `i a ]
-"505
-[; ;dashboard.c: 505:     unsigned char key;
+"60
+[; ;dashboard.c: 60:     unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
-"521
-[; ;dashboard.c: 521:     get_time(clock_reg);
+"62
+[; ;dashboard.c: 62:     get_time(clock_reg);
 [e ( _get_time (1 &U _clock_reg ]
-"528
-[; ;dashboard.c: 528:     display_time(clock_reg);
+"64
+[; ;dashboard.c: 64:     display_time(clock_reg);
 [e ( _display_time (1 &U _clock_reg ]
-"543
-[; ;dashboard.c: 543:     adc_reg_val = ((unsigned long)read_adc() * 99) / 1023;
+"66
+[; ;dashboard.c: 66:     adc_reg_val = ((unsigned long)read_adc() * 99) / 1023;
 [e = _adc_reg_val -> / * -> ( _read_adc ..  `ul -> -> -> 99 `i `l `ul -> -> -> 1023 `i `l `ul `us ]
-"571
-[; ;dashboard.c: 571:     char speed_1 = (adc_reg_val / 10) + '0';
+"69
+[; ;dashboard.c: 69:     char speed_1 = (adc_reg_val / 10) + '0';
 [v _speed_1 `uc ~T0 @X0 1 a ]
 [e = _speed_1 -> + / -> _adc_reg_val `ui -> -> 10 `i `ui -> 48 `ui `uc ]
-"572
-[; ;dashboard.c: 572:     char speed_2 = (adc_reg_val % 10) + '0';
+"70
+[; ;dashboard.c: 70:     char speed_2 = (adc_reg_val % 10) + '0';
 [v _speed_2 `uc ~T0 @X0 1 a ]
 [e = _speed_2 -> + % -> _adc_reg_val `ui -> -> 10 `i `ui -> 48 `ui `uc ]
-"588
-[; ;dashboard.c: 588:     clcd_putch(speed_1, (0xC0 + 14));
+"73
+[; ;dashboard.c: 73:     clcd_putch(speed_1, (0xC0 + 14));
 [e ( _clcd_putch (2 , _speed_1 -> + -> 192 `i -> 14 `i `uc ]
-"604
-[; ;dashboard.c: 604:     clcd_putch(speed_2, (0xC0 + 15));
+"75
+[; ;dashboard.c: 75:     clcd_putch(speed_2, (0xC0 + 15));
 [e ( _clcd_putch (2 , _speed_2 -> + -> 192 `i -> 15 `i `uc ]
-"605
-[; ;dashboard.c: 605: }
+"76
+[; ;dashboard.c: 76: }
 [e :UE 3 ]
 }
 [a 1C 32 32 32 84 105 109 101 32 32 32 32 69 32 32 83 80 0 ]

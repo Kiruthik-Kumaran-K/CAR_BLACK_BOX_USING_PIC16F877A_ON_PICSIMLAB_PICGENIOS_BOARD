@@ -1,12 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"115 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/eeprom_routines.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/eeprom_routines.h: 115: extern unsigned char eeprom_read(unsigned char addr);
+[v _eeprom_read `(uc ~T0 @X0 0 ef1`uc ]
+"15 ./ds1307.h
+[; ;./ds1307.h: 15: void read_ds1307_time(unsigned char *clock_reg);
+[v _read_ds1307_time `(v ~T0 @X0 0 ef1`*uc ]
+"12 ./adc.h
+[; ;./adc.h: 12: unsigned short read_adc(void);
+[v _read_adc `(us ~T0 @X0 0 ef ]
+"114 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/eeprom_routines.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/eeprom_routines.h: 114: extern void eeprom_write(unsigned char addr, unsigned char value);
+[v _eeprom_write `(v ~T0 @X0 0 ef2`uc`uc ]
+[v F965 `uc ~T0 @X0 -> 3 `i t ]
+"11 main.c
+[; ;main.c: 11: 
+[v _event `F965 ~T0 @X0 -> 0 `x e ]
 "6 ./i2c.h
 [; ;./i2c.h: 6: void init_i2c(unsigned long baud);
 [v _init_i2c `(v ~T0 @X0 0 ef1`ul ]
 "12 ./ds1307.h
 [; ;./ds1307.h: 12: void init_ds1307(void);
 [v _init_ds1307 `(v ~T0 @X0 0 ef ]
-"29 ./clcd.h
-[; ;./clcd.h: 29: void init_clcd(void);
+"30 ./clcd.h
+[; ;./clcd.h: 30: void init_clcd(void);
 [v _init_clcd `(v ~T0 @X0 0 ef ]
 "11 ./adc.h
 [; ;./adc.h: 11: void init_adc(void);
@@ -23,26 +39,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2422
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2422: extern volatile __bit PEIE __attribute__((address(0x5E)));
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
-"31 ./clcd.h
-[; ;./clcd.h: 31: void clcd_print(const char *str, unsigned char addr);
+"32 ./clcd.h
+[; ;./clcd.h: 32: void clcd_print(const char *str, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
-"22 ./main.h
-[; ;./main.h: 22: void put_data_dashboard(void);
+"25 ./main.h
+[; ;./main.h: 25: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
-"12 main.c
-[; ;main.c: 12:     init_ds1307();
+"13 main.c
+[; ;main.c: 13: 
 [v _one_second_flag `Vuc ~T0 @X0 0 e ]
 "31 ./matrix_keypad.h
 [; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
 [v _read_matrix_keypad `(uc ~T0 @X0 0 ef1`uc ]
-"23 ./main.h
-[; ;./main.h: 23: void login_page(void);
+"26 ./main.h
+[; ;./main.h: 26: void login_page(void);
 [v _login_page `(v ~T0 @X0 0 ef ]
-[v F962 `uc ~T0 @X0 -> 3 `i t ]
-"10 main.c
-[; ;main.c: 10: static void init_config(void) {
-[v _event `F962 ~T0 @X0 -> 0 `x e ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -218,204 +230,434 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2210: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "4 main.c
-[; ;main.c: 4: extern char event[9][3];
+[; ;main.c: 4: 
 [p x WDTE  =  OFF         ]
-"6
-[; ;main.c: 6: extern volatile unsigned char one_second_flag;
+"7
+[; ;main.c: 7: extern volatile unsigned char one_second_flag;
 [v _crt `ui ~T0 @X0 1 e ]
 [i _crt
 -> -> 0 `i `ui
 ]
-"8
-[; ;main.c: 8: unsigned char key;
+"9
+[; ;main.c: 9: unsigned char log_index = 0;
 [v _i `ui ~T0 @X0 1 e ]
 [i _i
 -> -> 0 `i `ui
 ]
-"14
-[; ;main.c: 14:     init_clcd();
-[v _key `uc ~T0 @X0 1 e ]
+"15
+[; ;main.c: 15: 
+[v _log_index `uc ~T0 @X0 1 e ]
+[i _log_index
+-> -> 0 `i `uc
+]
 "16
-[; ;main.c: 16:     init_timer0();
+[; ;main.c: 16: void init_log(void)
+[v _log_count `uc ~T0 @X0 1 e ]
+[i _log_count
+-> -> 0 `i `uc
+]
+"18
+[; ;main.c: 18:     log_index = eeprom_read(100);
+[v _oldest_index `uc ~T0 @X0 1 e ]
+[i _oldest_index
+-> -> 0 `i `uc
+]
+"20
+[; ;main.c: 20:     oldest_index = eeprom_read(102);
+[v _key `uc ~T0 @X0 1 e ]
+"22
+[; ;main.c: 22:     if (log_index >= 10)
+[v _init_log `(v ~T0 @X0 1 ef ]
+"23
+[; ;main.c: 23:     {
+{
+[e :U _init_log ]
+[f ]
+"24
+[; ;main.c: 24:         log_index = 0;
+[e = _log_index ( _eeprom_read (1 -> -> 100 `i `uc ]
+"25
+[; ;main.c: 25:     }
+[e = _log_count ( _eeprom_read (1 -> -> 101 `i `uc ]
+"26
+[; ;main.c: 26: 
+[e = _oldest_index ( _eeprom_read (1 -> -> 102 `i `uc ]
+"28
+[; ;main.c: 28:     {
+[e $ ! >= -> _log_index `i -> 10 `i 95  ]
+"29
+[; ;main.c: 29:         log_count = 0;
+{
+"30
+[; ;main.c: 30:     }
+[e = _log_index -> -> 0 `i `uc ]
+"31
+[; ;main.c: 31: 
+}
+[e :U 95 ]
+"33
+[; ;main.c: 33:     {
+[e $ ! > -> _log_count `i -> 10 `i 96  ]
+"34
+[; ;main.c: 34:         oldest_index = 0;
+{
+"35
+[; ;main.c: 35:     }
+[e = _log_count -> -> 0 `i `uc ]
+"36
+[; ;main.c: 36: }
+}
+[e :U 96 ]
+"38
+[; ;main.c: 38: void save_event(void)
+[e $ ! >= -> _oldest_index `i -> 10 `i 97  ]
+"39
+[; ;main.c: 39: {
+{
+"40
+[; ;main.c: 40:         unsigned char clock_reg[3];
+[e = _oldest_index -> -> 0 `i `uc ]
+"41
+[; ;main.c: 41:         unsigned short adc_value;
+}
+[e :U 97 ]
+"42
+[; ;main.c: 42:         unsigned char speed;
+[e :UE 94 ]
+}
+"44
+[; ;main.c: 44: 
+[v _save_event `(v ~T0 @X0 1 ef ]
+"45
+[; ;main.c: 45: 
+{
+[e :U _save_event ]
+[f ]
+"46
+[; ;main.c: 46:         address = log_index * 10;
+[v _clock_reg `uc ~T0 @X0 -> 3 `i a ]
+"47
+[; ;main.c: 47: 
+[v _adc_value `us ~T0 @X0 1 a ]
+"48
+[; ;main.c: 48:         read_ds1307_time(clock_reg);
+[v _speed `uc ~T0 @X0 1 a ]
+"49
+[; ;main.c: 49: 
+[v _address `uc ~T0 @X0 1 a ]
+"52
+[; ;main.c: 52:         speed = ((unsigned long)adc_value * 99) / 1023;
+[e = _address -> * -> _log_index `i -> 10 `i `uc ]
+"54
+[; ;main.c: 54:         eeprom_write(
+[e ( _read_ds1307_time (1 &U _clock_reg ]
+"56
+[; ;main.c: 56:             ((clock_reg[0] >> 4) & 0x03) + '0'
+[e = _adc_value ( _read_adc ..  ]
+"58
+[; ;main.c: 58: 
+[e = _speed -> / * -> _adc_value `ul -> -> -> 99 `i `l `ul -> -> -> 1023 `i `l `ul `uc ]
+"60
+[; ;main.c: 60: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 0 `i `uc -> + -> & >> -> *U + &U _clock_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 4 `i -> 3 `i `ui -> 48 `ui `uc ]
+"67
+[; ;main.c: 67: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 1 `i `uc -> + -> & -> *U + &U _clock_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 15 `i `ui -> 48 `ui `uc ]
+"74
+[; ;main.c: 74: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 2 `i `uc -> + -> & >> -> *U + &U _clock_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
+"81
+[; ;main.c: 81: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 3 `i `uc -> + -> & -> *U + &U _clock_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 15 `i `ui -> 48 `ui `uc ]
+"88
+[; ;main.c: 88: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 4 `i `uc -> + -> & >> -> *U + &U _clock_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 4 `i -> 7 `i `ui -> 48 `ui `uc ]
+"95
+[; ;main.c: 95: 
+[e ( _eeprom_write (2 , -> + -> _address `i -> 5 `i `uc -> + -> & -> *U + &U _clock_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 15 `i `ui -> 48 `ui `uc ]
+"102
+[; ;main.c: 102:             (speed / 10) + '0'
+[e ( _eeprom_write (2 , -> + -> _address `i -> 6 `i `uc -> *U + &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `ui `ux `uc ]
+"103
+[; ;main.c: 103:         );
+[e ( _eeprom_write (2 , -> + -> _address `i -> 7 `i `uc -> *U + &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `ui `ux `uc ]
+"106
+[; ;main.c: 106:             address + 9,
+[e ( _eeprom_write (2 , -> + -> _address `i -> 8 `i `uc -> + -> / -> _speed `i -> 10 `i `ui -> 48 `ui `uc ]
+"111
+[; ;main.c: 111:        if (log_count < 10)
+[e ( _eeprom_write (2 , -> + -> _address `i -> 9 `i `uc -> + -> % -> _speed `i -> 10 `i `ui -> 48 `ui `uc ]
+"117
+[; ;main.c: 117:            oldest_index++;
+[e $ ! < -> _log_count `i -> 10 `i 99  ]
+"118
+[; ;main.c: 118: 
+{
+"119
+[; ;main.c: 119:            if (oldest_index >= 10)
+[e ++ _log_count -> -> 1 `i `uc ]
+"120
+[; ;main.c: 120:            {
+}
+[e $U 100  ]
+"121
+[; ;main.c: 121:                oldest_index = 0;
+[e :U 99 ]
+"122
+[; ;main.c: 122:            }
+{
+"123
+[; ;main.c: 123:        }
+[e ++ _oldest_index -> -> 1 `i `uc ]
+"125
+[; ;main.c: 125:        log_index++;
+[e $ ! >= -> _oldest_index `i -> 10 `i 101  ]
+"126
+[; ;main.c: 126: 
+{
+"127
+[; ;main.c: 127:        if (log_index >= 10)
+[e = _oldest_index -> -> 0 `i `uc ]
+"128
+[; ;main.c: 128:        {
+}
+[e :U 101 ]
+"129
+[; ;main.c: 129:            log_index = 0;
+}
+[e :U 100 ]
+"131
+[; ;main.c: 131: 
+[e ++ _log_index -> -> 1 `i `uc ]
+"133
+[; ;main.c: 133:        eeprom_write(100, log_index);
+[e $ ! >= -> _log_index `i -> 10 `i 102  ]
+"134
+[; ;main.c: 134:        eeprom_write(101, log_count);
+{
+"135
+[; ;main.c: 135:        eeprom_write(102, oldest_index);
+[e = _log_index -> -> 0 `i `uc ]
+"136
+[; ;main.c: 136: }
+}
+[e :U 102 ]
+"139
+[; ;main.c: 139:     init_i2c(100000);
+[e ( _eeprom_write (2 , -> -> 100 `i `uc _log_index ]
+"140
+[; ;main.c: 140:     init_ds1307();
+[e ( _eeprom_write (2 , -> -> 101 `i `uc _log_count ]
+"141
+[; ;main.c: 141: 
+[e ( _eeprom_write (2 , -> -> 102 `i `uc _oldest_index ]
+"142
+[; ;main.c: 142:     init_clcd();
+[e :UE 98 ]
+}
+"144
+[; ;main.c: 144:     init_timer0();
 [v _init_config `(v ~T0 @X0 1 sf ]
 {
 [e :U _init_config ]
 [f ]
-"17
-[; ;main.c: 17: 
+"145
+[; ;main.c: 145: 
 [e ( _init_i2c (1 -> -> 100000 `l `ul ]
-"18
-[; ;main.c: 18:     init_matrix_keypad();
+"146
+[; ;main.c: 146:     init_matrix_keypad();
 [e ( _init_ds1307 ..  ]
-"20
-[; ;main.c: 20:     GIE = 1;
+"148
+[; ;main.c: 148: 
 [e ( _init_clcd ..  ]
-"21
-[; ;main.c: 21:     PEIE = 1;
+"149
+[; ;main.c: 149:     GIE = 1;
 [e ( _init_adc ..  ]
-"22
-[; ;main.c: 22: 
+"150
+[; ;main.c: 150:     PEIE = 1;
 [e ( _init_timer0 ..  ]
-"24
-[; ;main.c: 24:     clcd_print("E", (0x80 + 11));
+"152
+[; ;main.c: 152:     clcd_print("Time", (0x80 + 3));
 [e ( _init_matrix_keypad ..  ]
-"26
-[; ;main.c: 26:     put_data_dashboard();
+"153
+[; ;main.c: 153:     clcd_print("E", (0x80 + 11));
+[e ( _init_log ..  ]
+"155
+[; ;main.c: 155:     put_data_dashboard();
 [e = _GIE -> -> 1 `i `b ]
-"27
-[; ;main.c: 27: }
+"156
+[; ;main.c: 156: }
 [e = _PEIE -> -> 1 `i `b ]
-"29
-[; ;main.c: 29: void main(void)
+"158
+[; ;main.c: 158: void main(void)
 [e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 3 `i `uc ]
-"30
-[; ;main.c: 30: {
+"159
+[; ;main.c: 159: {
 [e ( _clcd_print (2 , :s 2C -> + -> 128 `i -> 11 `i `uc ]
-"31
-[; ;main.c: 31: 
+"160
+[; ;main.c: 160: 
 [e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 14 `i `uc ]
-"32
-[; ;main.c: 32:     init_config();
+"161
+[; ;main.c: 161:     init_config();
 [e ( _put_data_dashboard ..  ]
-"33
-[; ;main.c: 33: 
-[e :UE 94 ]
+"162
+[; ;main.c: 162: 
+[e :UE 103 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"35
-[; ;main.c: 35:     {
+"164
+[; ;main.c: 164:     {
 [v _main `(v ~T0 @X0 1 ef ]
-"36
-[; ;main.c: 36: 
+"165
+[; ;main.c: 165: 
 {
 [e :U _main ]
 [f ]
-"38
-[; ;main.c: 38:         {
+"167
+[; ;main.c: 167:         {
 [e ( _init_config ..  ]
-"40
-[; ;main.c: 40:             put_data_dashboard();
-[e :U 97 ]
-"41
-[; ;main.c: 41:         }
+"169
+[; ;main.c: 169:             put_data_dashboard();
+[e :U 106 ]
+"170
+[; ;main.c: 170:         }
 {
-"43
-[; ;main.c: 43:         key = read_matrix_keypad(1);
-[e $ ! != -> _one_second_flag `i -> 0 `i 99  ]
-"44
-[; ;main.c: 44: 
+"172
+[; ;main.c: 172:         key = read_matrix_keypad(1);
+[e $ ! != -> _one_second_flag `i -> 0 `i 108  ]
+"173
+[; ;main.c: 173: 
 {
-"45
-[; ;main.c: 45:         if(key == 4)
+"174
+[; ;main.c: 174:         if(key == 4)
 [e = _one_second_flag -> -> 0 `i `uc ]
-"46
-[; ;main.c: 46:         {
+"175
+[; ;main.c: 175:         {
 [e ( _put_data_dashboard ..  ]
-"47
-[; ;main.c: 47:             login_page();
-}
-[e :U 99 ]
-"49
-[; ;main.c: 49:         else if(key == 1)
-[e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
-"51
-[; ;main.c: 51:             i = 8;
-[e $ ! == -> _key `i -> 4 `i 100  ]
-"52
-[; ;main.c: 52:             clcd_print(event[i], (0xC0 + 11));
-{
-"53
-[; ;main.c: 53:         }
-[e ( _login_page ..  ]
-"54
-[; ;main.c: 54:         else if(key == 2)
-}
-[e $U 101  ]
-"55
-[; ;main.c: 55:         {
-[e :U 100 ]
-[e $ ! == -> _key `i -> 1 `i 102  ]
-"56
-[; ;main.c: 56:             if(i < 7)
-{
-"57
-[; ;main.c: 57:             {
-[e = _i -> -> 8 `i `ui ]
-"58
-[; ;main.c: 58:                 i++;
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"59
-[; ;main.c: 59:                 clcd_print(event[i], (0xC0 + 11));
-}
-[e $U 103  ]
-"60
-[; ;main.c: 60:             }
-[e :U 102 ]
-[e $ ! == -> _key `i -> 2 `i 104  ]
-"61
-[; ;main.c: 61:         }
-{
-"62
-[; ;main.c: 62:         else if(key == 3)
-[e $ ! < _i -> -> 7 `i `ui 105  ]
-"63
-[; ;main.c: 63:         {
-{
-"64
-[; ;main.c: 64:             if(i > 1)
-[e ++ _i -> -> 1 `i `ui ]
-"65
-[; ;main.c: 65:             {
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"66
-[; ;main.c: 66:                 i--;
-}
-[e :U 105 ]
-"67
-[; ;main.c: 67:                 clcd_print(event[i], (0xC0 + 11));
-}
-[e $U 106  ]
-"68
-[; ;main.c: 68:             }
-[e :U 104 ]
-[e $ ! == -> _key `i -> 3 `i 107  ]
-"69
-[; ;main.c: 69:         }
-{
-"70
-[; ;main.c: 70: 
-[e $ ! > _i -> -> 1 `i `ui 108  ]
-"71
-[; ;main.c: 71: 
-{
-"72
-[; ;main.c: 72:     }
-[e -- _i -> -> 1 `i `ui ]
-"73
-[; ;main.c: 73: 
-[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
-"74
-[; ;main.c: 74:     return;
+"176
+[; ;main.c: 176:             login_page();
 }
 [e :U 108 ]
-"75
-[; ;main.c: 75: }
+"178
+[; ;main.c: 178:         else if(key == 1)
+[e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
+"180
+[; ;main.c: 180:             if(i != 8)
+[e $ ! == -> _key `i -> 4 `i 109  ]
+"181
+[; ;main.c: 181:             {
+{
+"182
+[; ;main.c: 182:                 i = 8;
+[e ( _login_page ..  ]
+"183
+[; ;main.c: 183:                 clcd_print(event[i], (0xC0 + 11));
 }
+[e $U 110  ]
+"184
+[; ;main.c: 184:                 save_event();
+[e :U 109 ]
+[e $ ! == -> _key `i -> 1 `i 111  ]
+"185
+[; ;main.c: 185:             }
+{
+"186
+[; ;main.c: 186: 
+[e $ ! != _i -> -> 8 `i `ui 112  ]
+"187
+[; ;main.c: 187:         }
+{
+"188
+[; ;main.c: 188:         else if(key == 2)
+[e = _i -> -> 8 `i `ui ]
+"189
+[; ;main.c: 189:         {
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
+"190
+[; ;main.c: 190:             if(i < 7)
+[e ( _save_event ..  ]
+"191
+[; ;main.c: 191:             {
+}
+[e :U 112 ]
+"193
+[; ;main.c: 193:                 clcd_print(event[i], (0xC0 + 11));
+}
+[e $U 113  ]
+"194
+[; ;main.c: 194:                 save_event();
+[e :U 111 ]
+[e $ ! == -> _key `i -> 2 `i 114  ]
+"195
+[; ;main.c: 195:             }
+{
+"196
+[; ;main.c: 196:         }
+[e $ ! < _i -> -> 7 `i `ui 115  ]
+"197
+[; ;main.c: 197:         else if(key == 3)
+{
+"198
+[; ;main.c: 198:         {
+[e ++ _i -> -> 1 `i `ui ]
+"199
+[; ;main.c: 199:             if(i > 1)
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
+"200
+[; ;main.c: 200:             {
+[e ( _save_event ..  ]
+"201
+[; ;main.c: 201:                 i--;
+}
+[e :U 115 ]
+"202
+[; ;main.c: 202:                 clcd_print(event[i], (0xC0 + 11));
+}
+[e $U 116  ]
+"203
+[; ;main.c: 203:                 save_event();
+[e :U 114 ]
+[e $ ! == -> _key `i -> 3 `i 117  ]
+"204
+[; ;main.c: 204:             }
+{
+"205
+[; ;main.c: 205:         }
+[e $ ! > _i -> -> 1 `i `ui 118  ]
+"206
+[; ;main.c: 206: 
+{
+"207
+[; ;main.c: 207: 
+[e -- _i -> -> 1 `i `ui ]
+"208
+[; ;main.c: 208:     }
+[e ( _clcd_print (2 , -> &U *U + &U _event * -> _i `ux -> * -> # *U &U *U &U _event `ui -> -> 3 `i `ui `ux `*Cuc -> + -> 192 `i -> 11 `i `uc ]
+"209
+[; ;main.c: 209: 
+[e ( _save_event ..  ]
+"210
+[; ;main.c: 210:     return;
+}
+[e :U 118 ]
+"211
+[; ;main.c: 211: }
+}
+[e :U 117 ]
+[e :U 116 ]
+[e :U 113 ]
+[e :U 110 ]
+"214
+}
+[e :U 105 ]
+"169
+[; ;main.c: 169:             put_data_dashboard();
+[e $U 106  ]
 [e :U 107 ]
-[e :U 106 ]
-[e :U 103 ]
-[e :U 101 ]
-"78
-}
-[e :U 96 ]
-"40
-[; ;main.c: 40:             put_data_dashboard();
-[e $U 97  ]
-[e :U 98 ]
-"80
-[e $UE 95  ]
-"81
-[e :UE 95 ]
+"216
+[e $UE 104  ]
+"217
+[e :UE 104 ]
 }
 [a 1C 84 105 109 101 0 ]
 [a 3C 83 80 0 ]
