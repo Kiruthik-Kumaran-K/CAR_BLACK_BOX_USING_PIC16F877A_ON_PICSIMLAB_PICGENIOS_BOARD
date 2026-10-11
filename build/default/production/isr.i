@@ -1761,12 +1761,6 @@ unsigned char read_matrix_keypad(unsigned char mode);
 void init_matrix_keypad(void);
 # 16 "./main.h" 2
 
-# 1 "./menu.h" 1
-
-
-
-void menu_page(void);
-# 18 "./main.h" 2
 
 
 
@@ -1776,6 +1770,7 @@ void menu_page(void);
 
 void put_data_dashboard(void);
 void login_page(void);
+void menu_page(void);
 void view_log(void);
 void clear_log(void);
 void set_time(void);

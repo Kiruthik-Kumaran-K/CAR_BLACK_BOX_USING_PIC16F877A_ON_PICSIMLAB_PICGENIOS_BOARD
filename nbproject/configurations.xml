@@ -11,7 +11,6 @@
       <itemPath>main.h</itemPath>
       <itemPath>matrix_keypad.h</itemPath>
       <itemPath>timer.h</itemPath>
-      <itemPath>menu.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

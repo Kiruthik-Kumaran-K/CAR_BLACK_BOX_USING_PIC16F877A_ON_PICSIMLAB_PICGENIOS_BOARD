@@ -42,8 +42,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./clcd.h
 [; ;./clcd.h: 32: void clcd_print(const char *str, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
-"25 ./main.h
-[; ;./main.h: 25: void put_data_dashboard(void);
+"24 ./main.h
+[; ;./main.h: 24: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "13 main.c
@@ -52,8 +52,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./matrix_keypad.h
 [; ;./matrix_keypad.h: 31: unsigned char read_matrix_keypad(unsigned char mode);
 [v _read_matrix_keypad `(uc ~T0 @X0 0 ef1`uc ]
-"26 ./main.h
-[; ;./main.h: 26: void login_page(void);
+"25 ./main.h
+[; ;./main.h: 25: void login_page(void);
 [v _login_page `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");

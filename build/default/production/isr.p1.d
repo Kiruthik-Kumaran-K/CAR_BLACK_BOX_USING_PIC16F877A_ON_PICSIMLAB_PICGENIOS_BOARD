@@ -6,5 +6,4 @@ i2c.h  \
 ds1307.h  \
 clcd.h  \
 adc.h  \
-matrix_keypad.h  \
-menu.h 
+matrix_keypad.h 

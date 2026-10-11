@@ -21,8 +21,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include/pic.h
 [v __delay `JF917 ~T0 @X0 0 e ]
 [p i __delay ]
-"4 ./menu.h
-[; ;./menu.h: 4: void menu_page(void);
+"26 ./main.h
+[; ;./main.h: 26: void menu_page(void);
 [v _menu_page `(v ~T0 @X0 0 ef ]
 "31 ./clcd.h
 [; ;./clcd.h: 31: void clcd_putch(const char data, unsigned char addr);
@@ -30,8 +30,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23 login.c
 [; ;login.c: 23: extern volatile unsigned char one_second_flag;
 [v _one_second_flag `Vuc ~T0 @X0 0 e ]
-"25 ./main.h
-[; ;./main.h: 25: void put_data_dashboard(void);
+"24 ./main.h
+[; ;./main.h: 24: void put_data_dashboard(void);
 [v _put_data_dashboard `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 54: __asm("INDF equ 00h");

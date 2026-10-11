@@ -14,7 +14,6 @@
 #include "adc.h"
 #include "matrix_keypad.h"
 #include "timer.h"
-#include "menu.h"
 
 #define PASSWORD_LENGTH 4
 #define LOG_INDEX_ADDR    100
@@ -24,6 +23,7 @@
 
 void put_data_dashboard(void);
 void login_page(void);
+void menu_page(void);
 void view_log(void);
 void clear_log(void);
 void set_time(void);

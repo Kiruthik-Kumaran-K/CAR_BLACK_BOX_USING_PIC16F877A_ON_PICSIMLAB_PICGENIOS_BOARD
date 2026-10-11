@@ -1761,23 +1761,10 @@ void read_ds1307_time(unsigned char *clock_reg);
 void init_adc(void);
 unsigned short read_adc(void);
 # 15 "./main.h" 2
-
-
-# 1 "./menu.h" 1
-
-
-
-void menu_page(void);
-# 18 "./main.h" 2
-
-
-
-
-
-
-
+# 24 "./main.h"
 void put_data_dashboard(void);
 void login_page(void);
+void menu_page(void);
 void view_log(void);
 void clear_log(void);
 void set_time(void);

@@ -6,5 +6,4 @@ timer.h  \
 main.h  \
 i2c.h  \
 ds1307.h  \
-adc.h  \
-menu.h 
+adc.h 
