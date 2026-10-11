@@ -26,6 +26,37 @@ unsigned char inactivity_time = 0;
 
 unsigned char attempts = 0;
 
+
+void load_password(void)
+{
+    unsigned char i;
+    unsigned char digit;
+    unsigned char valid = 1;
+
+    for (i = 0; i < 4; i++)
+    {
+        digit = eeprom_read(PASSWORD_EEPROM_ADDR + i);
+
+        if (digit < '0' || digit > '9')
+        {
+            valid = 0;
+            break;
+        }
+
+        org_password[i] = digit;
+    }
+
+    if (!valid)
+    {
+        org_password[0] = '1';
+        org_password[1] = '1';
+        org_password[2] = '1';
+        org_password[3] = '1';
+    }
+
+    org_password[4] = '\0';
+}
+
 int my_strcmp(const char *str1, const char *str2)
 {
  

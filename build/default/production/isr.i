@@ -1761,6 +1761,18 @@ unsigned char read_matrix_keypad(unsigned char mode);
 void init_matrix_keypad(void);
 # 16 "./main.h" 2
 
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
 
 
 
@@ -1773,7 +1785,10 @@ void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 4 "isr.c" 2
 
 

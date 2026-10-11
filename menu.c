@@ -14,17 +14,14 @@ void menu_page(void)
 {
         unsigned char key;
         unsigned char menu_index = 0;
-        unsigned char previous_index = 255;
+        unsigned char previous_index =255; 
 
     while (1)
     {
         
-
-        
         if (menu_index != previous_index)
         {
-            clcd_print("                ", LINE1(0));
-            clcd_print("                ", LINE2(0));
+            clcd_clear();
 
             if (menu_index < 4)
             {
@@ -72,7 +69,7 @@ void menu_page(void)
             }
         }
         
-        if(key == 3)
+        if(key == '*')
         {
             clcd_clear();
             put_data_dashboard();
@@ -82,7 +79,7 @@ void menu_page(void)
         /*
          * SELECT
          */
-        else if (key == 0)
+        else if (key == '#')
         {
             switch (menu_index)
             {
@@ -100,16 +97,25 @@ void menu_page(void)
 
                 case 2:
                     /* Download Log */
+                    download_log();
+                    previous_index = 255;
                     break;
 
                 case 3:
                     /* Set Time */
-                    set_time();
+                    if(set_time())
+                    {
+                        return;
+                    }
+               
                     previous_index = 255;
+                    
                     break;
 
                 case 4:
                     /* Change Password */
+                    change_pwd();
+                    previous_index = 255;
                     break;
             }
         }

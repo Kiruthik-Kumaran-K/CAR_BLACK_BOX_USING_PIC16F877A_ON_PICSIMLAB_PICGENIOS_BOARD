@@ -1761,13 +1761,36 @@ void read_ds1307_time(unsigned char *clock_reg);
 void init_adc(void);
 unsigned short read_adc(void);
 # 15 "./main.h" 2
-# 24 "./main.h"
+
+
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
+
+
+
+
+
+
+
 void put_data_dashboard(void);
 void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 6 "login.c" 2
 
 unsigned char key;
@@ -1791,6 +1814,37 @@ extern volatile unsigned char one_second_flag;
 unsigned char inactivity_time = 0;
 
 unsigned char attempts = 0;
+
+
+void load_password(void)
+{
+    unsigned char i;
+    unsigned char digit;
+    unsigned char valid = 1;
+
+    for (i = 0; i < 4; i++)
+    {
+        digit = eeprom_read(103 + i);
+
+        if (digit < '0' || digit > '9')
+        {
+            valid = 0;
+            break;
+        }
+
+        org_password[i] = digit;
+    }
+
+    if (!valid)
+    {
+        org_password[0] = '1';
+        org_password[1] = '1';
+        org_password[2] = '1';
+        org_password[3] = '1';
+    }
+
+    org_password[4] = '\0';
+}
 
 int my_strcmp(const char *str1, const char *str2)
 {

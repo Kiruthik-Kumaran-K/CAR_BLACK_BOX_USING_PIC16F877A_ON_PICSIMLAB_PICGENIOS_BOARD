@@ -12,7 +12,7 @@ extern volatile unsigned char set_time_blink_enable;
 
 
 /* Convert decimal to BCD for the DS1307 */
-static unsigned char decimal_to_bcd(unsigned char value)
+ static unsigned char decimal_to_bcd(unsigned char value)
 {
     return ((value / 10) << 4) | (value % 10);
 }
@@ -24,17 +24,6 @@ static unsigned char bcd_to_decimal(unsigned char value)
     return ((value >> 4) * 10) + (value & 0x0F);
 }
 
-
-/*
- * field:
- * 0 -> Seconds
- * 1 -> Minutes
- * 2 -> Hours
- *
- * blink_on:
- * 1 -> Show selected field
- * 0 -> Blank selected field
- */
 static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
 {
     /* Hours: positions 0 and 1 */
@@ -78,8 +67,7 @@ static void display_set_time(unsigned char hour,unsigned char minute,unsigned ch
     }
 }
 
-
-void set_time(void)
+unsigned char set_time(void)
 {
     unsigned char clock_reg[3];
 
@@ -115,8 +103,7 @@ void set_time(void)
     clcd_clear();
     clcd_print("SET TIME", LINE1(4));
 
-    display_set_time(hour, minute, second, field,
-set_time_blink_state);
+    display_set_time(hour, minute, second, field, set_time_blink_state);
 
     while (1)
     {
@@ -201,7 +188,7 @@ set_time_blink_state);
         }
 
         /* Save the edited time */
-        else if (key == 0)
+        else if (key == '#')
         {
             /*
              * Disable blinking before saving.
@@ -210,18 +197,40 @@ set_time_blink_state);
             set_time_blink_count = 0;
             set_time_blink_update = 0;
 
-            write_ds1307(HOUR_ADDR, decimal_to_bcd(hour));
+            unsigned char sec_bcd;
+            unsigned char min_bcd;
+            unsigned char hr_bcd;
 
-            write_ds1307(MIN_ADDR, decimal_to_bcd(minute));
+            sec_bcd = decimal_to_bcd(second);
+            min_bcd = decimal_to_bcd(minute);
+            hr_bcd  = decimal_to_bcd(hour);
 
-            write_ds1307(SEC_ADDR, decimal_to_bcd(second));
+            /* 1. Stop the RTC oscillator */
+            write_ds1307(SEC_ADDR, 0x80);
+
+            /* 2. Write the new minutes */
+            write_ds1307(MIN_ADDR, min_bcd);
+
+            /* 3. Write the new hours in 24-hour mode */
+            write_ds1307(HOUR_ADDR, hr_bcd & 0x3F);
+
+            /* 4. Write the seconds and restart the oscillator */
+            write_ds1307(SEC_ADDR, sec_bcd & 0x7F);
 
             clcd_clear();
             clcd_print("TIME SAVED", LINE1(3));
 
             __delay_ms(1000);
 
-            return;
+            return 1;
+        }
+        else if(key == '*')
+        {
+            set_time_blink_enable = 0;
+            set_time_blink_count = 0;
+            set_time_blink_update = 0;
+
+            return 0;  // Back to menu
         }
 
         /*

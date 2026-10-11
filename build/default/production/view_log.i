@@ -50,6 +50,18 @@ void init_matrix_keypad(void);
 # 11 "./timer.h"
 void init_timer0(void);
 # 17 "./main.h" 2
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
 
 
 
@@ -62,7 +74,10 @@ void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 2 "view_log.c" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include/xc.h" 3

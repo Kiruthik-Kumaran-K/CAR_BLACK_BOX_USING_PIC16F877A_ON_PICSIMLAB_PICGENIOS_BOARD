@@ -33,6 +33,8 @@
 [v _eeprom_read eeprom_read `(uc  1 e 1 0 ]
 "6 C:\Program Files\Microchip\xc8\v4.00\pic\sources\c99\pic\__eewrite.c
 [v _eeprom_write eeprom_write `(v  1 e 1 0 ]
+"13 D:\MPLAB_PROJECTS\PIC_Project.X\change_pwd.c
+[v _change_pwd change_pwd `(v  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\clcd.c
 [v _clcd_write clcd_write `(v  1 s 1 clcd_write ]
 "21
@@ -53,6 +55,8 @@
 [v _get_time get_time `(v  1 s 1 get_time ]
 "50
 [v _put_data_dashboard put_data_dashboard `(v  1 e 1 0 ]
+"10 D:\MPLAB_PROJECTS\PIC_Project.X\download_log.c
+[v _download_log download_log `(v  1 e 1 0 ]
 "5 D:\MPLAB_PROJECTS\PIC_Project.X\DS1307.c
 [v _init_ds1307 init_ds1307 `(v  1 e 1 0 ]
 "14
@@ -77,17 +81,19 @@
 [v _i2c_write i2c_write `(i  1 e 2 0 ]
 "26 D:\MPLAB_PROJECTS\PIC_Project.X\isr.c
 [v _isr isr `II(v  1 e 1 0 ]
-"29 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
+"30 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
+[v _load_password load_password `(v  1 e 1 0 ]
+"60
 [v _my_strcmp my_strcmp `(i  1 e 2 0 ]
-"44
+"75
 [v _login_page login_page `(v  1 e 1 0 ]
-"22 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"21 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _init_log init_log `(v  1 e 1 0 ]
-"44
+"43
 [v _save_event save_event `(v  1 e 1 0 ]
-"144
+"115
 [v _init_config init_config `(v  1 s 1 init_config ]
-"164
+"137
 [v _main main `(v  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\matrix_keypad.c
 [v _init_matrix_keypad init_matrix_keypad `(v  1 e 1 0 ]
@@ -101,17 +107,23 @@
 [v _decimal_to_bcd decimal_to_bcd `(uc  1 s 1 decimal_to_bcd ]
 "22
 [v _bcd_to_decimal bcd_to_decimal `(uc  1 s 1 bcd_to_decimal ]
-"38
+"27
 [v _display_set_time display_set_time `(v  1 s 1 display_set_time ]
-"82
-[v _set_time set_time `(v  1 e 1 0 ]
+"70
+[v _set_time set_time `(uc  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\timer.c
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
+"4 D:\MPLAB_PROJECTS\PIC_Project.X\uart.c
+[v _init_uart init_uart `(v  1 e 1 0 ]
+"31
+[v _putchar putchar `(v  1 e 1 0 ]
+"46
+[v _puts puts `(v  1 e 1 0 ]
 "7 D:\MPLAB_PROJECTS\PIC_Project.X\view_log.c
 [v _view_log view_log `(v  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
-[s S425 . 1 `uc 1 C 1 0 :1:0 
+[s S510 . 1 `uc 1 C 1 0 :1:0 
 `uc 1 DC 1 0 :1:1 
 `uc 1 Z 1 0 :1:2 
 `uc 1 nPD 1 0 :1:3 
@@ -120,19 +132,19 @@
 `uc 1 IRP 1 0 :1:7 
 ]
 "99
-[s S433 . 1 `uc 1 . 1 0 :5:0 
+[s S518 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RP0 1 0 :1:5 
 `uc 1 RP1 1 0 :1:6 
 ]
-[s S437 . 1 `uc 1 CARRY 1 0 :1:0 
+[s S522 . 1 `uc 1 CARRY 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ZERO 1 0 :1:2 
 ]
-[u S441 . 1 `S425 1 . 1 0 `S433 1 . 1 0 `S437 1 . 1 0 ]
-[v _STATUSbits STATUSbits `VES441  1 e 1 @3 ]
+[u S526 . 1 `S510 1 . 1 0 `S518 1 . 1 0 `S522 1 . 1 0 ]
+[v _STATUSbits STATUSbits `VES526  1 e 1 @3 ]
 "340
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S462 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S547 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -142,15 +154,19 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "477
-[s S471 . 1 `uc 1 . 1 0 :2:0 
+[s S556 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S476 . 1 `S462 1 . 1 0 `S471 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES476  1 e 1 @11 ]
+[u S561 . 1 `S547 1 . 1 0 `S556 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES561  1 e 1 @11 ]
 "803
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
+"1054
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1061
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
 "1147
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1370
@@ -161,6 +177,8 @@
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
 "1811
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
+"2068
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "2075
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
 "2135
@@ -169,7 +187,7 @@
 [v _EEADR EEADR `VEuc  1 e 1 @269 ]
 "2163
 [v _EECON1 EECON1 `VEuc  1 e 1 @396 ]
-[s S405 . 1 `uc 1 RD 1 0 :1:0 
+[s S490 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -177,8 +195,8 @@
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "2178
-[u S412 . 1 `S405 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES412  1 e 1 @396 ]
+[u S497 . 1 `S490 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES497  1 e 1 @396 ]
 "2208
 [v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
 "2221
@@ -191,6 +209,8 @@
 [v _ADFM ADFM `VEb  1 e 0 @1279 ]
 "2248
 [v _ADON ADON `VEb  1 e 0 @248 ]
+"2329
+[v _CREN CREN `VEb  1 e 0 @196 ]
 "2362
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "2365
@@ -215,6 +235,8 @@
 [v _RB2 RB2 `VEb  1 e 0 @50 ]
 "2530
 [v _RCEN RCEN `VEb  1 e 0 @1163 ]
+"2536
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
 "2542
 [v _RD0 RD0 `VEb  1 e 0 @64 ]
 "2545
@@ -231,6 +253,8 @@
 [v _R_nW R_nW `VEb  1 e 0 @1186 ]
 "2599
 [v _SEN SEN `VEb  1 e 0 @1160 ]
+"2605
+[v _SPEN SPEN `VEb  1 e 0 @199 ]
 "2611
 [v _SSPEN SSPEN `VEb  1 e 0 @165 ]
 "2629
@@ -245,6 +269,8 @@
 [v _TRISE1 TRISE1 `VEb  1 e 0 @1097 ]
 "2806
 [v _TRISE2 TRISE2 `VEb  1 e 0 @1098 ]
+"2830
+[v _TXIF TXIF `VEb  1 e 0 @100 ]
 "2863
 [v _nDONE nDONE `VEb  1 e 0 @250 ]
 "2872
@@ -281,80 +307,80 @@
 [v _inactivity_time inactivity_time `uc  1 e 1 0 ]
 "27
 [v _attempts attempts `uc  1 e 1 0 ]
-"9 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"8 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _i i `ui  1 e 2 0 ]
-"15
+"14
 [v _log_index log_index `uc  1 e 1 0 ]
-"16
+"15
 [v _log_count log_count `uc  1 e 1 0 ]
-"18
+"17
 [v _oldest_index oldest_index `uc  1 e 1 0 ]
-"20
+"19
 [v _key key `uc  1 e 1 0 ]
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\menu.c
 [v _menu_items menu_items `DC[5][17]uc  1 e 85 0 ]
-"164 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"137 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"217
+"190
 } 0
-"44
+"43
 [v _save_event save_event `(v  1 e 1 0 ]
 {
-"46
+"45
 [v save_event@clock_reg clock_reg `[3]uc  1 a 3 27 ]
-"47
+"46
 [v save_event@adc_value adc_value `us  1 a 2 24 ]
-"48
+"47
 [v save_event@speed speed `uc  1 a 1 26 ]
-"49
+"48
 [v save_event@address address `uc  1 a 1 30 ]
-"142
+"113
 } 0
-"44 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
+"75 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
 [v _login_page login_page `(v  1 e 1 0 ]
 {
-"120
+"151
 {
 [v login_page@i i `i  1 a 2 43 ]
-"123
+"154
 }
-"125
+"156
 {
-[v login_page@i_212 i `i  1 a 2 45 ]
-"128
+[v login_page@i_221 i `i  1 a 2 45 ]
+"159
 }
-"143
+"174
 {
-"144
+"175
 [v login_page@lock_time lock_time `uc  1 a 1 53 ]
-"146
+"177
 [v login_page@previous_time previous_time `uc  1 a 1 42 ]
-"194
+"225
 {
-[v login_page@i_217 i `i  1 a 2 47 ]
-"197
+[v login_page@i_226 i `i  1 a 2 47 ]
+"228
 }
-"199
+"230
 {
-[v login_page@i_218 i `i  1 a 2 49 ]
-"202
+[v login_page@i_227 i `i  1 a 2 49 ]
+"233
 }
-"209
+"240
 }
-"242
+"273
 {
-[v login_page@i_224 i `i  1 a 2 51 ]
-"246
+[v login_page@i_233 i `i  1 a 2 51 ]
+"277
 }
-"279
+"310
 } 0
-"29
+"60
 [v _my_strcmp my_strcmp `(i  1 e 2 0 ]
 {
 [v my_strcmp@str1 str1 `*.4DCuc  1 p 1 2 ]
 [v my_strcmp@str2 str2 `*.4DCuc  1 p 1 3 ]
-"42
+"73
 } 0
 "13 D:\MPLAB_PROJECTS\PIC_Project.X\menu.c
 [v _menu_page menu_page `(v  1 e 1 0 ]
@@ -365,7 +391,7 @@
 [v menu_page@menu_index menu_index `uc  1 a 1 35 ]
 "17
 [v menu_page@previous_index previous_index `uc  1 a 1 33 ]
-"117
+"123
 } 0
 "7 D:\MPLAB_PROJECTS\PIC_Project.X\view_log.c
 [v _view_log view_log `(v  1 e 1 0 ]
@@ -388,45 +414,36 @@
 [v view_log@record2 record2 `[11]uc  1 a 11 15 ]
 "131
 } 0
-"82 D:\MPLAB_PROJECTS\PIC_Project.X\set_time.c
-[v _set_time set_time `(v  1 e 1 0 ]
+"70 D:\MPLAB_PROJECTS\PIC_Project.X\set_time.c
+[v _set_time set_time `(uc  1 e 1 0 ]
 {
-"84
-[v set_time@clock_reg clock_reg `[3]uc  1 a 3 12 ]
-"86
-[v set_time@hour hour `uc  1 a 1 17 ]
-"87
-[v set_time@minute minute `uc  1 a 1 18 ]
-"88
-[v set_time@second second `uc  1 a 1 19 ]
-"90
-[v set_time@field field `uc  1 a 1 20 ]
-"91
-[v set_time@key key `uc  1 a 1 16 ]
-"92
-[v set_time@redraw redraw `uc  1 a 1 15 ]
-"246
+"72
+[v set_time@clock_reg clock_reg `[3]uc  1 a 3 14 ]
+"74
+[v set_time@hour hour `uc  1 a 1 19 ]
+"75
+[v set_time@minute minute `uc  1 a 1 20 ]
+"76
+[v set_time@second second `uc  1 a 1 21 ]
+"78
+[v set_time@field field `uc  1 a 1 22 ]
+"79
+[v set_time@key key `uc  1 a 1 18 ]
+"80
+[v set_time@redraw redraw `uc  1 a 1 17 ]
+"192
+{
+"200
+[v set_time@sec_bcd sec_bcd `uc  1 a 1 11 ]
+"201
+[v set_time@min_bcd min_bcd `uc  1 a 1 12 ]
+"202
+[v set_time@hr_bcd hr_bcd `uc  1 a 1 13 ]
+"226
+}
+"255
 } 0
-"111 D:\MPLAB_PROJECTS\PIC_Project.X\matrix_keypad.c
-[v _read_matrix_keypad read_matrix_keypad `(uc  1 e 1 0 ]
-{
-[v read_matrix_keypad@mode mode `uc  1 p 1 wreg ]
-"113
-[v read_matrix_keypad@once once `uc  1 s 1 once ]
-"114
-[v read_matrix_keypad@key key `uc  1 a 1 5 ]
-"116
-[v read_matrix_keypad@mode mode `uc  1 p 1 4 ]
-"137
-} 1
-"24
-[v _scan_keypad scan_keypad `(uc  1 s 1 scan_keypad ]
-{
-"26
-[v scan_keypad@i i `i  1 a 2 2 ]
-"109
-} 0
-"38 D:\MPLAB_PROJECTS\PIC_Project.X\set_time.c
+"27
 [v _display_set_time display_set_time `(v  1 s 1 display_set_time ]
 {
 [v display_set_time@hour hour `uc  1 p 1 wreg ]
@@ -434,9 +451,9 @@
 [v display_set_time@second second `uc  1 p 1 2 ]
 [v display_set_time@field field `uc  1 p 1 3 ]
 [v display_set_time@blink_on blink_on `uc  1 p 1 4 ]
-"41
+"30
 [v display_set_time@hour hour `uc  1 p 1 7 ]
-"79
+"68
 } 1
 "15
 [v _decimal_to_bcd decimal_to_bcd `(uc  1 s 1 decimal_to_bcd ]
@@ -476,10 +493,73 @@
 [v bcd_to_decimal@value value `uc  1 p 1 7 ]
 "25
 } 1
+"10 D:\MPLAB_PROJECTS\PIC_Project.X\download_log.c
+[v _download_log download_log `(v  1 e 1 0 ]
+{
+"12
+[v download_log@offset offset `uc  1 a 1 3 ]
+"13
+[v download_log@slot slot `uc  1 a 1 4 ]
+"14
+[v download_log@address address `uc  1 a 1 6 ]
+"15
+[v download_log@i i `uc  1 a 1 7 ]
+"16
+[v download_log@data data `uc  1 a 1 5 ]
+"91
+} 0
+"46 D:\MPLAB_PROJECTS\PIC_Project.X\uart.c
+[v _puts puts `(v  1 e 1 0 ]
+{
+[v puts@s s `*.25DCuc  1 p 2 4 ]
+"52
+} 0
+"31
+[v _putchar putchar `(v  1 e 1 0 ]
+{
+[v putchar@data data `uc  1 p 1 wreg ]
+"34
+[v putchar@data data `uc  1 p 1 3 ]
+"44
+} 1
 "8 D:\MPLAB_PROJECTS\PIC_Project.X\clear_log.c
 [v _clear_log clear_log `(v  1 e 1 0 ]
 {
 "31
+} 0
+"13 D:\MPLAB_PROJECTS\PIC_Project.X\change_pwd.c
+[v _change_pwd change_pwd `(v  1 e 1 0 ]
+{
+"15
+[v change_pwd@key key `uc  1 a 1 15 ]
+"16
+[v change_pwd@i i `uc  1 a 1 16 ]
+"17
+[v change_pwd@matched matched `uc  1 a 1 14 ]
+"19
+[v change_pwd@new_password new_password `[5]uc  1 a 5 9 ]
+"20
+[v change_pwd@confirm_password confirm_password `[5]uc  1 a 5 4 ]
+"148
+} 0
+"111 D:\MPLAB_PROJECTS\PIC_Project.X\matrix_keypad.c
+[v _read_matrix_keypad read_matrix_keypad `(uc  1 e 1 0 ]
+{
+[v read_matrix_keypad@mode mode `uc  1 p 1 wreg ]
+"113
+[v read_matrix_keypad@once once `uc  1 s 1 once ]
+"114
+[v read_matrix_keypad@key key `uc  1 a 1 5 ]
+"116
+[v read_matrix_keypad@mode mode `uc  1 p 1 4 ]
+"137
+} 1
+"24
+[v _scan_keypad scan_keypad `(uc  1 s 1 scan_keypad ]
+{
+"26
+[v scan_keypad@i i `i  1 a 2 2 ]
+"109
 } 0
 "6 C:\Program Files\Microchip\xc8\v4.00\pic\sources\c99\pic\__eewrite.c
 [v _eeprom_write eeprom_write `(v  1 e 1 0 ]
@@ -494,10 +574,10 @@
 {
 "77
 } 0
-"144 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"115 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _init_config init_config `(v  1 s 1 init_config ]
 {
-"162
+"135
 } 0
 "50 D:\MPLAB_PROJECTS\PIC_Project.X\dashboard.c
 [v _put_data_dashboard put_data_dashboard `(v  1 e 1 0 ]
@@ -601,6 +681,23 @@
 [v ___bmul@multiplier multiplier `uc  1 p 1 4 ]
 "51
 } 1
+"30 D:\MPLAB_PROJECTS\PIC_Project.X\login.c
+[v _load_password load_password `(v  1 e 1 0 ]
+{
+"32
+[v load_password@i i `uc  1 a 1 5 ]
+"33
+[v load_password@digit digit `uc  1 a 1 4 ]
+"34
+[v load_password@valid valid `uc  1 a 1 3 ]
+"58
+} 0
+"4 D:\MPLAB_PROJECTS\PIC_Project.X\uart.c
+[v _init_uart init_uart `(v  1 e 1 0 ]
+{
+[v init_uart@baud baud `ul  1 p 4 22 ]
+"14
+} 0
 "4 D:\MPLAB_PROJECTS\PIC_Project.X\timer.c
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
 {
@@ -611,10 +708,10 @@
 {
 "22
 } 0
-"22 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
+"21 D:\MPLAB_PROJECTS\PIC_Project.X\main.c
 [v _init_log init_log `(v  1 e 1 0 ]
 {
-"42
+"41
 } 0
 "6 C:\Program Files\Microchip\xc8\v4.00\pic\sources\c99\pic\__eeread.c
 [v _eeprom_read eeprom_read `(uc  1 e 1 0 ]
@@ -645,16 +742,16 @@
 [v _init_ds1307 init_ds1307 `(v  1 e 1 0 ]
 {
 "7
-[v init_ds1307@dummy dummy `uc  1 a 1 9 ]
+[v init_ds1307@dummy dummy `uc  1 a 1 6 ]
 "12
 } 0
 "29
 [v _write_ds1307 write_ds1307 `(v  1 e 1 0 ]
 {
 [v write_ds1307@addr addr `uc  1 p 1 wreg ]
-[v write_ds1307@data data `uc  1 p 1 7 ]
+[v write_ds1307@data data `uc  1 p 1 3 ]
 "31
-[v write_ds1307@addr addr `uc  1 p 1 8 ]
+[v write_ds1307@addr addr `uc  1 p 1 4 ]
 "36
 } 1
 "14

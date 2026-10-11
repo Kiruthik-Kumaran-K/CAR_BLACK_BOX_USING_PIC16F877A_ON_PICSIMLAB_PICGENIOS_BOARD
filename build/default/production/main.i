@@ -1760,6 +1760,18 @@ void init_matrix_keypad(void);
 # 11 "./timer.h"
 void init_timer0(void);
 # 17 "./main.h" 2
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
 
 
 
@@ -1772,11 +1784,13 @@ void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 3 "main.c" 2
 
 #pragma config WDTE = OFF
-
 
 unsigned int crt = 0;
 
@@ -1831,61 +1845,33 @@ void save_event(void)
 
         speed = ((unsigned long)adc_value * 99) / 1023;
 
-        eeprom_write(
-            address + 0,
-            ((clock_reg[0] >> 4) & 0x03) + '0'
-        );
+        eeprom_write(address + 0,((clock_reg[0] >> 4) & 0x03) + '0');
 
 
 
-        eeprom_write(
-            address + 1,
-            (clock_reg[0] & 0x0F) + '0'
-        );
+        eeprom_write(address + 1,(clock_reg[0] & 0x0F) + '0');
+
+
+        eeprom_write(address + 2,((clock_reg[1] >> 4) & 0x07) + '0');
 
 
 
-        eeprom_write(
-            address + 2,
-            ((clock_reg[1] >> 4) & 0x07) + '0'
-        );
+        eeprom_write(address + 3, (clock_reg[1] & 0x0F) + '0');
 
 
-
-        eeprom_write(
-            address + 3,
-            (clock_reg[1] & 0x0F) + '0'
-        );
+        eeprom_write(address + 4,((clock_reg[2] >> 4) & 0x07) + '0');
 
 
-
-        eeprom_write(
-            address + 4,
-            ((clock_reg[2] >> 4) & 0x07) + '0'
-        );
-
-
-
-        eeprom_write(
-            address + 5,
-            (clock_reg[2] & 0x0F) + '0'
-        );
-
+        eeprom_write(address + 5,(clock_reg[2] & 0x0F) + '0');
 
 
         eeprom_write(address + 6, event[i][0]);
         eeprom_write(address + 7, event[i][1]);
 
 
-        eeprom_write(
-            address + 8,
-            (speed / 10) + '0'
-        );
+        eeprom_write(address + 8, (speed / 10) + '0');
 
-        eeprom_write(
-            address + 9,
-            (speed % 10) + '0'
-        );
+        eeprom_write(address + 9, (speed % 10) + '0');
 
 
        if (log_count < 10)
@@ -1925,6 +1911,7 @@ static void init_config(void) {
 
     init_matrix_keypad();
     init_log();
+    init_uart(9600);
 
     GIE = 1;
     PEIE = 1;
@@ -1932,6 +1919,7 @@ static void init_config(void) {
     clcd_print("Time", (0x80 + 3));
     clcd_print("E", (0x80 + 11));
     clcd_print("SP" , (0x80 + 14));
+    load_password();
     put_data_dashboard();
 }
 

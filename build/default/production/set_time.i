@@ -1760,6 +1760,18 @@ void init_matrix_keypad(void);
 # 11 "./timer.h"
 void init_timer0(void);
 # 17 "./main.h" 2
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
 
 
 
@@ -1772,7 +1784,10 @@ void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 3 "set_time.c" 2
 
 
@@ -1786,7 +1801,7 @@ extern volatile unsigned char set_time_blink_enable;
 
 
 
-static unsigned char decimal_to_bcd(unsigned char value)
+ static unsigned char decimal_to_bcd(unsigned char value)
 {
     return ((value / 10) << 4) | (value % 10);
 }
@@ -1797,7 +1812,7 @@ static unsigned char bcd_to_decimal(unsigned char value)
 {
     return ((value >> 4) * 10) + (value & 0x0F);
 }
-# 38 "set_time.c"
+
 static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
 {
 
@@ -1841,8 +1856,7 @@ static void display_set_time(unsigned char hour,unsigned char minute,unsigned ch
     }
 }
 
-
-void set_time(void)
+unsigned char set_time(void)
 {
     unsigned char clock_reg[3];
 
@@ -1878,8 +1892,7 @@ void set_time(void)
     clcd_clear();
     clcd_print("SET TIME", (0x80 + 4));
 
-    display_set_time(hour, minute, second, field,
-set_time_blink_state);
+    display_set_time(hour, minute, second, field, set_time_blink_state);
 
     while (1)
     {
@@ -1964,7 +1977,7 @@ set_time_blink_state);
         }
 
 
-        else if (key == 0)
+        else if (key == '#')
         {
 
 
@@ -1973,18 +1986,40 @@ set_time_blink_state);
             set_time_blink_count = 0;
             set_time_blink_update = 0;
 
-            write_ds1307(0x02, decimal_to_bcd(hour));
+            unsigned char sec_bcd;
+            unsigned char min_bcd;
+            unsigned char hr_bcd;
 
-            write_ds1307(0x01, decimal_to_bcd(minute));
+            sec_bcd = decimal_to_bcd(second);
+            min_bcd = decimal_to_bcd(minute);
+            hr_bcd = decimal_to_bcd(hour);
 
-            write_ds1307(0x00, decimal_to_bcd(second));
+
+            write_ds1307(0x00, 0x80);
+
+
+            write_ds1307(0x01, min_bcd);
+
+
+            write_ds1307(0x02, hr_bcd & 0x3F);
+
+
+            write_ds1307(0x00, sec_bcd & 0x7F);
 
             clcd_clear();
             clcd_print("TIME SAVED", (0x80 + 3));
 
             _delay((unsigned long)((1000)*(20000000/4000.0)));
 
-            return;
+            return 1;
+        }
+        else if(key == '*')
+        {
+            set_time_blink_enable = 0;
+            set_time_blink_count = 0;
+            set_time_blink_update = 0;
+
+            return 0;
         }
 
 

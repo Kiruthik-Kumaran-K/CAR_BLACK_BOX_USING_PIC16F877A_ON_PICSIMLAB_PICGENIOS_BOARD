@@ -1760,6 +1760,18 @@ void init_matrix_keypad(void);
 # 11 "./timer.h"
 void init_timer0(void);
 # 17 "./main.h" 2
+# 1 "./uart.h" 1
+
+
+
+
+
+void init_uart(unsigned long baud);
+unsigned char getchar(void);
+void putchar(unsigned char data);
+void puts(const char *s);
+# 18 "./main.h" 2
+
 
 
 
@@ -1772,7 +1784,10 @@ void login_page(void);
 void menu_page(void);
 void view_log(void);
 void clear_log(void);
-void set_time(void);
+unsigned char set_time(void);
+void change_pwd(void);
+void load_password(void);
+void download_log(void);
 # 3 "menu.c" 2
 
 const char menu_items[5][17] =
@@ -1788,17 +1803,14 @@ void menu_page(void)
 {
         unsigned char key;
         unsigned char menu_index = 0;
-        unsigned char previous_index = 255;
+        unsigned char previous_index =255;
 
     while (1)
     {
 
-
-
         if (menu_index != previous_index)
         {
-            clcd_print("                ", (0x80 + 0));
-            clcd_print("                ", (0xC0 + 0));
+            clcd_clear();
 
             if (menu_index < 4)
             {
@@ -1846,7 +1858,7 @@ void menu_page(void)
             }
         }
 
-        if(key == 3)
+        if(key == '*')
         {
             clcd_clear();
             put_data_dashboard();
@@ -1856,7 +1868,7 @@ void menu_page(void)
 
 
 
-        else if (key == 0)
+        else if (key == '#')
         {
             switch (menu_index)
             {
@@ -1874,16 +1886,25 @@ void menu_page(void)
 
                 case 2:
 
+                    download_log();
+                    previous_index = 255;
                     break;
 
                 case 3:
 
-                    set_time();
+                    if(set_time())
+                    {
+                        return;
+                    }
+
                     previous_index = 255;
+
                     break;
 
                 case 4:
 
+                    change_pwd();
+                    previous_index = 255;
                     break;
             }
         }

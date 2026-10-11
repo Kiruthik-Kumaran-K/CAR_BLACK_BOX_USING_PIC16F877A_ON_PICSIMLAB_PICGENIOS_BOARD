@@ -6,4 +6,5 @@ timer.h  \
 main.h  \
 i2c.h  \
 ds1307.h  \
-adc.h 
+adc.h  \
+uart.h 

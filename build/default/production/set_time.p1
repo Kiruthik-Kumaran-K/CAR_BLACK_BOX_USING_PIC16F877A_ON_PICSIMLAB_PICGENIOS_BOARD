@@ -208,14 +208,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc/pic16f877.h: 2210: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "15 set_time.c
-[; ;set_time.c: 15: static unsigned char decimal_to_bcd(unsigned char value)
+[; ;set_time.c: 15:  static unsigned char decimal_to_bcd(unsigned char value)
 [v _decimal_to_bcd `(uc ~T0 @X0 1 sf1`uc ]
 "16
 [; ;set_time.c: 16: {
 {
 [e :U _decimal_to_bcd ]
 "15
-[; ;set_time.c: 15: static unsigned char decimal_to_bcd(unsigned char value)
+[; ;set_time.c: 15:  static unsigned char decimal_to_bcd(unsigned char value)
 [v _value `uc ~T0 @X0 1 r1 ]
 "16
 [; ;set_time.c: 16: {
@@ -249,388 +249,411 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;set_time.c: 25: }
 [e :UE 95 ]
 }
-"38
-[; ;set_time.c: 38: static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
+"27
+[; ;set_time.c: 27: static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
 [v _display_set_time `(v ~T0 @X0 1 sf5`uc`uc`uc`uc`uc ]
-"39
-[; ;set_time.c: 39: {
+"28
+[; ;set_time.c: 28: {
 {
 [e :U _display_set_time ]
-"38
-[; ;set_time.c: 38: static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
+"27
+[; ;set_time.c: 27: static void display_set_time(unsigned char hour,unsigned char minute,unsigned char second,unsigned char field,unsigned char blink_on)
 [v _hour `uc ~T0 @X0 1 r1 ]
 [v _minute `uc ~T0 @X0 1 r2 ]
 [v _second `uc ~T0 @X0 1 r3 ]
 [v _field `uc ~T0 @X0 1 r4 ]
 [v _blink_on `uc ~T0 @X0 1 r5 ]
-"39
-[; ;set_time.c: 39: {
+"28
+[; ;set_time.c: 28: {
 [f ]
-"41
-[; ;set_time.c: 41:     if ((field == 2) && (blink_on == 0))
+"30
+[; ;set_time.c: 30:     if ((field == 2) && (blink_on == 0))
 [e $ ! && == -> _field `i -> 2 `i == -> _blink_on `i -> 0 `i 97  ]
-"42
-[; ;set_time.c: 42:     {
+"31
+[; ;set_time.c: 31:     {
 {
-"43
-[; ;set_time.c: 43:         clcd_putch(' ', (0xC0 + 4));
+"32
+[; ;set_time.c: 32:         clcd_putch(' ', (0xC0 + 4));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 4 `i `uc ]
-"44
-[; ;set_time.c: 44:         clcd_putch(' ', (0xC0 + 5));
+"33
+[; ;set_time.c: 33:         clcd_putch(' ', (0xC0 + 5));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 5 `i `uc ]
-"45
-[; ;set_time.c: 45:     }
+"34
+[; ;set_time.c: 34:     }
 }
 [e $U 98  ]
-"46
-[; ;set_time.c: 46:     else
+"35
+[; ;set_time.c: 35:     else
 [e :U 97 ]
-"47
-[; ;set_time.c: 47:     {
+"36
+[; ;set_time.c: 36:     {
 {
-"48
-[; ;set_time.c: 48:         clcd_putch((hour / 10) + '0', (0xC0 + 4));
+"37
+[; ;set_time.c: 37:         clcd_putch((hour / 10) + '0', (0xC0 + 4));
 [e ( _clcd_putch (2 , -> + -> / -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 4 `i `uc ]
-"49
-[; ;set_time.c: 49:         clcd_putch((hour % 10) + '0', (0xC0 + 5));
+"38
+[; ;set_time.c: 38:         clcd_putch((hour % 10) + '0', (0xC0 + 5));
 [e ( _clcd_putch (2 , -> + -> % -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 5 `i `uc ]
-"50
-[; ;set_time.c: 50:     }
+"39
+[; ;set_time.c: 39:     }
 }
 [e :U 98 ]
-"52
-[; ;set_time.c: 52:     clcd_putch(':', (0xC0 + 6));
+"41
+[; ;set_time.c: 41:     clcd_putch(':', (0xC0 + 6));
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"55
-[; ;set_time.c: 55:     if ((field == 1) && (blink_on == 0))
+"44
+[; ;set_time.c: 44:     if ((field == 1) && (blink_on == 0))
 [e $ ! && == -> _field `i -> 1 `i == -> _blink_on `i -> 0 `i 99  ]
-"56
-[; ;set_time.c: 56:     {
+"45
+[; ;set_time.c: 45:     {
 {
-"57
-[; ;set_time.c: 57:         clcd_putch(' ', (0xC0 + 7));
+"46
+[; ;set_time.c: 46:         clcd_putch(' ', (0xC0 + 7));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"58
-[; ;set_time.c: 58:         clcd_putch(' ', (0xC0 + 8));
+"47
+[; ;set_time.c: 47:         clcd_putch(' ', (0xC0 + 8));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"59
-[; ;set_time.c: 59:     }
+"48
+[; ;set_time.c: 48:     }
 }
 [e $U 100  ]
-"60
-[; ;set_time.c: 60:     else
+"49
+[; ;set_time.c: 49:     else
 [e :U 99 ]
-"61
-[; ;set_time.c: 61:     {
+"50
+[; ;set_time.c: 50:     {
 {
-"62
-[; ;set_time.c: 62:         clcd_putch((minute / 10) + '0', (0xC0 + 7));
+"51
+[; ;set_time.c: 51:         clcd_putch((minute / 10) + '0', (0xC0 + 7));
 [e ( _clcd_putch (2 , -> + -> / -> _minute `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"63
-[; ;set_time.c: 63:         clcd_putch((minute % 10) + '0', (0xC0 + 8));
+"52
+[; ;set_time.c: 52:         clcd_putch((minute % 10) + '0', (0xC0 + 8));
 [e ( _clcd_putch (2 , -> + -> % -> _minute `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"64
-[; ;set_time.c: 64:     }
+"53
+[; ;set_time.c: 53:     }
 }
 [e :U 100 ]
-"66
-[; ;set_time.c: 66:     clcd_putch(':', (0xC0 + 9));
+"55
+[; ;set_time.c: 55:     clcd_putch(':', (0xC0 + 9));
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"69
-[; ;set_time.c: 69:     if ((field == 0) && (blink_on == 0))
+"58
+[; ;set_time.c: 58:     if ((field == 0) && (blink_on == 0))
 [e $ ! && == -> _field `i -> 0 `i == -> _blink_on `i -> 0 `i 101  ]
-"70
-[; ;set_time.c: 70:     {
+"59
+[; ;set_time.c: 59:     {
 {
-"71
-[; ;set_time.c: 71:         clcd_putch(' ', (0xC0 + 10));
+"60
+[; ;set_time.c: 60:         clcd_putch(' ', (0xC0 + 10));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"72
-[; ;set_time.c: 72:         clcd_putch(' ', (0xC0 + 11));
+"61
+[; ;set_time.c: 61:         clcd_putch(' ', (0xC0 + 11));
 [e ( _clcd_putch (2 , -> -> 32 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
-"73
-[; ;set_time.c: 73:     }
+"62
+[; ;set_time.c: 62:     }
 }
 [e $U 102  ]
-"74
-[; ;set_time.c: 74:     else
+"63
+[; ;set_time.c: 63:     else
 [e :U 101 ]
-"75
-[; ;set_time.c: 75:     {
+"64
+[; ;set_time.c: 64:     {
 {
-"76
-[; ;set_time.c: 76:         clcd_putch((second / 10) + '0', (0xC0 + 10));
+"65
+[; ;set_time.c: 65:         clcd_putch((second / 10) + '0', (0xC0 + 10));
 [e ( _clcd_putch (2 , -> + -> / -> _second `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"77
-[; ;set_time.c: 77:         clcd_putch((second % 10) + '0', (0xC0 + 11));
+"66
+[; ;set_time.c: 66:         clcd_putch((second % 10) + '0', (0xC0 + 11));
 [e ( _clcd_putch (2 , -> + -> % -> _second `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
-"78
-[; ;set_time.c: 78:     }
+"67
+[; ;set_time.c: 67:     }
 }
 [e :U 102 ]
-"79
-[; ;set_time.c: 79: }
+"68
+[; ;set_time.c: 68: }
 [e :UE 96 ]
 }
-"82
-[; ;set_time.c: 82: void set_time(void)
-[v _set_time `(v ~T0 @X0 1 ef ]
-"83
-[; ;set_time.c: 83: {
+"70
+[; ;set_time.c: 70: unsigned char set_time(void)
+[v _set_time `(uc ~T0 @X0 1 ef ]
+"71
+[; ;set_time.c: 71: {
 {
 [e :U _set_time ]
 [f ]
-"84
-[; ;set_time.c: 84:     unsigned char clock_reg[3];
+"72
+[; ;set_time.c: 72:     unsigned char clock_reg[3];
 [v _clock_reg `uc ~T0 @X0 -> 3 `i a ]
-"86
-[; ;set_time.c: 86:     unsigned char hour;
+"74
+[; ;set_time.c: 74:     unsigned char hour;
 [v _hour `uc ~T0 @X0 1 a ]
-"87
-[; ;set_time.c: 87:     unsigned char minute;
+"75
+[; ;set_time.c: 75:     unsigned char minute;
 [v _minute `uc ~T0 @X0 1 a ]
-"88
-[; ;set_time.c: 88:     unsigned char second;
+"76
+[; ;set_time.c: 76:     unsigned char second;
 [v _second `uc ~T0 @X0 1 a ]
-"90
-[; ;set_time.c: 90:     unsigned char field = 0;
+"78
+[; ;set_time.c: 78:     unsigned char field = 0;
 [v _field `uc ~T0 @X0 1 a ]
 [e = _field -> -> 0 `i `uc ]
-"91
-[; ;set_time.c: 91:     unsigned char key;
+"79
+[; ;set_time.c: 79:     unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
-"92
-[; ;set_time.c: 92:     unsigned char redraw = 1;
+"80
+[; ;set_time.c: 80:     unsigned char redraw = 1;
 [v _redraw `uc ~T0 @X0 1 a ]
 [e = _redraw -> -> 1 `i `uc ]
-"100
-[; ;set_time.c: 100:     read_ds1307_time(clock_reg);
+"88
+[; ;set_time.c: 88:     read_ds1307_time(clock_reg);
 [e ( _read_ds1307_time (1 &U _clock_reg ]
-"102
-[; ;set_time.c: 102:     hour = bcd_to_decimal(clock_reg[0] & 0x3F);
+"90
+[; ;set_time.c: 90:     hour = bcd_to_decimal(clock_reg[0] & 0x3F);
 [e = _hour ( _bcd_to_decimal (1 -> & -> *U + &U _clock_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 63 `i `uc ]
-"103
-[; ;set_time.c: 103:     minute = bcd_to_decimal(clock_reg[1] & 0x7F);
+"91
+[; ;set_time.c: 91:     minute = bcd_to_decimal(clock_reg[1] & 0x7F);
 [e = _minute ( _bcd_to_decimal (1 -> & -> *U + &U _clock_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 127 `i `uc ]
-"104
-[; ;set_time.c: 104:     second = bcd_to_decimal(clock_reg[2] & 0x7F);
+"92
+[; ;set_time.c: 92:     second = bcd_to_decimal(clock_reg[2] & 0x7F);
 [e = _second ( _bcd_to_decimal (1 -> & -> *U + &U _clock_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _clock_reg `ui `ux `i -> 127 `i `uc ]
-"110
-[; ;set_time.c: 110:     set_time_blink_count = 0;
+"98
+[; ;set_time.c: 98:     set_time_blink_count = 0;
 [e = _set_time_blink_count -> -> 0 `i `ui ]
-"111
-[; ;set_time.c: 111:     set_time_blink_state = 1;
+"99
+[; ;set_time.c: 99:     set_time_blink_state = 1;
 [e = _set_time_blink_state -> -> 1 `i `uc ]
-"112
-[; ;set_time.c: 112:     set_time_blink_update = 0;
+"100
+[; ;set_time.c: 100:     set_time_blink_update = 0;
 [e = _set_time_blink_update -> -> 0 `i `uc ]
-"113
-[; ;set_time.c: 113:     set_time_blink_enable = 1;
+"101
+[; ;set_time.c: 101:     set_time_blink_enable = 1;
 [e = _set_time_blink_enable -> -> 1 `i `uc ]
-"115
-[; ;set_time.c: 115:     clcd_clear();
+"103
+[; ;set_time.c: 103:     clcd_clear();
 [e ( _clcd_clear ..  ]
-"116
-[; ;set_time.c: 116:     clcd_print("SET TIME", (0x80 + 4));
+"104
+[; ;set_time.c: 104:     clcd_print("SET TIME", (0x80 + 4));
 [e ( _clcd_print (2 , :s 1C -> + -> 128 `i -> 4 `i `uc ]
-"118
-[; ;set_time.c: 118:     display_set_time(hour, minute, second, field,
+"106
+[; ;set_time.c: 106:     display_set_time(hour, minute, second, field, set_time_blink_state);
 [e ( _display_set_time (4 , , , , _hour _minute _second _field _set_time_blink_state ]
-"121
-[; ;set_time.c: 121:     while (1)
+"108
+[; ;set_time.c: 108:     while (1)
 [e :U 105 ]
-"122
-[; ;set_time.c: 122:     {
+"109
+[; ;set_time.c: 109:     {
 {
-"123
-[; ;set_time.c: 123:         redraw = 0;
+"110
+[; ;set_time.c: 110:         redraw = 0;
 [e = _redraw -> -> 0 `i `uc ]
-"126
-[; ;set_time.c: 126:         key = read_matrix_keypad(1);
+"113
+[; ;set_time.c: 113:         key = read_matrix_keypad(1);
 [e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
-"129
-[; ;set_time.c: 129:         if (key == 1)
+"116
+[; ;set_time.c: 116:         if (key == 1)
 [e $ ! == -> _key `i -> 1 `i 107  ]
-"130
-[; ;set_time.c: 130:         {
+"117
+[; ;set_time.c: 117:         {
 {
-"131
-[; ;set_time.c: 131:             if (field == 0)
+"118
+[; ;set_time.c: 118:             if (field == 0)
 [e $ ! == -> _field `i -> 0 `i 108  ]
-"132
-[; ;set_time.c: 132:             {
+"119
+[; ;set_time.c: 119:             {
 {
-"133
-[; ;set_time.c: 133:                 second++;
+"120
+[; ;set_time.c: 120:                 second++;
 [e ++ _second -> -> 1 `i `uc ]
-"135
-[; ;set_time.c: 135:                 if (second >= 60)
+"122
+[; ;set_time.c: 122:                 if (second >= 60)
 [e $ ! >= -> _second `i -> 60 `i 109  ]
-"136
-[; ;set_time.c: 136:                     second = 0;
+"123
+[; ;set_time.c: 123:                     second = 0;
 [e = _second -> -> 0 `i `uc ]
 [e :U 109 ]
-"137
-[; ;set_time.c: 137:             }
+"124
+[; ;set_time.c: 124:             }
 }
 [e $U 110  ]
-"138
-[; ;set_time.c: 138:             else if (field == 1)
+"125
+[; ;set_time.c: 125:             else if (field == 1)
 [e :U 108 ]
 [e $ ! == -> _field `i -> 1 `i 111  ]
-"139
-[; ;set_time.c: 139:             {
+"126
+[; ;set_time.c: 126:             {
 {
-"140
-[; ;set_time.c: 140:                 minute++;
+"127
+[; ;set_time.c: 127:                 minute++;
 [e ++ _minute -> -> 1 `i `uc ]
-"142
-[; ;set_time.c: 142:                 if (minute >= 60)
+"129
+[; ;set_time.c: 129:                 if (minute >= 60)
 [e $ ! >= -> _minute `i -> 60 `i 112  ]
-"143
-[; ;set_time.c: 143:                     minute = 0;
+"130
+[; ;set_time.c: 130:                     minute = 0;
 [e = _minute -> -> 0 `i `uc ]
 [e :U 112 ]
-"144
-[; ;set_time.c: 144:             }
+"131
+[; ;set_time.c: 131:             }
 }
 [e $U 113  ]
-"145
-[; ;set_time.c: 145:             else
+"132
+[; ;set_time.c: 132:             else
 [e :U 111 ]
-"146
-[; ;set_time.c: 146:             {
+"133
+[; ;set_time.c: 133:             {
 {
-"147
-[; ;set_time.c: 147:                 hour++;
+"134
+[; ;set_time.c: 134:                 hour++;
 [e ++ _hour -> -> 1 `i `uc ]
-"149
-[; ;set_time.c: 149:                 if (hour >= 24)
+"136
+[; ;set_time.c: 136:                 if (hour >= 24)
 [e $ ! >= -> _hour `i -> 24 `i 114  ]
-"150
-[; ;set_time.c: 150:                     hour = 0;
+"137
+[; ;set_time.c: 137:                     hour = 0;
 [e = _hour -> -> 0 `i `uc ]
 [e :U 114 ]
-"151
-[; ;set_time.c: 151:             }
+"138
+[; ;set_time.c: 138:             }
 }
 [e :U 113 ]
 [e :U 110 ]
-"153
-[; ;set_time.c: 153:             redraw = 1;
+"140
+[; ;set_time.c: 140:             redraw = 1;
 [e = _redraw -> -> 1 `i `uc ]
-"154
-[; ;set_time.c: 154:         }
+"141
+[; ;set_time.c: 141:         }
 }
 [e $U 115  ]
-"157
-[; ;set_time.c: 157:         else if (key == 2)
+"144
+[; ;set_time.c: 144:         else if (key == 2)
 [e :U 107 ]
 [e $ ! == -> _key `i -> 2 `i 116  ]
-"158
-[; ;set_time.c: 158:         {
+"145
+[; ;set_time.c: 145:         {
 {
-"159
-[; ;set_time.c: 159:             if (field == 0)
+"146
+[; ;set_time.c: 146:             if (field == 0)
 [e $ ! == -> _field `i -> 0 `i 117  ]
-"160
-[; ;set_time.c: 160:             {
+"147
+[; ;set_time.c: 147:             {
 {
-"161
-[; ;set_time.c: 161:                 if (second == 0)
+"148
+[; ;set_time.c: 148:                 if (second == 0)
 [e $ ! == -> _second `i -> 0 `i 118  ]
-"162
-[; ;set_time.c: 162:                     second = 59;
+"149
+[; ;set_time.c: 149:                     second = 59;
 [e = _second -> -> 59 `i `uc ]
 [e $U 119  ]
-"163
-[; ;set_time.c: 163:                 else
+"150
+[; ;set_time.c: 150:                 else
 [e :U 118 ]
-"164
-[; ;set_time.c: 164:                     second--;
+"151
+[; ;set_time.c: 151:                     second--;
 [e -- _second -> -> 1 `i `uc ]
 [e :U 119 ]
-"165
-[; ;set_time.c: 165:             }
+"152
+[; ;set_time.c: 152:             }
 }
 [e $U 120  ]
-"166
-[; ;set_time.c: 166:             else if (field == 1)
+"153
+[; ;set_time.c: 153:             else if (field == 1)
 [e :U 117 ]
 [e $ ! == -> _field `i -> 1 `i 121  ]
-"167
-[; ;set_time.c: 167:             {
+"154
+[; ;set_time.c: 154:             {
 {
-"168
-[; ;set_time.c: 168:                 if (minute == 0)
+"155
+[; ;set_time.c: 155:                 if (minute == 0)
 [e $ ! == -> _minute `i -> 0 `i 122  ]
-"169
-[; ;set_time.c: 169:                     minute = 59;
+"156
+[; ;set_time.c: 156:                     minute = 59;
 [e = _minute -> -> 59 `i `uc ]
 [e $U 123  ]
-"170
-[; ;set_time.c: 170:                 else
+"157
+[; ;set_time.c: 157:                 else
 [e :U 122 ]
-"171
-[; ;set_time.c: 171:                     minute--;
+"158
+[; ;set_time.c: 158:                     minute--;
 [e -- _minute -> -> 1 `i `uc ]
 [e :U 123 ]
-"172
-[; ;set_time.c: 172:             }
+"159
+[; ;set_time.c: 159:             }
 }
 [e $U 124  ]
-"173
-[; ;set_time.c: 173:             else
+"160
+[; ;set_time.c: 160:             else
 [e :U 121 ]
-"174
-[; ;set_time.c: 174:             {
+"161
+[; ;set_time.c: 161:             {
 {
-"175
-[; ;set_time.c: 175:                 if (hour == 0)
+"162
+[; ;set_time.c: 162:                 if (hour == 0)
 [e $ ! == -> _hour `i -> 0 `i 125  ]
-"176
-[; ;set_time.c: 176:                     hour = 23;
+"163
+[; ;set_time.c: 163:                     hour = 23;
 [e = _hour -> -> 23 `i `uc ]
 [e $U 126  ]
-"177
-[; ;set_time.c: 177:                 else
+"164
+[; ;set_time.c: 164:                 else
 [e :U 125 ]
-"178
-[; ;set_time.c: 178:                     hour--;
+"165
+[; ;set_time.c: 165:                     hour--;
 [e -- _hour -> -> 1 `i `uc ]
 [e :U 126 ]
-"179
-[; ;set_time.c: 179:             }
+"166
+[; ;set_time.c: 166:             }
 }
 [e :U 124 ]
 [e :U 120 ]
-"181
-[; ;set_time.c: 181:             redraw = 1;
+"168
+[; ;set_time.c: 168:             redraw = 1;
 [e = _redraw -> -> 1 `i `uc ]
-"182
-[; ;set_time.c: 182:         }
+"169
+[; ;set_time.c: 169:         }
 }
 [e $U 127  ]
-"185
-[; ;set_time.c: 185:         else if (key == 3)
+"172
+[; ;set_time.c: 172:         else if (key == 3)
 [e :U 116 ]
 [e $ ! == -> _key `i -> 3 `i 128  ]
-"186
-[; ;set_time.c: 186:         {
+"173
+[; ;set_time.c: 173:         {
 {
-"190
-[; ;set_time.c: 190:             field++;
+"177
+[; ;set_time.c: 177:             field++;
 [e ++ _field -> -> 1 `i `uc ]
-"192
-[; ;set_time.c: 192:             if (field >= 3)
+"179
+[; ;set_time.c: 179:             if (field >= 3)
 [e $ ! >= -> _field `i -> 3 `i 129  ]
-"193
-[; ;set_time.c: 193:                 field = 0;
+"180
+[; ;set_time.c: 180:                 field = 0;
 [e = _field -> -> 0 `i `uc ]
 [e :U 129 ]
-"196
-[; ;set_time.c: 196:             set_time_blink_state = 1;
+"183
+[; ;set_time.c: 183:             set_time_blink_state = 1;
 [e = _set_time_blink_state -> -> 1 `i `uc ]
+"184
+[; ;set_time.c: 184:             set_time_blink_count = 0;
+[e = _set_time_blink_count -> -> 0 `i `ui ]
+"185
+[; ;set_time.c: 185:             set_time_blink_update = 0;
+[e = _set_time_blink_update -> -> 0 `i `uc ]
+"187
+[; ;set_time.c: 187:             redraw = 1;
+[e = _redraw -> -> 1 `i `uc ]
+"188
+[; ;set_time.c: 188:         }
+}
+[e $U 130  ]
+"191
+[; ;set_time.c: 191:         else if (key == '#')
+[e :U 128 ]
+[e $ ! == -> _key `ui -> 35 `ui 131  ]
+"192
+[; ;set_time.c: 192:         {
+{
+"196
+[; ;set_time.c: 196:             set_time_blink_enable = 0;
+[e = _set_time_blink_enable -> -> 0 `i `uc ]
 "197
 [; ;set_time.c: 197:             set_time_blink_count = 0;
 [e = _set_time_blink_count -> -> 0 `i `ui ]
@@ -638,95 +661,119 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;set_time.c: 198:             set_time_blink_update = 0;
 [e = _set_time_blink_update -> -> 0 `i `uc ]
 "200
-[; ;set_time.c: 200:             redraw = 1;
-[e = _redraw -> -> 1 `i `uc ]
+[; ;set_time.c: 200:             unsigned char sec_bcd;
+[v _sec_bcd `uc ~T0 @X0 1 a ]
 "201
-[; ;set_time.c: 201:         }
-}
-[e $U 130  ]
+[; ;set_time.c: 201:             unsigned char min_bcd;
+[v _min_bcd `uc ~T0 @X0 1 a ]
+"202
+[; ;set_time.c: 202:             unsigned char hr_bcd;
+[v _hr_bcd `uc ~T0 @X0 1 a ]
 "204
-[; ;set_time.c: 204:         else if (key == 0)
-[e :U 128 ]
-[e $ ! == -> _key `i -> 0 `i 131  ]
+[; ;set_time.c: 204:             sec_bcd = decimal_to_bcd(second);
+[e = _sec_bcd ( _decimal_to_bcd (1 _second ]
 "205
-[; ;set_time.c: 205:         {
-{
+[; ;set_time.c: 205:             min_bcd = decimal_to_bcd(minute);
+[e = _min_bcd ( _decimal_to_bcd (1 _minute ]
+"206
+[; ;set_time.c: 206:             hr_bcd = decimal_to_bcd(hour);
+[e = _hr_bcd ( _decimal_to_bcd (1 _hour ]
 "209
-[; ;set_time.c: 209:             set_time_blink_enable = 0;
-[e = _set_time_blink_enable -> -> 0 `i `uc ]
-"210
-[; ;set_time.c: 210:             set_time_blink_count = 0;
-[e = _set_time_blink_count -> -> 0 `i `ui ]
-"211
-[; ;set_time.c: 211:             set_time_blink_update = 0;
-[e = _set_time_blink_update -> -> 0 `i `uc ]
-"213
-[; ;set_time.c: 213:             write_ds1307(0x02, decimal_to_bcd(hour));
-[e ( _write_ds1307 (2 , -> -> 2 `i `uc ( _decimal_to_bcd (1 _hour ]
+[; ;set_time.c: 209:             write_ds1307(0x00, 0x80);
+[e ( _write_ds1307 (2 , -> -> 0 `i `uc -> -> 128 `i `uc ]
+"212
+[; ;set_time.c: 212:             write_ds1307(0x01, min_bcd);
+[e ( _write_ds1307 (2 , -> -> 1 `i `uc _min_bcd ]
 "215
-[; ;set_time.c: 215:             write_ds1307(0x01, decimal_to_bcd(minute));
-[e ( _write_ds1307 (2 , -> -> 1 `i `uc ( _decimal_to_bcd (1 _minute ]
-"217
-[; ;set_time.c: 217:             write_ds1307(0x00, decimal_to_bcd(second));
-[e ( _write_ds1307 (2 , -> -> 0 `i `uc ( _decimal_to_bcd (1 _second ]
-"219
-[; ;set_time.c: 219:             clcd_clear();
-[e ( _clcd_clear ..  ]
+[; ;set_time.c: 215:             write_ds1307(0x02, hr_bcd & 0x3F);
+[e ( _write_ds1307 (2 , -> -> 2 `i `uc -> & -> _hr_bcd `i -> 63 `i `uc ]
+"218
+[; ;set_time.c: 218:             write_ds1307(0x00, sec_bcd & 0x7F);
+[e ( _write_ds1307 (2 , -> -> 0 `i `uc -> & -> _sec_bcd `i -> 127 `i `uc ]
 "220
-[; ;set_time.c: 220:             clcd_print("TIME SAVED", (0x80 + 3));
+[; ;set_time.c: 220:             clcd_clear();
+[e ( _clcd_clear ..  ]
+"221
+[; ;set_time.c: 221:             clcd_print("TIME SAVED", (0x80 + 3));
 [e ( _clcd_print (2 , :s 2C -> + -> 128 `i -> 3 `i `uc ]
-"222
-[; ;set_time.c: 222:             _delay((unsigned long)((1000)*(20000000/4000.0)));
+"223
+[; ;set_time.c: 223:             _delay((unsigned long)((1000)*(20000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"224
-[; ;set_time.c: 224:             return;
-[e $UE 103  ]
 "225
-[; ;set_time.c: 225:         }
+[; ;set_time.c: 225:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 103  ]
+"226
+[; ;set_time.c: 226:         }
 }
+[e $U 132  ]
+"227
+[; ;set_time.c: 227:         else if(key == '*')
 [e :U 131 ]
+[e $ ! == -> _key `ui -> 42 `ui 133  ]
+"228
+[; ;set_time.c: 228:         {
+{
+"229
+[; ;set_time.c: 229:             set_time_blink_enable = 0;
+[e = _set_time_blink_enable -> -> 0 `i `uc ]
+"230
+[; ;set_time.c: 230:             set_time_blink_count = 0;
+[e = _set_time_blink_count -> -> 0 `i `ui ]
+"231
+[; ;set_time.c: 231:             set_time_blink_update = 0;
+[e = _set_time_blink_update -> -> 0 `i `uc ]
+"233
+[; ;set_time.c: 233:             return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 103  ]
+"234
+[; ;set_time.c: 234:         }
+}
+[e :U 133 ]
+[e :U 132 ]
 [e :U 130 ]
 [e :U 127 ]
 [e :U 115 ]
-"230
-[; ;set_time.c: 230:         if (redraw)
-[e $ ! != -> _redraw `i -> 0 `i 132  ]
-"231
-[; ;set_time.c: 231:         {
-{
-"232
-[; ;set_time.c: 232:             display_set_time(hour, minute, second, field, set_time_blink_state);
-[e ( _display_set_time (4 , , , , _hour _minute _second _field _set_time_blink_state ]
-"233
-[; ;set_time.c: 233:         }
-}
-[e :U 132 ]
 "239
-[; ;set_time.c: 239:         if (set_time_blink_update)
-[e $ ! != -> _set_time_blink_update `i -> 0 `i 133  ]
+[; ;set_time.c: 239:         if (redraw)
+[e $ ! != -> _redraw `i -> 0 `i 134  ]
 "240
 [; ;set_time.c: 240:         {
 {
 "241
-[; ;set_time.c: 241:             set_time_blink_update = 0;
-[e = _set_time_blink_update -> -> 0 `i `uc ]
-"243
-[; ;set_time.c: 243:             display_set_time(hour, minute, second, field, set_time_blink_state);
+[; ;set_time.c: 241:             display_set_time(hour, minute, second, field, set_time_blink_state);
 [e ( _display_set_time (4 , , , , _hour _minute _second _field _set_time_blink_state ]
-"244
-[; ;set_time.c: 244:         }
+"242
+[; ;set_time.c: 242:         }
 }
-[e :U 133 ]
-"245
-[; ;set_time.c: 245:     }
+[e :U 134 ]
+"248
+[; ;set_time.c: 248:         if (set_time_blink_update)
+[e $ ! != -> _set_time_blink_update `i -> 0 `i 135  ]
+"249
+[; ;set_time.c: 249:         {
+{
+"250
+[; ;set_time.c: 250:             set_time_blink_update = 0;
+[e = _set_time_blink_update -> -> 0 `i `uc ]
+"252
+[; ;set_time.c: 252:             display_set_time(hour, minute, second, field, set_time_blink_state);
+[e ( _display_set_time (4 , , , , _hour _minute _second _field _set_time_blink_state ]
+"253
+[; ;set_time.c: 253:         }
+}
+[e :U 135 ]
+"254
+[; ;set_time.c: 254:     }
 }
 [e :U 104 ]
-"121
-[; ;set_time.c: 121:     while (1)
+"108
+[; ;set_time.c: 108:     while (1)
 [e $U 105  ]
 [e :U 106 ]
-"246
-[; ;set_time.c: 246: }
+"255
+[; ;set_time.c: 255: }
 [e :UE 103 ]
 }
 [a 1C 83 69 84 32 84 73 77 69 0 ]

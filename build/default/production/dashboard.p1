@@ -14,10 +14,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./clcd.h
 [; ;./clcd.h: 31: void clcd_putch(const char data, unsigned char addr);
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
-[v F42 `uc ~T0 @X0 -> 3 `i t ]
+[v F52 `uc ~T0 @X0 -> 3 `i t ]
 "7 dashboard.c
 [; ;dashboard.c: 7: char event[9][3] =
-[v _event `F42 ~T0 @X0 -> 9 `i e ]
+[v _event `F52 ~T0 @X0 -> 9 `i e ]
 [i _event
 :U ..
 :U ..

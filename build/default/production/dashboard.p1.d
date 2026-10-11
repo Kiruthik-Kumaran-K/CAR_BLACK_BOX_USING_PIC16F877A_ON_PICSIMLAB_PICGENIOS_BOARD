@@ -6,4 +6,5 @@ ds1307.h  \
 clcd.h  \
 adc.h  \
 matrix_keypad.h  \
-timer.h 
+timer.h  \
+uart.h 

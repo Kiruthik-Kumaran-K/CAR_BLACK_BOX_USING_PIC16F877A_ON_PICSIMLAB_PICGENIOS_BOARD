@@ -3,7 +3,6 @@
 
 #pragma config WDTE = OFF        // Watchdog Timer Enable bit (WDT disabled)
 
-
 unsigned int crt = 0;
 
 unsigned int i = 0;
@@ -57,61 +56,33 @@ void save_event(void)
 
         speed = ((unsigned long)adc_value * 99) / 1023;
 
-        eeprom_write(
-            address + 0,
-            ((clock_reg[0] >> 4) & 0x03) + '0'
-        );
+        eeprom_write(address + 0,((clock_reg[0] >> 4) & 0x03) + '0');
 
 
         /* Hour units */
-        eeprom_write(
-            address + 1,
-            (clock_reg[0] & 0x0F) + '0'
-        );
-
+        eeprom_write(address + 1,(clock_reg[0] & 0x0F) + '0');
 
         /* Minute tens */
-        eeprom_write(
-            address + 2,
-            ((clock_reg[1] >> 4) & 0x07) + '0'
-        );
+        eeprom_write(address + 2,((clock_reg[1] >> 4) & 0x07) + '0');
 
 
         /* Minute units */
-        eeprom_write(
-            address + 3,
-            (clock_reg[1] & 0x0F) + '0'
-        );
-
+        eeprom_write(address + 3, (clock_reg[1] & 0x0F) + '0');
 
         /* Second tens */
-        eeprom_write(
-            address + 4,
-            ((clock_reg[2] >> 4) & 0x07) + '0'
-        );
-
+        eeprom_write(address + 4,((clock_reg[2] >> 4) & 0x07) + '0');
 
         /* Second units */
-        eeprom_write(
-            address + 5,
-            (clock_reg[2] & 0x0F) + '0'
-        );
+        eeprom_write(address + 5,(clock_reg[2] & 0x0F) + '0');
 
-
- 
+        
         eeprom_write(address + 6, event[i][0]);
         eeprom_write(address + 7, event[i][1]);
 
 
-        eeprom_write(
-            address + 8,
-            (speed / 10) + '0'
-        );
+        eeprom_write(address + 8, (speed / 10) + '0');
 
-        eeprom_write(
-            address + 9,
-            (speed % 10) + '0'
-        );
+        eeprom_write(address + 9, (speed % 10) + '0');
 
 
        if (log_count < 10)
@@ -151,6 +122,7 @@ static void init_config(void) {
     
     init_matrix_keypad();
     init_log();
+    init_uart(9600);
     
     GIE = 1;
     PEIE = 1;
@@ -158,6 +130,7 @@ static void init_config(void) {
     clcd_print("Time", LINE1(3));
     clcd_print("E", LINE1(11));
     clcd_print("SP" , LINE1(14));
+    load_password();
     put_data_dashboard();
 }
 

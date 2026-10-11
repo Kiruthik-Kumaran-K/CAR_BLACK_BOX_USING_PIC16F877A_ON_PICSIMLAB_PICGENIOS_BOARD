@@ -255,8 +255,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "28
 [; ;isr.c: 28:     static unsigned int count = 0;
-[v F975 `ui ~T0 @X0 1 s count ]
-[i F975
+[v F985 `ui ~T0 @X0 1 s count ]
+[i F985
 -> -> 0 `i `ui
 ]
 "32
